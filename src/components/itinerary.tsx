@@ -60,7 +60,7 @@ const ItineraryPlanner: React.FC = () => {
             Intensity:
             <input
               id='intensity'
-              type='range'
+              type='text'
               value={intensity}
               onChange={(e) => setIntensity(e.target.value)}
             />

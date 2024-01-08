@@ -5,7 +5,7 @@ const API_KEY = import.meta.env.VITE_OPENAI_API_KEY;
 
 export const generateItinerary = async (data: { destination: string; length: string; budget: string; intensity: string }) => {
   // Construct prompt for GPT API
-  const prompt = `You are an expert traveller and backpacker who has seen the world and know every destinations ins and outs. Create a ${data.length}-day itinerary for a trip to ${data.destination} with a budget of ${data.budget} and ${data.intensity} activities. Include a packing list.`;
+  const prompt = `You are an expert traveller and backpacker who has seen the world and know every destination's ins and outs. Create a ${data.length}-day itinerary for a trip to ${data.destination} with a budget of ${data.budget} and ${data.intensity} activities. Include a packing list.`;
 
   try {
     const response = await axios.post('https://api.openai.com/v1/engines/gpt-3.5-turbo/completions', {
