@@ -1,9 +1,11 @@
 import Hero from "../components/Hero";
+import About from "../components/About";
 
 const Home = () => {
   return (
-    <div className='relative top-20'>
+    <div id='home'>
       <Hero />
+      <About />
     </div>
   );
 };

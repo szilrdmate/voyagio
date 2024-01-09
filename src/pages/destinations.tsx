@@ -1,5 +1,5 @@
 const Destinations = () => {
-  return <></>;
+  return <div id='destinations'></div>;
 };
 
 export default Destinations;
