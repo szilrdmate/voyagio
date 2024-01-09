@@ -1,9 +1,9 @@
-import ItineraryPlanner from "../components/Itinerary";
+import Hero from "../components/Hero";
 
 const Home = () => {
   return (
-    <div className='w-full min-h-screen flex justify-center items-center'>
-      <ItineraryPlanner />
+    <div className='relative top-20'>
+      <Hero />
     </div>
   );
 };

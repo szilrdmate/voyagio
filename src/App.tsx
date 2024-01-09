@@ -1,10 +1,10 @@
 import { Routes, Route } from "react-router-dom";
-import Home from "./pages/home";
-import Destinations from "./pages/destinations";
+import Home from "./pages/Home";
+import Destinations from "./pages/Destinations";
 import Explore from "./pages/Explore";
-import About from "./pages/about";
-import Contact from "./pages/contact";
-import Navbar from "./components/navbar";
+import About from "./pages/About";
+import Faq from "./pages/Faq";
+import Navbar from "./components/Navbar";
 
 function App() {
   return (
@@ -12,10 +12,9 @@ function App() {
       <Navbar />
       <Routes>
         <Route path='/' element={<Home />} />
-        <Route path='/destinations' element={<Destinations />} />
         <Route path='/explore' element={<Explore />} />
-        <Route path='/about' element={<About />} />
-        <Route path='/contact' element={<Contact />} />
+        <Route path='/destinations' element={<Destinations />} />
+        <Route path='/faq' element={<Faq />} />
       </Routes>
     </div>
   );
