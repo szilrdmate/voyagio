@@ -165,7 +165,7 @@ const ItineraryPlanner: React.FC = () => {
         <h2 className='text-3xl font-bold'>Plan Your Next Trip</h2>
         <div className='flex flex-col w-full'>
           <label htmlFor='destination' className='font-bold'>
-            Destination: {destination}
+            Destination:
           </label>
           <input
             id='destination'
@@ -184,7 +184,7 @@ const ItineraryPlanner: React.FC = () => {
         </div>
         <div className='flex flex-col w-full'>
           <label htmlFor='program' className='font-bold'>
-            Program Type: {program}
+            Program Type:
           </label>
           <select
             id='program'
