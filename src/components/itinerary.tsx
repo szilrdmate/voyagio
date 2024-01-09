@@ -5,14 +5,12 @@ const ItineraryPlanner: React.FC = () => {
   const [destination, setDestination] = useState("");
   const [length, setLength] = useState("");
   const [budget, setBudget] = useState("");
-  const [intensity, setIntensity] = useState("");
   const [program, setProgram] = useState("");
   const [itinerary, setItinerary] = useState(null);
   const [errors, setErrors] = useState({
     destination: "",
     length: "",
     budget: "",
-    intensity: "",
     program: "",
   });
 
@@ -21,7 +19,6 @@ const ItineraryPlanner: React.FC = () => {
       destination: "",
       length: "",
       budget: "",
-      intensity: "",
       program: "",
     });
   };
@@ -52,10 +49,6 @@ const ItineraryPlanner: React.FC = () => {
       newErrors.budget = "Budget is required";
       isValid = false;
     }
-    if (!intensity) {
-      newErrors.intensity = "Intensity is required";
-      isValid = false;
-    }
     // Repeat for other fields...
 
     setErrors(newErrors);
@@ -65,7 +58,6 @@ const ItineraryPlanner: React.FC = () => {
         destination,
         length,
         budget,
-        intensity,
         program,
       });
       setItinerary(response);
@@ -75,7 +67,6 @@ const ItineraryPlanner: React.FC = () => {
       destination,
       length,
       budget,
-      intensity,
       program,
     });
     setItinerary(response);
@@ -85,7 +76,6 @@ const ItineraryPlanner: React.FC = () => {
     setDestination("");
     setLength("");
     setBudget("");
-    setIntensity("");
     setProgram("");
     setItinerary(null);
   };
@@ -97,20 +87,6 @@ const ItineraryPlanner: React.FC = () => {
       return budget + " $";
     }
     return null;
-  };
-
-  const checkIntensity = (value: string) => {
-    if (value === intensity && intensity == 1) {
-      return "Chill";
-    } else if (value === intensity && intensity == 2) {
-      return "Relaxed";
-    } else if (value === intensity && intensity == 3) {
-      return "Normal";
-    } else if (value === intensity && intensity == 4) {
-      return "Eventful";
-    } else if (value === intensity && intensity == 5) {
-      return "Jam-Packed";
-    }
   };
 
   const resetAll = () => {
@@ -148,14 +124,7 @@ const ItineraryPlanner: React.FC = () => {
     }
   };
 
-  const handleIntensityChange = (e) => {
-    setIntensity(e.target.value);
-    if (e.target.value) {
-      setErrors((prev) => ({ ...prev, intensity: "" }));
-    }
-  };
-
-  // TODO: random country/city generator, reset prompt button
+  // TODO: random country/city generator
 
   return (
     <>
@@ -239,25 +208,6 @@ const ItineraryPlanner: React.FC = () => {
           {errors.budget && (
             <div className='error text-white absolute right-10 bg-red-700 bg-opacity-80 backdrop-blur-2xl px-4 rounded-full overflow-hidden'>
               {errors.budget}
-            </div>
-          )}
-        </div>
-        <div className='flex flex-col w-full'>
-          <label htmlFor='intensity' className='font-bold'>
-            Intensity: {checkIntensity(intensity)}
-          </label>
-          <input
-            id='intensity'
-            type='range'
-            value={intensity}
-            onChange={handleIntensityChange}
-            min='1'
-            max='5'
-            className='rounded-full py-2 h-10 w-full bg-transparent border-2 border-opacity-20 border-gray-100'
-          />
-          {errors.intensity && (
-            <div className='error text-white absolute right-10 bg-red-700 bg-opacity-80 backdrop-blur-2xl px-4 rounded-full overflow-hidden'>
-              {errors.intensity}
             </div>
           )}
         </div>
