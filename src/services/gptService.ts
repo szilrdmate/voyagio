@@ -12,7 +12,7 @@ export const generateItinerary = async (data: { destination: string; length: str
   }
 
   // Construct prompt for GPT API
-  const prompt = `You are an expert traveller and backpacker who has seen the world and know every destination's ins and outs. Create a ${data.length}-day itinerary for a trip to ${data.destination} with a budget of ${data.budget}. Plan mostly add ${data.program} type programs and events as much as possible. Include a packing list.`;
+  const prompt = `You are an expert traveller and backpacker who has seen the world and know every destination's ins and outs. Create a ${data.length}-day itinerary for a trip to ${data.destination} with a budget of ${data.budget}. Plan mostly ${data.program} type programs and events as much as possible. Include a packing list.`;
 
   try {
     const response = await axios.post('https://api.openai.com/v1/engines/gpt-3.5-turbo/completions/', {
@@ -26,9 +26,14 @@ export const generateItinerary = async (data: { destination: string; length: str
       },
     });
     return response.data.choices[0].text;
-  } catch (error) {
-    // Enhanced error logging
-    console.error('Error calling OpenAI API:', error.response ? error.response.data : error);
+  } catch (error: unknown) {
+    if (axios.isAxiosError(error)) {
+      // error is an AxiosError, now you can access error.response safely
+      console.error('Error calling OpenAI API:', error.response?.data);
+    } else {
+      // error is some other type of error
+      console.error('An unexpected error occurred:', error);
+    }
     return null;
   }
 };

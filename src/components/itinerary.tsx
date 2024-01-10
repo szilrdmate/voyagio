@@ -49,7 +49,6 @@ const ItineraryPlanner: React.FC = () => {
       newErrors.budget = "Budget is required";
       isValid = false;
     }
-    // Repeat for other fields...
 
     setErrors(newErrors);
 
@@ -62,14 +61,6 @@ const ItineraryPlanner: React.FC = () => {
       });
       setItinerary(response);
     }
-
-    const response = await generateItinerary({
-      destination,
-      length,
-      budget,
-      program,
-    });
-    setItinerary(response);
   };
 
   const handleReset = () => {
@@ -80,7 +71,7 @@ const ItineraryPlanner: React.FC = () => {
     setItinerary(null);
   };
 
-  const checkValue = (value) => {
+  const checkValue = (value: string): string | null => {
     if (value === length && length) {
       return length + " days";
     } else if (value === budget && budget) {
@@ -95,21 +86,21 @@ const ItineraryPlanner: React.FC = () => {
   };
 
   // Modified onChange handlers
-  const handleDestinationChange = (e) => {
+  const handleDestinationChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setDestination(e.target.value);
     if (e.target.value) {
       setErrors((prev) => ({ ...prev, destination: "" }));
     }
   };
 
-  const handleProgramChange = (e) => {
+  const handleProgramChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
     setProgram(e.target.value);
     if (e.target.value) {
       setErrors((prev) => ({ ...prev, program: "" }));
     }
   };
 
-  const handleLengthChange = (e) => {
+  const handleLengthChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setLength(e.target.value);
     if (e.target.value) {
       setErrors((prev) => ({ ...prev, length: "" }));
@@ -117,7 +108,7 @@ const ItineraryPlanner: React.FC = () => {
   };
 
   // Modified onChange handlers
-  const handleBudgetChange = (e) => {
+  const handleBudgetChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setBudget(e.target.value);
     if (e.target.value) {
       setErrors((prev) => ({ ...prev, budget: "" }));
@@ -146,7 +137,7 @@ const ItineraryPlanner: React.FC = () => {
             className='rounded-xl px-4 py-2 h-12 w-full bg-transparent border-[1px] backdrop-blur-lg border-opacity-10 focus-within:outline-none placeholder:text-gray-200 placeholder:font-base border-gray-100 mt-2'
           />
           {errors.destination && (
-            <div className='error text-white absolute right-10 bg-red-700 bg-opacity-80 backdrop-blur-2xl px-4 rounded-full overflow-hidden'>
+            <div className='error text-white absolute right-10 bg-red-600 bg-opacity-80 backdrop-blur-2xl px-4 rounded-full overflow-hidden'>
               {errors.destination}
             </div>
           )}
@@ -167,7 +158,7 @@ const ItineraryPlanner: React.FC = () => {
             <option value='Relax'>Relax</option>
           </select>
           {errors.program && (
-            <div className='error text-white absolute right-10 bg-red-700 bg-opacity-80 backdrop-blur-2xl px-4 rounded-full overflow-hidden'>
+            <div className='error text-white absolute right-10 bg-red-600 bg-opacity-80 backdrop-blur-2xl px-4 rounded-full overflow-hidden'>
               {errors.program}
             </div>
           )}
@@ -186,7 +177,7 @@ const ItineraryPlanner: React.FC = () => {
             className='rounded-full py-2 h-10 w-full bg-transparent'
           />
           {errors.length && (
-            <div className='error text-white absolute right-10 bg-red-700 bg-opacity-80 backdrop-blur-2xl px-4 rounded-full overflow-hidden'>
+            <div className='error text-white absolute right-10 bg-red-600 bg-opacity-80 backdrop-blur-2xl px-4 rounded-full overflow-hidden'>
               {errors.length}
             </div>
           )}
@@ -206,7 +197,7 @@ const ItineraryPlanner: React.FC = () => {
             className='rounded-full py-2 h-10 w-full bg-transparent border-2 border-opacity-20 border-gray-100'
           />
           {errors.budget && (
-            <div className='error text-white absolute right-10 bg-red-700 bg-opacity-80 backdrop-blur-2xl px-4 rounded-full overflow-hidden'>
+            <div className='error text-white absolute right-10 bg-red-600 bg-opacity-80 backdrop-blur-2xl px-4 rounded-full overflow-hidden'>
               {errors.budget}
             </div>
           )}
