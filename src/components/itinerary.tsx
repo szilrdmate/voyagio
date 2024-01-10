@@ -1,37 +1,68 @@
-import React, { useState } from "react";
+import React, { useReducer } from "react";
 import { generateItinerary } from "../services/gptService";
 
-const ItineraryPlanner: React.FC = () => {
-  const [destination, setDestination] = useState("");
-  const [length, setLength] = useState("");
-  const [budget, setBudget] = useState("");
-  const [program, setProgram] = useState("");
-  const [itinerary, setItinerary] = useState(null);
-  const [errors, setErrors] = useState({
+type FormState = {
+  destination: string;
+  length: string;
+  budget: string;
+  program: string;
+  itinerary: null;
+  errors: {
+    destination: string;
+    length: string;
+    budget: string;
+    program: string;
+  };
+};
+
+interface ItineraryItem {
+  day: number;
+  activities: string[];
+  // Add other relevant fields if needed
+}
+
+type FormAction =
+  | { type: "SET_FIELD"; field: string; value: string }
+  | { type: "RESET_FORM" }
+  | { type: "SET_ERRORS"; errors: FormState["errors"] }
+  | { type: "SET_ITINERARY"; itinerary: ItineraryItem[] | null };
+
+const formReducer = (state: FormState, action: FormAction): FormState => {
+  switch (action.type) {
+    case "SET_FIELD":
+      return { ...state, [action.field]: action.value };
+    case "RESET_FORM":
+      return { ...initialFormState };
+    case "SET_ERRORS":
+      return { ...state, errors: action.errors };
+    case "SET_ITINERARY":
+      return { ...state, itinerary: action.itinerary };
+    default:
+      return state;
+  }
+};
+
+const initialFormState: FormState = {
+  destination: "",
+  length: "",
+  budget: "",
+  program: "",
+  itinerary: null,
+  errors: {
     destination: "",
     length: "",
     budget: "",
     program: "",
-  });
+  },
+};
 
-  const resetErrors = () => {
-    setErrors({
-      destination: "",
-      length: "",
-      budget: "",
-      program: "",
-    });
-  };
+const ItineraryPlanner: React.FC = () => {
+  const [state, dispatch] = useReducer(formReducer, initialFormState);
+  const { destination, length, budget, program, errors } = state;
 
-  const handleSubmit = async (event: React.FormEvent) => {
-    event.preventDefault();
-
-    // Reset errors
-    resetErrors();
-
-    // Validation
-    let isValid = true;
+  const validateForm = () => {
     const newErrors = { ...errors };
+    let isValid = true;
 
     if (!destination) {
       newErrors.destination = "Destination is required";
@@ -50,25 +81,38 @@ const ItineraryPlanner: React.FC = () => {
       isValid = false;
     }
 
-    setErrors(newErrors);
+    dispatch({ type: "SET_ERRORS", errors: newErrors });
+    return isValid;
+  };
 
-    if (isValid) {
+  const handleSubmit = async (event: React.FormEvent) => {
+    event.preventDefault();
+
+    const isFormValid = validateForm();
+    if (!isFormValid) return;
+
+    try {
       const response = await generateItinerary({
         destination,
         length,
         budget,
         program,
       });
-      setItinerary(response);
+      // Process the response into ItineraryItem[]
+      const processedItinerary = processGptResponse(response);
+      dispatch({ type: "SET_ITINERARY", itinerary: processedItinerary });
+    } catch (error) {
+      // Handle errors
     }
   };
 
+  const processGptResponse = (response: string): ItineraryItem[] => {
+    // Implement processing logic here
+    return []; // Return processed data
+  };
+
   const handleReset = () => {
-    setDestination("");
-    setLength("");
-    setBudget("");
-    setProgram("");
-    setItinerary(null);
+    dispatch({ type: "RESET_FORM" });
   };
 
   const checkValue = (value: string): string | null => {
@@ -80,38 +124,11 @@ const ItineraryPlanner: React.FC = () => {
     return null;
   };
 
-  const resetAll = () => {
-    handleReset();
-    resetErrors();
-  };
-
-  // Modified onChange handlers
-  const handleDestinationChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setDestination(e.target.value);
-    if (e.target.value) {
-      setErrors((prev) => ({ ...prev, destination: "" }));
-    }
-  };
-
-  const handleProgramChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
-    setProgram(e.target.value);
-    if (e.target.value) {
-      setErrors((prev) => ({ ...prev, program: "" }));
-    }
-  };
-
-  const handleLengthChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setLength(e.target.value);
-    if (e.target.value) {
-      setErrors((prev) => ({ ...prev, length: "" }));
-    }
-  };
-
-  // Modified onChange handlers
-  const handleBudgetChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setBudget(e.target.value);
-    if (e.target.value) {
-      setErrors((prev) => ({ ...prev, budget: "" }));
+  // onChange handlers
+  const handleChange = (field: string, value: string) => {
+    dispatch({ type: "SET_FIELD", field, value });
+    if (value) {
+      dispatch({ type: "SET_ERRORS", errors: { ...errors, [field]: "" } });
     }
   };
 
@@ -132,7 +149,7 @@ const ItineraryPlanner: React.FC = () => {
             type='text'
             autoComplete='off'
             value={destination}
-            onChange={handleDestinationChange}
+            onChange={(e) => handleChange("destination", e.target.value)}
             placeholder='Enter a location'
             className='rounded-xl px-4 py-2 h-12 w-full bg-transparent border-[1px] backdrop-blur-lg border-opacity-10 focus-within:outline-none placeholder:text-gray-200 placeholder:font-base border-gray-100 mt-2'
           />
@@ -149,7 +166,7 @@ const ItineraryPlanner: React.FC = () => {
           <select
             id='program'
             value={program}
-            onChange={handleProgramChange}
+            onChange={(e) => handleChange("program", e.target.value)}
             className='rounded-xl px-4 py-2 h-12 w-full bg-transparent border-[1px] backdrop-blur-lg border-opacity-10 focus-within:outline-none placeholder:text-gray-200 placeholder:font-base border-gray-100 mt-2'>
             <option value=''>Select a Program</option> {/* Default option */}
             <option value='Adventure'>Adventure</option>
@@ -173,7 +190,7 @@ const ItineraryPlanner: React.FC = () => {
             min='1'
             max='14'
             value={length}
-            onChange={handleLengthChange}
+            onChange={(e) => handleChange("length", e.target.value)}
             className='rounded-full py-2 h-10 w-full bg-transparent'
           />
           {errors.length && (
@@ -193,7 +210,7 @@ const ItineraryPlanner: React.FC = () => {
             min='100'
             max='2000'
             step='50'
-            onChange={handleBudgetChange}
+            onChange={(e) => handleChange("budget", e.target.value)}
             className='rounded-full py-2 h-10 w-full bg-transparent border-2 border-opacity-20 border-gray-100'
           />
           {errors.budget && (
@@ -212,13 +229,26 @@ const ItineraryPlanner: React.FC = () => {
           <button
             className='w-full bg-gray-500 h-12 rounded-xl font-bold text-xl border-[1px] border-opacity-20 border-gray-100 shadow-md'
             type='button' // type='button' to prevent form submission
-            onClick={resetAll}
+            onClick={handleReset}
             value='Reset'>
             Reset Prompt
           </button>
         </div>
       </form>
-      {itinerary && <div>{/* Render itinerary table and packing list */}</div>}
+      {state.itinerary && (
+        <div>
+          {state.itinerary.map((item, index) => (
+            <div key={index}>
+              <h3>Day {item.day}</h3>
+              <ul>
+                {item.activities.map((activity, idx) => (
+                  <li key={idx}>{activity}</li>
+                ))}
+              </ul>
+            </div>
+          ))}
+        </div>
+      )}
     </>
   );
 };
