@@ -25,6 +25,7 @@ export const generateItinerary = async (data: { destination: string; length: str
         'Content-Type': 'application/json',
       },
     });
+    console.log(response)
     return response.data.choices[0].text;
   } catch (error: unknown) {
     if (axios.isAxiosError(error)) {

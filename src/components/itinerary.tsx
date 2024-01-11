@@ -6,7 +6,7 @@ type FormState = {
   length: string;
   budget: string;
   program: string;
-  itinerary: null;
+  itinerary: ItineraryItem[] | null;
   errors: {
     destination: string;
     length: string;
@@ -18,6 +18,7 @@ type FormState = {
 interface ItineraryItem {
   day: number;
   activities: string[];
+  budget: number;
   // Add other relevant fields if needed
 }
 
@@ -103,12 +104,45 @@ const ItineraryPlanner: React.FC = () => {
       dispatch({ type: "SET_ITINERARY", itinerary: processedItinerary });
     } catch (error) {
       // Handle errors
+      console.error;
     }
   };
 
   const processGptResponse = (response: string): ItineraryItem[] => {
-    // Implement processing logic here
-    return []; // Return processed data
+    const daySections = response.split(/Day \d+:/); // Split by 'Day X:'
+    const itinerary: ItineraryItem[] = [];
+
+    daySections.forEach((section, index) => {
+      if (section.trim() === "") return; // Skip empty sections
+
+      const activities = section
+        .split(",")
+        .map((activity) => activity.trim())
+        .slice(0, 3); // Get the first 3 activities
+      const budget = calculateDailyBudget(
+        budget,
+        index + 1,
+        daySections.length
+      ); // Calculate budget for the day
+
+      itinerary.push({
+        day: index + 1,
+        activities,
+        budget,
+      });
+    });
+
+    return itinerary;
+  };
+
+  const calculateDailyBudget = (
+    totalBudget: string,
+    dayNumber: number,
+    totalDays: number
+  ): number => {
+    // Example logic to allocate budget evenly across days
+    const budget = parseFloat(totalBudget);
+    return Math.round(budget / totalDays);
   };
 
   const handleReset = () => {
@@ -131,8 +165,6 @@ const ItineraryPlanner: React.FC = () => {
       dispatch({ type: "SET_ERRORS", errors: { ...errors, [field]: "" } });
     }
   };
-
-  // TODO: random country/city generator
 
   return (
     <>
@@ -235,6 +267,7 @@ const ItineraryPlanner: React.FC = () => {
           </button>
         </div>
       </form>
+
       {state.itinerary && (
         <div>
           {state.itinerary.map((item, index) => (
