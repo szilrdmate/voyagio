@@ -27,11 +27,12 @@ const DesktopNav = () => {
             className='hover:text-blue-400 transition-color duration-150'>
             Explore
           </NavLink>
-          <NavLink
-            to='/feedback'
+          <a
+            target='_blank'
+            href='https://voyagio.canny.io/feature-requests'
             className='hover:text-blue-400 transition-color duration-150'>
             Feedback
-          </NavLink>
+          </a>
         </div>
         <button className='bg-teal-500 button'>Plan a Trip</button>
       </div>
