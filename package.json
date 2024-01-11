@@ -10,6 +10,7 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "@heroicons/react": "^2.1.1",
     "@types/react-router-dom": "^5.3.3",
     "axios": "^1.6.5",
     "dotenv": "^16.3.1",

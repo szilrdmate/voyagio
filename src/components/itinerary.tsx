@@ -115,8 +115,6 @@ const ItineraryPlanner: React.FC = () => {
     }
   };
 
-  // TODO: random country/city generator
-
   return (
     <>
       <form
@@ -137,7 +135,7 @@ const ItineraryPlanner: React.FC = () => {
             className='rounded-xl px-4 py-2 h-12 w-full bg-transparent border-[1px] backdrop-blur-lg border-opacity-10 focus-within:outline-none placeholder:text-gray-200 placeholder:font-base border-gray-100 mt-2'
           />
           {errors.destination && (
-            <div className='error text-white absolute right-10 bg-red-600 bg-opacity-80 backdrop-blur-2xl px-4 rounded-full overflow-hidden'>
+            <div className='error text-white absolute right-10 bg-red-600 bg-opacity-80 backdrop-blur-2xl px-4 rounded-md overflow-hidden'>
               {errors.destination}
             </div>
           )}
@@ -158,7 +156,7 @@ const ItineraryPlanner: React.FC = () => {
             <option value='Relax'>Relax</option>
           </select>
           {errors.program && (
-            <div className='error text-white absolute right-10 bg-red-600 bg-opacity-80 backdrop-blur-2xl px-4 rounded-full overflow-hidden'>
+            <div className='error text-white absolute right-10 bg-red-600 bg-opacity-80 backdrop-blur-2xl px-4 rounded-md overflow-hidden'>
               {errors.program}
             </div>
           )}
@@ -177,7 +175,7 @@ const ItineraryPlanner: React.FC = () => {
             className='rounded-full py-2 h-10 w-full bg-transparent'
           />
           {errors.length && (
-            <div className='error text-white absolute right-10 bg-red-600 bg-opacity-80 backdrop-blur-2xl px-4 rounded-full overflow-hidden'>
+            <div className='error text-white absolute right-10 bg-red-600 bg-opacity-80 backdrop-blur-2xl px-4 rounded-md overflow-hidden'>
               {errors.length}
             </div>
           )}
@@ -194,24 +192,24 @@ const ItineraryPlanner: React.FC = () => {
             max='2000'
             step='50'
             onChange={handleBudgetChange}
-            className='rounded-full py-2 h-10 w-full bg-transparent border-2 border-opacity-20 border-gray-100'
+            className='rounded-full py-2 h-10 w-full bg-transparent'
           />
           {errors.budget && (
-            <div className='error text-white absolute right-10 bg-red-600 bg-opacity-80 backdrop-blur-2xl px-4 rounded-full overflow-hidden'>
+            <div className='error text-white absolute right-10 bg-red-600 bg-opacity-80 backdrop-blur-2xl px-4 rounded-md overflow-hidden'>
               {errors.budget}
             </div>
           )}
         </div>
         <div className='flex flex-row w-full space-x-4'>
           <button
-            className='w-full bg-teal-500 h-12 rounded-xl font-bold text-xl border-[1px] border-opacity-20 border-gray-100 shadow-md'
+            className='w-full bg-teal-500 text-xl button shadow-md'
             type='submit'
             value='Submit'>
             Get Itinerary
           </button>
           <button
-            className='w-full bg-gray-500 h-12 rounded-xl font-bold text-xl border-[1px] border-opacity-20 border-gray-100 shadow-md'
-            type='button' // type='button' to prevent form submission
+            className='w-full bg-gray-500 text-xl button shadow-md'
+            type='button'
             onClick={resetAll}
             value='Reset'>
             Reset Prompt

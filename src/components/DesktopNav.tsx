@@ -6,10 +6,10 @@ const DesktopNav = () => {
       <div className=' flex items-center justify-between mx-auto px-4 max-w-6xl '>
         <div>
           <NavLink to='/'>
-            <img src='./public/logo.svg' className='w-36' alt='Voyagio logo' />
+            <img src='/logo.svg' className='w-36' alt='Voyagio logo' />
           </NavLink>
         </div>
-        <div className='overflow-hidden px-8 rounded-full py-3 space-x-8 font-bold text-xl uppercase'>
+        <div className='overflow-hidden px-8 rounded-full py-3 space-x-8 font-bold text-xl'>
           {" "}
           {/*bg-blue-100 border-[1px] border-white border-opacity-20 bg-opacity-20 backdrop-blur-xl*/}
           <NavLink
@@ -18,22 +18,22 @@ const DesktopNav = () => {
             Home
           </NavLink>
           <NavLink
-            to='/explore'
-            className='hover:text-blue-400 transition-color duration-150'>
-            Explore
-          </NavLink>
-          <NavLink
             to='/destinations'
             className='hover:text-blue-400 transition-color duration-150'>
             Destinations
           </NavLink>
           <NavLink
-            to='/faq'
+            to='/explore'
             className='hover:text-blue-400 transition-color duration-150'>
-            FAQ
+            Explore
+          </NavLink>
+          <NavLink
+            to='/feedback'
+            className='hover:text-blue-400 transition-color duration-150'>
+            Feedback
           </NavLink>
         </div>
-        <div>Powered by GPT</div>
+        <button className='bg-teal-500 button'>Plan a Trip</button>
       </div>
     </div>
   );

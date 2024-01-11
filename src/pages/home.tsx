@@ -1,12 +1,14 @@
 import Hero from "../components/Hero";
 import About from "../components/About";
+import Accordion from "../components/Accordion";
 
 const Home = () => {
   return (
-    <div id='home'>
+    <>
       <Hero />
       <About />
-    </div>
+      <Accordion />
+    </>
   );
 };
 

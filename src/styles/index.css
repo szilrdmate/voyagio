@@ -15,3 +15,10 @@
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
+
+/* In your global CSS file */
+@layer components {
+  .button {
+    @apply font-bold px-4 py-2 rounded-lg border border-white border-opacity-20;
+  }
+}

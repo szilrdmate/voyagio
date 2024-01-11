@@ -2,8 +2,9 @@ import { Routes, Route } from "react-router-dom";
 import Home from "./pages/Home";
 import Destinations from "./pages/Destinations";
 import Explore from "./pages/Explore";
-import Faq from "./pages/Faq";
+import Feedback from "./pages/Feedback";
 import Navbar from "./components/Navbar";
+import Footer from "./components/Footer";
 
 function App() {
   return (
@@ -13,8 +14,9 @@ function App() {
         <Route path='/' element={<Home />} />
         <Route path='/explore' element={<Explore />} />
         <Route path='/destinations' element={<Destinations />} />
-        <Route path='/faq' element={<Faq />} />
+        <Route path='/feedback' element={<Feedback />} />
       </Routes>
+      <Footer />
     </div>
   );
 }
