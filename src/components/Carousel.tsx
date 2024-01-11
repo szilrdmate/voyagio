@@ -48,17 +48,24 @@ const InfiniteCarousel: React.FC = () => {
   }, []);
 
   return (
-    <div
-      ref={containerRef}
-      className='flex overflow-x-auto snap-x snap-mandatory py-16'>
-      {items.map((item) => (
-        <Card
-          key={item.id}
-          title={item.title}
-          description={item.description}
-          imageUrl={item.imageUrl}
-        />
-      ))}
+    <div className='w-full bg-white px-6'>
+      <div className='max-w-6xl mx-auto pt-16'>
+        <h2 className='text-5xl font-extrabold mb-8 text-gray-800'>
+          Featured Locations
+        </h2>
+        <div
+          ref={containerRef}
+          className='flex overflow-x-auto snap-x snap-mandatory pb-16 max-w-5xl mx-auto no-scrollbar'>
+          {items.map((item) => (
+            <Card
+              key={item.id}
+              title={item.title}
+              description={item.description}
+              imageUrl={item.imageUrl}
+            />
+          ))}
+        </div>
+      </div>
     </div>
   );
 };

@@ -18,14 +18,14 @@ const DesktopNav = () => {
             Home
           </NavLink>
           <NavLink
-            to='/destinations'
-            className='hover:text-blue-400 transition-color duration-150'>
-            Destinations
-          </NavLink>
-          <NavLink
             to='/explore'
             className='hover:text-blue-400 transition-color duration-150'>
             Explore
+          </NavLink>
+          <NavLink
+            to='/destinations'
+            className='hover:text-blue-400 transition-color duration-150'>
+            Destinations
           </NavLink>
           <a
             target='_blank'
@@ -34,7 +34,9 @@ const DesktopNav = () => {
             Feedback
           </a>
         </div>
-        <button className='bg-teal-500 button'>Plan a Trip</button>
+        <NavLink to='/planner' className='bg-teal-500 button'>
+          Try It for Free
+        </NavLink>
       </div>
     </div>
   );

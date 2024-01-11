@@ -36,7 +36,7 @@ const faqs = [
 
 const Accordion: FunctionComponent = () => {
   return (
-    <div className='bg-white px-6 pt-16 pb-28 border-t-gray-300 border-2'>
+    <div className='bg-white px-6 pt-16 pb-28 border-t-gray-300 border-[1px]'>
       <div className='max-w-6xl grid grid-cols-1 md:grid-cols-8 mx-auto'>
         <div className='md:col-start-1 md:col-span-1'>
           <h2 className='text-5xl font-extrabold mb-8 text-gray-800'>FAQs</h2>

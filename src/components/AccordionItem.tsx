@@ -28,7 +28,7 @@ const AccordionItem: FunctionComponent<AccordionItemProps> = ({
         className={`overflow-hidden transition-all ${
           isOpen ? "max-h-40" : "max-h-0"
         }`}>
-        <p className='text-lg mb-4 font-medium text-gray-500 text-justify '>
+        <p className='text-md mb-4 font-medium text-gray-500 text-justify '>
           {answer}
         </p>
       </div>
