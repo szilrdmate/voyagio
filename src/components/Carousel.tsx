@@ -1,51 +1,55 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import React, { useEffect, useState, useRef } from "react";
 import Card from "./Card";
-import { cardItems } from "../data/carddata";
+import { cardItems } from "../data/cardData";
 
 const InfiniteCarousel: React.FC = () => {
-  const [items, setItems] = useState(cardItems);
-  const containerRef = useRef(null);
+  const containerRef = useRef<HTMLDivElement>(null);
+  const [currentIndex, setCurrentIndex] = useState(0);
+  const slideIntervalRef = useRef<number | null>(null);
+
+  const slideWidth = 341; // Width of 'Card' component
+  const slideWaitTime = 2000; // Time to wait before sliding to the next item
 
   useEffect(() => {
-    // Infinite scroll logic
-    // Duplicate items to simulate infinite scroll
-    setItems((prevItems) => [...prevItems, ...prevItems]);
-
-    // Auto-scroll logic
-    let scrollInterval;
     const startAutoScroll = () => {
-      scrollInterval = setInterval(() => {
-        if (containerRef && containerRef.current) {
-          containerRef.current.scrollLeft += 2;
+      slideIntervalRef.current = window.setInterval(() => {
+        if (containerRef.current) {
+          const node = containerRef.current;
+          const nextIndex = (currentIndex + 1) % cardItems.length;
+          setCurrentIndex(nextIndex);
+
+          let newScrollLeft = slideWidth * nextIndex;
+          if (nextIndex === 0) {
+            // Reset the scroll position for a seamless loop
+            newScrollLeft = 0;
+          }
+
+          node.scroll({ left: newScrollLeft, behavior: "smooth" });
         }
-      }, 20);
+      }, slideWaitTime) as unknown as number;
     };
 
-    if (containerRef && containerRef.current) {
-      startAutoScroll();
+    startAutoScroll();
 
-      // Pause on hover
-      const handleMouseEnter = () => clearInterval(scrollInterval);
-      const handleMouseLeave = () => startAutoScroll();
+    const handleMouseEnter = () => {
+      if (slideIntervalRef.current !== null) {
+        clearInterval(slideIntervalRef.current);
+      }
+    };
+    const handleMouseLeave = startAutoScroll;
 
-      containerRef.current.addEventListener("mouseenter", handleMouseEnter);
-      containerRef.current.addEventListener("mouseleave", handleMouseLeave);
+    containerRef.current?.addEventListener("mouseenter", handleMouseEnter);
+    containerRef.current?.addEventListener("mouseleave", handleMouseLeave);
 
-      return () => {
-        clearInterval(scrollInterval);
-        if (containerRef && containerRef.current) {
-          containerRef.current.removeEventListener(
-            "mouseenter",
-            handleMouseEnter
-          );
-          containerRef.current.removeEventListener(
-            "mouseleave",
-            handleMouseLeave
-          );
-        }
-      };
-    }
-  }, []);
+    return () => {
+      if (slideIntervalRef.current !== null) {
+        clearInterval(slideIntervalRef.current);
+      }
+      containerRef.current?.removeEventListener("mouseenter", handleMouseEnter);
+      containerRef.current?.removeEventListener("mouseleave", handleMouseLeave);
+    };
+  }, [currentIndex]);
 
   return (
     <div className='w-full bg-white px-6'>
@@ -56,9 +60,9 @@ const InfiniteCarousel: React.FC = () => {
         <div
           ref={containerRef}
           className='flex overflow-x-auto snap-x snap-mandatory pb-16 max-w-5xl mx-auto no-scrollbar'>
-          {items.map((item) => (
+          {cardItems.map((item, index) => (
             <Card
-              key={item.id}
+              key={index} // Since we're not modifying the array, index can be used as a key
               title={item.title}
               description={item.description}
               imageUrl={item.imageUrl}

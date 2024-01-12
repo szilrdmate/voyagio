@@ -15,7 +15,7 @@ export const generateItinerary = async (data: { destination: string; length: str
   const prompt = `You are an expert traveller and backpacker who has seen the world and know every destination's ins and outs. Create a ${data.length}-day itinerary for a trip to ${data.destination} with a budget of ${data.budget}. Plan mostly ${data.program} type programs and events as much as possible. Include a packing list.`;
 
   try {
-    const response = await axios.post('https://api.openai.com/v1/engines/gpt-3.5-turbo/completions/', {
+    const response = await axios.post('https://api.openai.com/v1/engines/chat/gpt-3.5-turbo/completions/', {
       prompt,
       // Additional parameters can be included here
       max_tokens: 200,
