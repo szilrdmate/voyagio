@@ -1,10 +1,6 @@
 import { useState, FunctionComponent } from "react";
 import { ChevronDownIcon, ChevronUpIcon } from "@heroicons/react/24/outline";
-
-interface AccordionItemProps {
-  question: string;
-  answer: string;
-}
+import { AccordionItemProps } from "../types/AccordionProps";
 
 const AccordionItem: FunctionComponent<AccordionItemProps> = ({
   question,

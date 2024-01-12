@@ -10,7 +10,6 @@ const DesktopNav = () => {
           </NavLink>
         </div>
         <div className='overflow-hidden px-8 rounded-full py-3 space-x-8 font-bold text-xl'>
-          {" "}
           {/*bg-blue-100 border-[1px] border-white border-opacity-20 bg-opacity-20 backdrop-blur-xl*/}
           <NavLink
             to='/'
