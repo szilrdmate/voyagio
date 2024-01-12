@@ -150,7 +150,6 @@ const ItineraryPlanner = () => {
           </button>
         </div>
       </form>
-      {/*itinerary && <div></div>*/}
     </>
   );
 };

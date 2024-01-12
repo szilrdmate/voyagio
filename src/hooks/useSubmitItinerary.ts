@@ -19,6 +19,7 @@ export const useSubmitItinerary = (
         budget: state.budget,
         program: state.program,
       });
+      console.log('GPT API Response:', response);
       dispatch({ type: "SET_ITINERARY", itinerary: response });
     }
   };
