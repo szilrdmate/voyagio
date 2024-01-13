@@ -1,8 +1,8 @@
 import { useReducer } from "react";
 import { useItineraryFormValidation } from "../hooks/useItineraryFormValidation.ts";
-import { useSubmitItinerary } from "../hooks/useSubmitItinerary";
-import { useInputChange } from "../hooks/useInputChange";
-import { useResetForm } from "../hooks/useResetForm";
+import { useSubmitItinerary } from "../hooks/useSubmitItinerary.ts";
+import { useInputChange } from "../hooks/useInputChange.ts";
+import { useResetForm } from "../hooks/useResetForm.ts";
 import { ItineraryAction, ItineraryState } from "../types/ItineraryTypes.ts";
 
 const initialState: ItineraryState = {

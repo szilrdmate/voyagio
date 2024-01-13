@@ -3,7 +3,6 @@ import Home from "./pages/Home";
 import Destinations from "./pages/Destinations";
 import Explore from "./pages/Explore";
 import Navbar from "./components/Navbar";
-import Footer from "./components/Footer";
 import Planner from "./pages/Planner";
 import NotFound from "./pages/NotFound";
 
@@ -18,7 +17,6 @@ function App() {
         <Route path='/planner' element={<Planner />} />
         <Route path='*' element={<NotFound />} />
       </Routes>
-      <Footer />
     </div>
   );
 }

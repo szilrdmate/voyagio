@@ -22,7 +22,8 @@ export const generateItinerary = async (data: { destination: string; length: str
       "timeThereInUtcFormat": "String",
       "capitalOfTheCountry": "String",
       "localWeather": "String",
-      "temperatureRangeThroughTheYear": "String"
+      "temperatureRangeThroughTheYear": "String",
+      "fetchImageOfDestinationLocation": "String",
     },
     "itinerary": [
       {
@@ -79,7 +80,7 @@ export const generateItinerary = async (data: { destination: string; length: str
   try {
     // Note the change in the endpoint URL to 'v1/chat/completions'
     const response = await axios.post('https://api.openai.com/v1/chat/completions', {
-      model: "gpt-4-1106-preview", // Specify the model you want to use
+      model: "gpt-3.5-turbo-1106", // Specify the model you want to use
       messages: [{role: "system", content: "You are a travel planning assistant."}, {role: "user", content: prompt}],
       // Additional parameters can be included here
       response_format: { type: "json_object" },
