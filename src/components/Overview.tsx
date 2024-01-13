@@ -1,4 +1,5 @@
 import React from "react";
+import response from "../data/exampleResponse.json";
 
 type OverviewProps = {
   setState: React.Dispatch<React.SetStateAction<boolean>>;
@@ -19,17 +20,11 @@ const Overview: React.FC<OverviewProps> = ({ setState }) => {
       </div>
       <h2 className='text-gray-800 font-bold text-xl mb-2'>Description</h2>
       <p className='text-gray-600 font-medium text-md text-justify mb-4'>
-        Lorem ipsum dolor sit amet consectetur adipisicing elit. Iusto,
-        voluptatibus ut atque eos quasi asperiores officiis quaerat architecto
-        accusamus id nisi minus blanditiis tempora unde itaque inventore, illum
-        exercitationem laboriosam?{/*description*/}
+        {response.destination.shortDescription}
       </p>
       <h2 className='text-gray-800 font-bold text-xl mb-2'>History</h2>
       <p className='text-gray-600 font-medium text-md text-justify'>
-        Lorem ipsum dolor sit amet consectetur adipisicing elit. Iusto,
-        voluptatibus ut atque eos quasi asperiores officiis quaerat architecto
-        accusamus id nisi minus blanditiis tempora unde itaque inventore, illum
-        exercitationem laboriosam?{/*history*/}
+        {response.destination.shortHistory}
       </p>
     </div>
   );
