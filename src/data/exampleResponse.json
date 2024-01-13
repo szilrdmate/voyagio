@@ -1,0 +1,90 @@
+{
+    "destination": {
+      "destinationCity": "Budapest",
+      "destinationCountry": "Hungary",
+      "currency": "Hungarian forint",
+      "oneDollarInLocalCurrency": 305.50,
+      "languagesSpoken": ["Hungarian","English"],
+      "timeThereInUtcFormat": "UTC+2",
+      "capitalOfTheCountry": "Budapest",
+      "localWeather": "Mild continental",
+      "temperatureRangeThroughTheYear": "Summer: 20-30°C, Winter: -5-5°C",
+      "shortDescription": "Hungary is a landlocked country in Central Europe, known for its rich cultural heritage and architectural landmarks. Its capital, Budapest, is famed for its scenic Danube River views and numerous thermal baths.",
+      "shortHistory": "Founded in 896 AD, Hungary became a significant power in Central Europe, reaching a peak during the Austro-Hungarian Empire. Post-World War I, it underwent significant territorial changes and played varied roles in European history.",
+      "fetchImageOfDestinationLocation": "https://example.com/budapest-image"
+    },
+    "itinerary": [
+      {
+        "day": 1,
+        "program": [
+          {
+            "id": 1,
+            "programOrPlaceName": "Caving under Budapest",
+            "timeSpentThere": "3 hours",
+            "location": "Pálvölgyi-Mátyás-hegyi Cave",
+            "shortDescriptionOfProgram": "Explore the hidden world under Budapest with a guided caving tour."
+          },
+          {
+            "id": 2,
+            "programOrPlaceName": "Budapest Pinball Museum",
+            "timeSpentThere": "1.5 hours",
+            "location": "Radnóti Miklós utca 18.",
+            "shortDescriptionOfProgram": "Enjoy playing over 130 pinball machines and arcade games from the 19th century to the present."
+          },
+          {
+            "id": 3,
+            "programOrPlaceName": "Wakeboarding at Lake Velence",
+            "timeSpentThere": "3 hours",
+            "location": "Lake Velence",
+            "shortDescriptionOfProgram": "Try wakeboarding or water skiing at the scenic Lake Velence, located outside of Budapest."
+          },
+          {
+            "id": 4,
+            "programOrPlaceName": "Budapest Escape Room",
+            "timeSpentThere": "1.5 hours",
+            "location": "Several locations in Budapest",
+            "shortDescriptionOfProgram": "Engage in an exciting escape room challenge with various themes and difficulty levels."
+          },
+          {
+            "id": 5,
+            "programOrPlaceName": "Gellért Hill Hiking",
+            "timeSpentThere": "2 hours",
+            "location": "Gellért Hill",
+            "shortDescriptionOfProgram": "Hike to the top of Gellért Hill to see the famous Citadella and enjoy panoramic views of the city."
+          }
+        ]
+      }
+    ],
+    "estimatedCosts": [
+      {
+        "category": "Accommodation",
+        "hostelCostPerNight": 10,
+        "hotelCostPerNight": 50,
+        "luxuryHotelCostPerNight": 120,
+        "airbnbCostPerNight": 40
+      },
+      {
+        "category": "Transportation",
+        "busCost": 1,
+        "taxiCost": 15,
+        "trainCost": 2,
+        "rentalCost": 25
+      },
+      {
+        "category": "Food",
+        "streetFoodCost": 5,
+        "budgetRestaurantCost": 15,
+        "fancyRestaurantCost": 40,
+        "traditionalFoodCost": 20
+      },
+      {
+        "category": "Activities",
+        "mainActivityForEachDay": [
+          {
+            "mainActivityName": "Caving under Budapest",
+            "costOfProgram": 40
+          }
+        ]
+      }
+    ]
+  }

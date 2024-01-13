@@ -23,6 +23,8 @@ export const generateItinerary = async (data: { destination: string; length: str
       "capitalOfTheCountry": "String",
       "localWeather": "String",
       "temperatureRangeThroughTheYear": "String",
+      "shortDescription": "String", // 2-3 sentances
+      "shortHistory": "String", // 2-3 sentances
       "fetchImageOfDestinationLocation": "String",
     },
     "itinerary": [
