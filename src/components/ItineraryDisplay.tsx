@@ -9,6 +9,7 @@ import {
 } from "@fortawesome/free-solid-svg-icons";
 import DayFragment from "./DayFragment";
 import { Link } from "react-router-dom";
+import CostBreakdown from "./CostBreakdown";
 
 const ItineraryDisplay: React.FC = () => {
   const [isOverview, setIsOverview] = useState<boolean>(true);
@@ -48,14 +49,16 @@ const ItineraryDisplay: React.FC = () => {
         {isOverview && <Overview setState={setIsOverview} />}
         {!isOverview && <General setState={setIsOverview} />}
       </div>
-      <div className='p-8'>
+      <div className='pt-8 px-8'>
         <h2 className='text-gray-800 font-black text-3xl'>Itinerary</h2>
         {response &&
           response.itinerary.map((day) => (
             <DayFragment key={day.day} itinerary={day} />
           ))}
       </div>
-      <div id='cost'></div>
+      <div id='cost' className='p-8'>
+        <CostBreakdown estimatedCosts={response.estimatedCosts} />
+      </div>
     </div>
   );
 };
