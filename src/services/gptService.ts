@@ -14,6 +14,7 @@ export const generateItinerary = async (data: { destination: string; length: str
   // Construct prompt for GPT API
   const prompt = `You are an expert traveller and backpacker who has seen the world and know every destination's ins and outs. Create a ${data.length}-day itinerary for a trip to ${data.destination} with a budget of ${data.budget}. Plan 5 programs for each day in the following category(s): ${data.program}. Return the requested data according to the specified details in the form of a json file with the following outline/format. Here comes the format: "{
     "destination": {
+      "numberOfDays": "Number",
       "destinationCity": "String",
       "destinationCountry": "String",
       "currency": "String",
@@ -26,17 +27,20 @@ export const generateItinerary = async (data: { destination: string; length: str
       "shortDescription": "String", // 2-3 sentances
       "shortHistory": "String", // 2-3 sentances
       "fetchImageOfDestinationLocation": "String",
+      "startDate": "String",
+      "endDate": "String"
     },
     "itinerary": [
       {
         "day": "Number",
+        "date": "String" // eg. dayofweek, day, month
         "program": [
           {
             "id": "Number",
             "programOrPlaceName": "String",
             "timeSpentThere": "String",
             "location": "String",
-            "shortDescriptionOfProgram": "String"
+            "shortDescriptionOfProgram": "String" // 2-3 sentances
           },
           // ... Repeat for each program
         ]

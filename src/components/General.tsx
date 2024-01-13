@@ -9,7 +9,6 @@ import {
   faCity,
 } from "@fortawesome/free-solid-svg-icons";
 import response from "../data/exampleResponse.json";
-import { destination, itinerary, estimatedCosts } from "../data/gptData";
 
 type GeneralProps = {
   setState: React.Dispatch<React.SetStateAction<boolean>>;
@@ -31,55 +30,55 @@ const General: React.FC<GeneralProps> = ({ setState }) => {
       <div className='w-full grid grid-cols-2 grid-rows-3 gap-6'>
         <div className='flex items-center'>
           <FontAwesomeIcon
-            className='text-gray-800 text-xl h-6 w-6'
+            className='bg-gray-200 p-2 rounded-full text-gray-800 text-xl h-6 w-6'
             icon={faMoneyBill}
           />
-          <p className='text-gray-800 text-md font-semibold ml-4'>
+          <p className='text-gray-800 text-md font-medium ml-4'>
             {response.destination.currency}
           </p>
         </div>
         <div className='flex items-center'>
           <FontAwesomeIcon
-            className='text-gray-800 text-xl h-6 w-6'
+            className='text-gray-800 text-xl h-6 w-6 bg-gray-200 p-2 rounded-full'
             icon={faMoneyBillTransfer}
           />
-          <p className='text-gray-800 text-md font-semibold ml-4'>
+          <p className='text-gray-800 text-md font-medium ml-4'>
             {response.destination.oneDollarInLocalCurrency}
           </p>
         </div>
         <div className='flex items-center'>
           <FontAwesomeIcon
-            className='text-gray-800 text-xl h-6 w-6'
+            className='text-gray-800 text-xl h-6 w-6 bg-gray-200 p-2 rounded-full'
             icon={faCity}
           />
-          <p className='text-gray-800 text-md font-semibold ml-4'>
+          <p className='text-gray-800 text-md font-medium ml-4'>
             {response.destination.capitalOfTheCountry}
           </p>
         </div>
         <div className='flex items-center'>
           <FontAwesomeIcon
-            className='text-gray-800 text-xl h-6 w-6'
+            className='text-gray-800 text-xl h-6 w-6 bg-gray-200 p-2 rounded-full'
             icon={faTemperatureHalf}
           />
-          <p className='text-gray-800 text-md font-semibold ml-4'>
+          <p className='text-gray-800 text-md font-medium ml-4'>
             {response.destination.localWeather}
           </p>
         </div>
         <div className='flex items-center'>
           <FontAwesomeIcon
-            className='text-gray-800 text-xl h-6 w-6'
+            className='text-gray-800 text-xl h-6 w-6 bg-gray-200 p-2 rounded-full'
             icon={faEarthAmericas}
           />
-          <p className='text-gray-800 text-md font-semibold ml-4'>
+          <p className='text-gray-800 text-md font-medium ml-4'>
             {response.destination.timeThereInUtcFormat}
           </p>
         </div>
         <div className='flex items-center'>
           <FontAwesomeIcon
-            className='text-gray-800 text-xl h-6 w-6'
+            className='text-gray-800 text-xl h-6 w-6 bg-gray-200 p-2 rounded-full'
             icon={faLanguage}
           />
-          <p className='text-gray-800 text-md font-semibold ml-4'>
+          <p className='text-gray-800 text-md font-medium ml-4'>
             {response.destination.languagesSpoken}
           </p>
         </div>
