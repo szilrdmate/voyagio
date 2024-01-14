@@ -1,139 +1,93 @@
 {
-    "destination": {
-      "numberOfDays": 2,
-      "destinationCity": "Budapest",
-      "destinationCountry": "Hungary",
-      "currency": "Hungarian forint",
-      "oneDollarInLocalCurrency": 305.50,
-      "languagesSpoken": ["Hungarian","English"],
-      "timeThereInUtcFormat": "UTC+2",
-      "capitalOfTheCountry": "Budapest",
-      "localWeather": "Mild continental",
-      "temperatureRangeThroughTheYear": "Summer: 20-30°C, Winter: -5-5°C",
-      "shortDescription": "Hungary is a landlocked country in Central Europe, known for its rich cultural heritage and architectural landmarks. Its capital, Budapest, is famed for its scenic Danube River views and numerous thermal baths.",
-      "shortHistory": "Founded in 896 AD, Hungary became a significant power in Central Europe, reaching a peak during the Austro-Hungarian Empire. Post-World War I, it underwent significant territorial changes and played varied roles in European history.",
-      "fetchImageOfDestinationLocation": "https://www.budapestinfo.hu/storage/media-library/1527/fOB6ecwUglninbOa83rPsfuwRp9yuECvNW64eWOS.jpg",
-      "startDate": "28 Jan, 2024",
-      "endDate": "29 Jan, 2024"
+  "destination": {
+    "numberOfDays": 1,
+    "destinationCity": "New York",
+    "destinationCountry": "United States",
+    "currency": "USD",
+    "oneDollarInLocalCurrency": 1,
+    "languagesSpoken": ["English"],
+    "timeThereInUtcFormat": "UTC-4",
+    "capitalOfTheCountry": "Washington D.C.",
+    "localWeather": "Four-season climate",
+    "temperatureRangeThroughTheYear": "Between 0°C to 35°C",
+    "shortDescription": "New York is a vibrant city known for its iconic landmarks and bustling nightlife. It offers a diverse range of entertainment and dining options",
+    "shortHistory": "New York City was founded in 1624 and has since become one of the most influential cities in the world.",
+    "startDate": "2023-08-01",
+    "endDate": "2023-08-01"
+  },
+  "itinerary": [
+    {
+      "day": 1,
+      "date": "Monday, August 1",
+      "program": [
+        {
+          "id": 1,
+          "programOrPlaceName": "Brunch at The Grey Dog",
+          "timeSpentThere": "1 hour",
+          "location": "244 Mulberry St, New York, NY 10012",
+          "shortDescriptionOfProgram": "Start your day with a hearty brunch and refreshing drinks at this cozy cafe in Greenwich Village."
+        },
+        {
+          "id": 2,
+          "programOrPlaceName": "Explore Central Park",
+          "timeSpentThere": "2 hours",
+          "location": "Central Park, New York",
+          "shortDescriptionOfProgram": "Stroll through the picturesque Central Park, visit Bethesda Terrace, and enjoy the natural beauty of the park."
+        },
+        {
+          "id": 3,
+          "programOrPlaceName": "Happy Hour at Bar SixtyFive at Rainbow Room",
+          "timeSpentThere": "1.5 hours",
+          "location": "30 Rockefeller Plaza, 65th Floor, New York, NY 10112",
+          "shortDescriptionOfProgram": "Experience an upscale happy hour with panoramic views of the city skyline from the top of the Rockefeller Center."
+        },
+        {
+          "id": 4,
+          "programOrPlaceName": "Dinner at Beauty & Essex",
+          "timeSpentThere": "2 hours",
+          "location": "146 Essex St, New York, NY 10002",
+          "shortDescriptionOfProgram": "Enjoy a trendy dining experience at this famous restaurant known for its eclectic decor and delicious food."
+        },
+        {
+          "id": 5,
+          "programOrPlaceName": "Night Out in Meatpacking District",
+          "timeSpentThere": "3 hours",
+          "location": "Meatpacking District, New York",
+          "shortDescriptionOfProgram": "Experience the vibrant nightlife of New York at the popular bars and clubs in the trendy Meatpacking District."
+        }
+      ]
+    }
+  ],
+  "estimatedCosts": [
+    {
+      "category": "Accommodation",
+      "hostelCostPerNight": 50,
+      "hotelCostPerNight": 150,
+      "luxuryHotelCostPerNight": 300,
+      "airbnbCostPerNight": 120
     },
-    "itinerary": [
-      {
-        "day": 1,
-        "date": "Saturday, 28 Jan",
-        "program": [
-          {
-            "id": 1,
-            "programOrPlaceName": "Caving under Budapest",
-            "timeSpentThere": "3 hours",
-            "location": "Pálvölgyi-Mátyás-hegyi Cave",
-            "shortDescriptionOfProgram": "Explore the hidden world under Budapest with a guided caving tour. Explore the hidden world under Budapest with a guided caving tour."
-          },
-          {
-            "id": 2,
-            "programOrPlaceName": "Budapest Pinball Museum",
-            "timeSpentThere": "1.5 hours",
-            "location": "Radnóti Miklós utca 18.",
-            "shortDescriptionOfProgram": "Enjoy playing over 130 pinball machines and arcade games from the 19th century to the present. Enjoy playing over 130 pinball machines and arcade games from the 19th century to the present."
-          },
-          {
-            "id": 3,
-            "programOrPlaceName": "Wakeboarding at Lake Velence",
-            "timeSpentThere": "3 hours",
-            "location": "Lake Velence",
-            "shortDescriptionOfProgram": "Try wakeboarding or water skiing at the scenic Lake Velence, located outside of Budapest. Try wakeboarding or water skiing at the scenic Lake Velence, located outside of Budapest."
-          },
-          {
-            "id": 4,
-            "programOrPlaceName": "Budapest Escape Room",
-            "timeSpentThere": "1.5 hours",
-            "location": "Several locations in Budapest",
-            "shortDescriptionOfProgram": "Engage in an exciting escape room challenge with various themes and difficulty levels. Engage in an exciting escape room challenge with various themes and difficulty levels."
-          },
-          {
-            "id": 5,
-            "programOrPlaceName": "Gellért Hill Hiking",
-            "timeSpentThere": "2 hours",
-            "location": "Gellért Hill",
-            "shortDescriptionOfProgram": "Hike to the top of Gellért Hill to see the famous Citadella and enjoy panoramic views of the city. Hike to the top of Gellért Hill to see the famous Citadella and enjoy panoramic views of the city."
-          }
-        ]
-      },
-      {
-        "day": 2,
-        "date": "Sunday, 29 Jan",
-        "program": [
-          {
-            "id": 1,
-            "programOrPlaceName": "er Budapest",
-            "timeSpentThere": "3 hours",
-            "location": "Pálvölgyi-Mátyás-hegyi Cave",
-            "shortDescriptionOfProgram": "Explore the hidden world under Budapest with a guided caving tour."
-          },
-          {
-            "id": 2,
-            "programOrPlaceName": "Budapest Pinball Museum",
-            "timeSpentThere": "1.5 hours",
-            "location": "Radnóti Miklós utca 18.",
-            "shortDescriptionOfProgram": "Enjoy playing over 130 pinball machines and arcade games from the 19th century to the present."
-          },
-          {
-            "id": 3,
-            "programOrPlaceName": "Wakeboarding at Lake Velence",
-            "timeSpentThere": "3 hours",
-            "location": "Lake Velence",
-            "shortDescriptionOfProgram": "Try wakeboarding or water skiing at the scenic Lake Velence, located outside of Budapest."
-          },
-          {
-            "id": 4,
-            "programOrPlaceName": "Budapest Escape Room",
-            "timeSpentThere": "1.5 hours",
-            "location": "Several locations in Budapest",
-            "shortDescriptionOfProgram": "Engage in an exciting escape room challenge with various themes and difficulty levels."
-          },
-          {
-            "id": 5,
-            "programOrPlaceName": "Gellért Hill Hiking",
-            "timeSpentThere": "2 hours",
-            "location": "Gellért Hill",
-            "shortDescriptionOfProgram": "Hike to the top of Gellért Hill to see the famous Citadella and enjoy panoramic views of the city."
-          }
-        ]
-      }
-    ],
-    "estimatedCosts": [
-      {
-        "category": "Accommodation",
-        "hostelCostPerNight": 10,
-        "hotelCostPerNight": 50,
-        "luxuryHotelCostPerNight": 120,
-        "airbnbCostPerNight": 40
-      },
-      {
-        "category": "Transportation",
-        "busCost": 1,
-        "taxiCost": 15,
-        "trainCost": 2,
-        "rentalCost": 25
-      },
-      {
-        "category": "Food",
-        "streetFoodCost": 5,
-        "budgetRestaurantCost": 15,
-        "fancyRestaurantCost": 40,
-        "traditionalFoodCost": 20
-      },
-      {
-        "category": "Activities",
-        "mainActivityForEachDay": [
-          {
-            "mainActivityName": "Caving under Budapest",
-            "costOfProgram": 40
-          },
-          {
-            "mainActivityName": "Pinball Museum",
-            "costOfProgram": 30
-          }
-        ]
-      }
-    ]
-  }
+    {
+      "category": "Transportation",
+      "busCost": 3,
+      "taxiCost": 25,
+      "trainCost": 2.75,
+      "rentalCost": 80
+    },
+    {
+      "category": "Food",
+      "streetFoodCost": 10,
+      "budgetRestaurantCost": 20,
+      "fancyRestaurantCost": 75,
+      "traditionalFoodCost": 30
+    },
+    {
+      "category": "Activities",
+      "mainActivityForEachDay": [
+        {
+          "mainActivityName": "Night Out in Meatpacking District",
+          "costOfProgram": 100
+        }
+      ]
+    }
+  ]
+}

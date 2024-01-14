@@ -1,27 +1,34 @@
 // hooks/useSubmitItinerary.ts
-import { Dispatch } from "react";
 import { generateItinerary } from "../services/gptService";
-import { ItineraryAction, ItineraryState } from "../types/ItineraryTypes";
+import { FormState } from "../types/ItineraryTypes";
+import { useItinerary } from "../contexts/ItineraryContext";
 
-export const useSubmitItinerary = (
-  state: ItineraryState,
-  validate: (state: ItineraryState) => boolean,
-  dispatch: Dispatch<ItineraryAction>
-) => {
+export const useSubmitItinerary = (state: FormState, validate: (state: FormState) => boolean) => {
+  const { setResponse } = useItinerary();
+
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     const isValid = validate(state);
 
     if (isValid) {
-      const response = await generateItinerary({
+      try {
+        const response = await generateItinerary({
         destination: state.destination,
         length: state.length,
         budget: state.budget,
         program: state.program,
-      });
-      console.log('GPT API Response:', response);
-      dispatch({ type: "SET_ITINERARY", itinerary: response });
+        });
+      if (response) {
+        setResponse(response); // Update the context
+      } else {
+        // Handle the case where response is null or not as expected
+        console.error('No response or unexpected response structure from generateItinerary');
+      }
+    } catch (error) {
+      console.error('Error during itinerary generation:', error);
+      // Optionally, handle the error in UI, e.g., show an error message
     }
+  }
   };
 
   return handleSubmit;

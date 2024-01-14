@@ -4,18 +4,17 @@ import { useItineraryFormValidation } from "../hooks/useItineraryFormValidation.
 import { useSubmitItinerary } from "../hooks/useSubmitItinerary.ts";
 import { useInputChange } from "../hooks/useInputChange.ts";
 import { useResetForm } from "../hooks/useResetForm.ts";
-import { ItineraryAction, ItineraryState } from "../types/ItineraryTypes.ts";
+import { ItineraryAction, FormState } from "../types/ItineraryTypes.ts";
 
-const initialState: ItineraryState = {
+const initialState: FormState = {
   destination: "",
   length: "",
   budget: "",
   program: "",
-  itinerary: null,
 };
 
 // Define the reducer function
-const itineraryReducer = (state: ItineraryState, action: ItineraryAction) => {
+const itineraryReducer = (state: FormState, action: ItineraryAction) => {
   switch (action.type) {
     case "SET_FIELD":
       return { ...state, [action.field]: action.value };
@@ -30,11 +29,11 @@ const itineraryReducer = (state: ItineraryState, action: ItineraryAction) => {
 
 const ItineraryPlanner = () => {
   const [state, dispatch] = useReducer<
-    React.Reducer<ItineraryState, ItineraryAction>
+    React.Reducer<FormState, ItineraryAction>
   >(itineraryReducer, initialState);
   const { errors, validate, setErrors } = useItineraryFormValidation();
 
-  const handleSubmit = useSubmitItinerary(state, validate, dispatch);
+  const handleSubmit = useSubmitItinerary(state, validate);
   const { handleInputChange, handleSelectChange } = useInputChange(
     dispatch,
     setErrors

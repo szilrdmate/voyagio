@@ -1,3 +1,4 @@
+// components/General.tsx
 import React from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
@@ -8,7 +9,6 @@ import {
   faTemperatureHalf,
   faCity,
 } from "@fortawesome/free-solid-svg-icons";
-import response from "../data/exampleResponse.json";
 
 type GeneralProps = {
   setState: React.Dispatch<React.SetStateAction<boolean>>;
@@ -48,7 +48,7 @@ const General: React.FC<GeneralProps> = ({ stats, setState }) => {
             icon={faMoneyBill}
           />
           <p className='text-gray-800 text-md font-medium ml-4'>
-            {response.destination.currency}
+            {stats.currency}
           </p>
         </div>
         <div className='flex items-center'>
