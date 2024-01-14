@@ -1,5 +1,5 @@
 import { useState, useCallback } from "react";
-import { ItineraryState } from "../types/ItineraryTypes.ts";
+import { FormState } from "../types/ItineraryTypes.ts";
 
 export const useItineraryFormValidation = () => {
   const [errors, setErrors] = useState<{ [key: string]: string }>({
@@ -9,7 +9,7 @@ export const useItineraryFormValidation = () => {
     program: "",
   });
 
-  const validate = useCallback((state: ItineraryState) => {
+  const validate = useCallback((state: FormState) => {
     let isValid = true;
 
     setErrors(prevErrors => {
