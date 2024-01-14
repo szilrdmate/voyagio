@@ -1,11 +1,17 @@
+// components/Overview.tsx
 import React from "react";
-import response from "../data/exampleResponse.json";
 
 type OverviewProps = {
   setState: React.Dispatch<React.SetStateAction<boolean>>;
+  info: DestinationInfo;
 };
 
-const Overview: React.FC<OverviewProps> = ({ setState }) => {
+type DestinationInfo = {
+  shortDescription: string;
+  shortHistory: string;
+};
+
+const Overview: React.FC<OverviewProps> = ({ info, setState }) => {
   return (
     <div className='px-8 py-10'>
       <div className='space-x-2 mb-8'>
@@ -20,11 +26,11 @@ const Overview: React.FC<OverviewProps> = ({ setState }) => {
       </div>
       <h2 className='text-gray-800 font-bold text-xl mb-2'>Description</h2>
       <p className='text-gray-600 font-medium text-md text-justify mb-4'>
-        {response.destination.shortDescription}
+        {info.shortDescription}
       </p>
       <h2 className='text-gray-800 font-bold text-xl mb-2'>History</h2>
       <p className='text-gray-600 font-medium text-md text-justify'>
-        {response.destination.shortHistory}
+        {info.shortHistory}
       </p>
     </div>
   );

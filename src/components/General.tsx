@@ -12,9 +12,23 @@ import response from "../data/exampleResponse.json";
 
 type GeneralProps = {
   setState: React.Dispatch<React.SetStateAction<boolean>>;
+  stats: StatsProps;
 };
 
-const General: React.FC<GeneralProps> = ({ setState }) => {
+type StatsProps = {
+  numberOfDays: number;
+  destinationCity: string;
+  destinationCountry: string;
+  currency: string;
+  oneDollarInLocalCurrency: number;
+  languagesSpoken: string[];
+  timeThereInUtcFormat: string;
+  capitalOfTheCountry: string;
+  localWeather: string;
+  temperatureRangeThroughTheYear: string;
+};
+
+const General: React.FC<GeneralProps> = ({ stats, setState }) => {
   return (
     <div className='px-8 py-10'>
       <div className='space-x-2 mb-8'>
@@ -43,7 +57,7 @@ const General: React.FC<GeneralProps> = ({ setState }) => {
             icon={faMoneyBillTransfer}
           />
           <p className='text-gray-800 text-md font-medium ml-4'>
-            {response.destination.oneDollarInLocalCurrency}
+            {stats.oneDollarInLocalCurrency}
           </p>
         </div>
         <div className='flex items-center'>
@@ -52,7 +66,7 @@ const General: React.FC<GeneralProps> = ({ setState }) => {
             icon={faCity}
           />
           <p className='text-gray-800 text-md font-medium ml-4'>
-            {response.destination.capitalOfTheCountry}
+            {stats.capitalOfTheCountry}
           </p>
         </div>
         <div className='flex items-center'>
@@ -61,7 +75,7 @@ const General: React.FC<GeneralProps> = ({ setState }) => {
             icon={faTemperatureHalf}
           />
           <p className='text-gray-800 text-md font-medium ml-4'>
-            {response.destination.localWeather}
+            {stats.localWeather}
           </p>
         </div>
         <div className='flex items-center'>
@@ -70,7 +84,7 @@ const General: React.FC<GeneralProps> = ({ setState }) => {
             icon={faEarthAmericas}
           />
           <p className='text-gray-800 text-md font-medium ml-4'>
-            {response.destination.timeThereInUtcFormat}
+            {stats.timeThereInUtcFormat}
           </p>
         </div>
         <div className='flex items-center'>
@@ -79,7 +93,7 @@ const General: React.FC<GeneralProps> = ({ setState }) => {
             icon={faLanguage}
           />
           <p className='text-gray-800 text-md font-medium ml-4'>
-            {response.destination.languagesSpoken}
+            {stats.languagesSpoken}
           </p>
         </div>
       </div>

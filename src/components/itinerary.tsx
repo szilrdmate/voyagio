@@ -1,3 +1,4 @@
+// components/Itinerary.tsx
 import { useReducer } from "react";
 import { useItineraryFormValidation } from "../hooks/useItineraryFormValidation.ts";
 import { useSubmitItinerary } from "../hooks/useSubmitItinerary.ts";

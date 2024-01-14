@@ -46,8 +46,12 @@ const ItineraryDisplay: React.FC = () => {
         </div>
       </div>
       <div id='info' className='border-y border-gray-300'>
-        {isOverview && <Overview setState={setIsOverview} />}
-        {!isOverview && <General setState={setIsOverview} />}
+        {isOverview && (
+          <Overview info={response.destination} setState={setIsOverview} />
+        )}
+        {!isOverview && (
+          <General stats={response.destination} setState={setIsOverview} />
+        )}
       </div>
       <div className='pt-8 px-8'>
         <h2 className='text-gray-800 font-black text-3xl'>Itinerary</h2>
