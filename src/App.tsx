@@ -1,10 +1,10 @@
 import { Routes, Route, Outlet } from "react-router-dom";
 import Home from "./pages/Home";
-import Destinations from "./pages/Destinations.tsx";
-import Explore from "./pages/Explore.tsx";
-import Navbar from "./components/Navbar.tsx";
-import Planner from "./pages/Planner.tsx";
-import NotFound from "./pages/NotFound.tsx";
+import Destinations from "./pages/Destinations";
+import Explore from "./pages/Explore";
+import Navbar from "./components/Navbar";
+import Planner from "./pages/Planner";
+import NotFound from "./pages/NotFound";
 
 function App() {
   return (
