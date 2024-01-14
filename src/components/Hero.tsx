@@ -1,4 +1,4 @@
-import ItineraryPlanner from "./Itinerary.tsx";
+import ItineraryPlanner from "./Itinerary";
 
 const Hero = () => {
   return (
