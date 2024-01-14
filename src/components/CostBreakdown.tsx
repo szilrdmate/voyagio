@@ -1,3 +1,4 @@
+// components/CostBreakdown.tsx
 import React, { useState } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
@@ -41,6 +42,11 @@ const CostBreakdown: React.FC<EstimatedCostsProps> = ({ estimatedCosts }) => {
   const transportationCosts = estimatedCosts[1];
   const foodCosts = estimatedCosts[2];
   const activitiesCosts = estimatedCosts[3];
+
+  if (!estimatedCosts) {
+    // Render nothing or a loading indicator until the response is available
+    return <div>Loading...</div>;
+  }
 
   return (
     <div className='pb-12'>

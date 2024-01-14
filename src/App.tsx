@@ -5,22 +5,25 @@ import Explore from "./pages/Explore";
 import Navbar from "./components/Navbar";
 import Planner from "./pages/Planner";
 import NotFound from "./pages/NotFound";
+import { ItineraryProvider } from "./contexts/ItineraryContext";
 
-function App() {
+const App: React.FC = () => {
   return (
     <div className='App'>
-      <Routes>
-        <Route path='/' element={<LayoutWithNavbar />}>
-          <Route index element={<Home />} />
-          <Route path='explore' element={<Explore />} />
-          <Route path='destinations' element={<Destinations />} />
-          <Route path='*' element={<NotFound />} />
-        </Route>
-        <Route path='/planner' element={<Planner />} />
-      </Routes>
+      <ItineraryProvider>
+        <Routes>
+          <Route path='/' element={<LayoutWithNavbar />}>
+            <Route index element={<Home />} />
+            <Route path='explore' element={<Explore />} />
+            <Route path='destinations' element={<Destinations />} />
+            <Route path='*' element={<NotFound />} />
+          </Route>
+          <Route path='/planner' element={<Planner />} />
+        </Routes>
+      </ItineraryProvider>
     </div>
   );
-}
+};
 
 function LayoutWithNavbar() {
   return (

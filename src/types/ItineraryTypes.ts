@@ -1,9 +1,8 @@
-export interface ItineraryState {
+export interface FormState {
     destination: string;
     length: string;
     budget: string;
     program: string;
-    itinerary: string | null;
   }
 
 export type ItineraryAction =

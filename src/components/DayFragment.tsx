@@ -1,3 +1,5 @@
+// components/DayFragment.tsx
+
 import React from "react";
 import { useState } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -46,7 +48,7 @@ const DayFragment: React.FC<ItineraryProps> = ({ itinerary }) => {
               <li
                 key={activity.id}
                 className='rounded-lg border-[1px] border-gray-300 bg-white p-4 shadow-md'>
-                <p className='absolute w-6 text-center font-semibold h-6 top-2 right-2 text-white rounded-full bg-gray-800'>
+                <p className='absolute w-6 text-center font-semibold h-6 left-6 -translate-y-6 text-white rounded-full bg-gray-800'>
                   {activity.id}
                 </p>
                 <h3 className='text-xl text-gray-800 font-bold mb-3 underline'>

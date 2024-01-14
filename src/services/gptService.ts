@@ -11,84 +11,16 @@ export const generateItinerary = async (data: { destination: string; length: str
     return null;
   }
 
+
   // Construct prompt for GPT API
-  const prompt = `You are an expert traveller and backpacker who has seen the world and know every destination's ins and outs. Create a ${data.length}-day itinerary for a trip to ${data.destination} with a budget of ${data.budget}. Plan 5 programs for each day in the following category(s): ${data.program}. Return the requested data according to the specified details in the form of a json file with the following outline/format. Here comes the format: "{
-    "destination": {
-      "numberOfDays": "Number",
-      "destinationCity": "String",
-      "destinationCountry": "String",
-      "currency": "String",
-      "oneDollarInLocalCurrency": "Number",
-      "languagesSpoken": "Array",
-      "timeThereInUtcFormat": "String",
-      "capitalOfTheCountry": "String",
-      "localWeather": "String",
-      "temperatureRangeThroughTheYear": "String",
-      "shortDescription": "String", // 2-3 sentances
-      "shortHistory": "String", // 2-3 sentances
-      "fetchImageOfDestinationLocation": "String",
-      "startDate": "String",
-      "endDate": "String"
-    },
-    "itinerary": [
-      {
-        "day": "Number",
-        "date": "String" // eg. dayofweek, day, month
-        "program": [
-          {
-            "id": "Number",
-            "programOrPlaceName": "String",
-            "timeSpentThere": "String",
-            "location": "String",
-            "shortDescriptionOfProgram": "String" // 2-3 sentances
-          },
-          // ... Repeat for each program
-        ]
-      },
-      // ... Repeat for each day
-    ],
-    "estimatedCosts": [
-      {
-        "category": "Accommodation",
-        "hostelCostPerNight": "Number",
-        "hotelCostPerNight": "Number",
-        "luxuryHotelCostPerNight": "Number",
-        "airbnbCostPerNight": "Number"
-      },
-      {
-        "category": "Transportation",
-        "busCost": "Number",
-        "taxiCost": "Number",
-        "trainCost": "Number",
-        "rentalCost": "Number"
-      },
-      {
-        "category": "Food",
-        "streetFoodCost": "Number",
-        "budgetRestaurantCost": "Number",
-        "fancyRestaurantCost": "Number",
-        "traditionalFoodCost": "Number"
-      },
-      {
-        "category": "Activities",
-        "mainActivityForEachDay": [
-          {
-            "mainActivityName": "Number",
-            "costOfProgram": "Number"
-          },
-          // ... Repeat for each day's main event and cost of program should be in usd
-        ]
-      }
-    ]
-  }"
-   Only return the requested json and nothing else, no matter what!`;
+  const prompt = `You are an expert traveller and backpacker who has seen the world and know every destination's ins and outs. Create a ${data.length}-day itinerary for a trip to ${data.destination} with a budget of ${data.budget}. Plan 5 programs for each day in the following category(s): ${data.program}. Return the requested data according to the specified details in the form of a json object with the following outline/format. Only return the requested json and nothing else, no matter what! Make sure to watch out for the types too. Do not add Here comes the format:
+  {"destination": {"numberOfDays": Number,"destinationCity": String,"destinationCountry": String,"currency": String,"oneDollarInLocalCurrency": Number,"languagesSpoken": Array,"timeThereInUtcFormat": String,"capitalOfTheCountry": String, "localWeather": String // eg. monsoon or continental or etc, "temperatureRangeThroughTheYear": String,"shortDescription": String // 2-3 sentances, "shortHistory": String // 2-3 sentances,"startDate": String,"endDate": String},"itinerary":[{"day": number, "date": String // eg. dayoftheweek day month, "program": [{"id": Number,"programOrPlaceName": String, "timeSpentThere": String, "location": String "shortDescriptionOfProgram": String // 2-3 sentances}, // ... Repeat for each program]}, // ... Repeat for each day], "estimatedCosts": [{"category": Accommodation, "hostelCostPerNight": Number, "hotelCostPerNight": Number,"luxuryHotelCostPerNight": Number,"airbnbCostPerNight": Number}, {"category": "Transportation","busCost": Number,"taxiCost": Number,"trainCost": Number,"rentalCost": Number},{"category": Food,"streetFoodCost": Number,"budgetRestaurantCost": Number,"fancyRestaurantCost": Number,"traditionalFoodCost": Number}, {"category": Activities, "mainActivityForEachDay": [{"mainActivityName": Number,"costOfProgram": Number}, // ... Repeat for each day's main event and cost of program should be in usd]}]}`;
 
   try {
     // Note the change in the endpoint URL to 'v1/chat/completions'
     const response = await axios.post('https://api.openai.com/v1/chat/completions', {
       model: "gpt-3.5-turbo-1106", // Specify the model you want to use
       messages: [{role: "system", content: "You are a travel planning assistant."}, {role: "user", content: prompt}],
-      // Additional parameters can be included here
       response_format: { type: "json_object" },
       max_tokens: 4090,
     }, {
@@ -97,10 +29,15 @@ export const generateItinerary = async (data: { destination: string; length: str
         'Content-Type': 'application/json',
       },
     });
+    // Extracting and parsing the content from the response
+    const contentString = response.data.choices[0].message.content;
 
-    // The structure of the response might be different for the chat endpoint
-    // You might need to adjust the way you access the response text
-    return response.data.choices[0].message.content; // Adjust according to the actual response structure
+    if (typeof contentString === 'string') {
+      const parsedContent = JSON.parse(contentString);
+      return parsedContent;
+  } else {
+      return contentString;
+  }
   } catch (error: unknown) {
     if (axios.isAxiosError(error)) {
       console.error('Error calling OpenAI API:', error.message);
