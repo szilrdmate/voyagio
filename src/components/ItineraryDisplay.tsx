@@ -10,8 +10,8 @@ import {
 import DayFragment from "./DayFragment";
 import { Link } from "react-router-dom";
 import CostBreakdown from "./CostBreakdown";
-import Map from "./Map";
 import { ItineraryResponseType } from "../types/ResponseTypes";
+import { useItinerary } from "../contexts/ItineraryContext";
 
 interface ItineraryDisplayProps {
   response: ItineraryResponseType;
@@ -19,6 +19,7 @@ interface ItineraryDisplayProps {
 
 const ItineraryDisplay: React.FC<ItineraryDisplayProps> = ({ response }) => {
   const [isOverview, setIsOverview] = useState<boolean>(true);
+  const { setResponse } = useItinerary();
 
   const isMultipledays = () => {
     return response.destination.numberOfDays > 1 ? "days" : "day";
@@ -27,13 +28,15 @@ const ItineraryDisplay: React.FC<ItineraryDisplayProps> = ({ response }) => {
   const bgImage =
     "https://www.budapestinfo.hu/storage/media-library/1527/fOB6ecwUglninbOa83rPsfuwRp9yuECvNW64eWOS.jpg";
 
-  if (!response) {
-    return <div>Loading itinerary...</div>;
-  }
+  const handleNewTrip = () => {
+    if (response) {
+      setResponse(null);
+    }
+  };
 
   return (
     <>
-      <div className='z-20 fixed top-0 left-0 w-[60vw] bg-white h-screen overflow-scroll no-scrollbar'>
+      <div className='z-20 fixed top-0 left-0 w-[60vw] bg-white h-screen overflow-scroll no-scrollbar border-r border-gray-300'>
         <div
           style={{
             backgroundImage: `linear-gradient(to top, rgba(0,0,0,1), rgba(0,0,0,0)), url(${bgImage})`,
@@ -45,6 +48,11 @@ const ItineraryDisplay: React.FC<ItineraryDisplayProps> = ({ response }) => {
             <FontAwesomeIcon className='text-base mr-2' icon={faChevronLeft} />
             Back to Home
           </Link>
+          <button
+            className='button absolute top-5 right-5'
+            onClick={handleNewTrip}>
+            Start New Trip
+          </button>
           <div>
             <h1 className='font-bold text-3xl tracking-wide leading-loose'>
               {response.destination.numberOfDays} {isMultipledays()} trip to{" "}
@@ -79,7 +87,6 @@ const ItineraryDisplay: React.FC<ItineraryDisplayProps> = ({ response }) => {
           <CostBreakdown estimatedCosts={response.estimatedCosts} />
         </div>
       </div>
-      <Map />)
     </>
   );
 };
