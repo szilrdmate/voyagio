@@ -92,9 +92,11 @@ const General: React.FC<GeneralProps> = ({ stats, setState }) => {
             className='text-gray-800 text-xl h-6 w-6 bg-gray-200 p-2 rounded-full'
             icon={faLanguage}
           />
-          <p className='text-gray-800 text-md font-medium ml-4'>
-            {stats.languagesSpoken}
-          </p>
+          {stats.languagesSpoken.map((language, index) => (
+            <p key={index} className='text-gray-800 text-md font-medium ml-4'>
+              {language}{" "}
+            </p>
+          ))}
         </div>
       </div>
     </div>

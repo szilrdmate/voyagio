@@ -1,3 +1,4 @@
+/* eslint-disable react-refresh/only-export-components */
 // src/contexts/ItineraryContext.tsx
 import React, { createContext, useState, useContext, ReactNode } from "react";
 import { ItineraryResponseType } from "../types/ResponseTypes";

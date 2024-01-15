@@ -2,9 +2,11 @@
 import { generateItinerary } from "../services/gptService";
 import { FormState } from "../types/ItineraryTypes";
 import { useItinerary } from "../contexts/ItineraryContext";
+//import { useState } from 'react';
 
 export const useSubmitItinerary = (state: FormState, validate: (state: FormState) => boolean) => {
   const { setResponse } = useItinerary();
+  //const [isLoading, setLoading] = useState(false);
 
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
@@ -12,6 +14,7 @@ export const useSubmitItinerary = (state: FormState, validate: (state: FormState
 
     if (isValid) {
       try {
+        // setLoading(true);
         const response = await generateItinerary({
         destination: state.destination,
         length: state.length,
@@ -27,9 +30,10 @@ export const useSubmitItinerary = (state: FormState, validate: (state: FormState
     } catch (error) {
       console.error('Error during itinerary generation:', error);
       // Optionally, handle the error in UI, e.g., show an error message
+    } finally {
+      //setLoading(false)
     }
   }
   };
-
-  return handleSubmit;
+  return handleSubmit
 };

@@ -57,7 +57,7 @@ const ItineraryPlanner = () => {
         <h2 className='text-3xl font-bold'>Plan Your Next Trip</h2>
         <div className='flex flex-col w-full'>
           <label htmlFor='destination' className='font-bold'>
-            Destination:
+            Where do you want to go?
           </label>
           <input
             id='destination'
@@ -66,6 +66,25 @@ const ItineraryPlanner = () => {
             value={state.destination}
             onChange={handleInputChange("destination")}
             placeholder='Enter a location'
+            className='rounded-xl px-4 py-2 h-12 w-full bg-transparent border-[1px] backdrop-blur-lg border-opacity-10 focus-within:outline-none placeholder:text-gray-200 placeholder:font-base border-gray-100 mt-2'
+          />
+          {errors.destination && (
+            <div className='error text-white absolute right-10 bg-red-600 bg-opacity-80 backdrop-blur-2xl px-4 rounded-md overflow-hidden'>
+              {errors.destination}
+            </div>
+          )}
+        </div>
+        <div className='flex flex-col w-full'>
+          <label htmlFor='when' className='font-bold'>
+            When are you planning to go?
+          </label>
+          <input
+            id='when'
+            type='text'
+            autoComplete='off'
+            value=''
+            onChange=''
+            placeholder='Enter a Select a Date'
             className='rounded-xl px-4 py-2 h-12 w-full bg-transparent border-[1px] backdrop-blur-lg border-opacity-10 focus-within:outline-none placeholder:text-gray-200 placeholder:font-base border-gray-100 mt-2'
           />
           {errors.destination && (
@@ -133,6 +152,67 @@ const ItineraryPlanner = () => {
               {errors.budget}
             </div>
           )}
+        </div>
+        <div className='w-full' id='group'>
+          <h4 className='font-bold mb-4'>How many people are travelling?</h4>
+          <div className='grid grid-cols-3 grid-rows-2 gap-4'>
+            <button className='button bg-white h-24 text-gray-800'>Solo</button>
+            <button className='button bg-white h-24 text-gray-800'>
+              Couple
+            </button>
+            <button className='button bg-white h-24 text-gray-800'>
+              Friends
+            </button>
+            <button className='button bg-white h-24 text-gray-800'>
+              Family
+            </button>
+          </div>
+        </div>
+        <div className='w-full' id='budget'>
+          <h4 className='font-bold mb-4'>What is your budget range?</h4>
+          <div className='grid grid-cols-3 gap-4'>
+            <button className='button bg-white h-24 text-gray-800'>
+              Budget
+            </button>
+            <button className='button bg-white h-24 text-gray-800'>Mid</button>
+            <button className='button bg-white h-24 text-gray-800'>
+              Luxury
+            </button>
+          </div>
+        </div>
+        <div className='w-full' id='activities'>
+          <h4 className='font-bold mb-4'>
+            Tell us about activities that interest you:
+          </h4>
+          <div className='grid grid-cols-3 grid-rows-3 gap-4'>
+            <button className='button bg-white h-24 text-gray-800'>
+              Beaches
+            </button>
+            <button className='button bg-white h-24 text-gray-800'>
+              Hiking
+            </button>
+            <button className='button bg-white h-24 text-gray-800'>
+              Culture
+            </button>
+            <button className='button bg-white h-24 text-gray-800'>
+              Sports
+            </button>
+            <button className='button bg-white h-24 text-gray-800'>
+              Nightlife
+            </button>
+            <button className='button bg-white h-24 text-gray-800'>
+              Food Exploration
+            </button>
+            <button className='button bg-white h-24 text-gray-800'>
+              Sightseeing
+            </button>
+            <button className='button bg-white h-24 text-gray-800'>
+              Wellnes
+            </button>
+            <button className='button bg-white h-24 text-gray-800'>
+              Shopping
+            </button>
+          </div>
         </div>
         <div className='flex flex-row w-full space-x-4'>
           <button
