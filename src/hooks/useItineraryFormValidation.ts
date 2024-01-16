@@ -4,9 +4,11 @@ import { FormState } from "../types/ItineraryTypes.ts";
 export const useItineraryFormValidation = () => {
   const [errors, setErrors] = useState<{ [key: string]: string }>({
     destination: "",
+    date: "",
     length: "",
+    group: "",
     budget: "",
-    program: "",
+    activity: "",
   });
 
   const validate = useCallback((state: FormState) => {
@@ -19,16 +21,24 @@ export const useItineraryFormValidation = () => {
         newErrors.destination = "Destination is required";
         isValid = false;
       }
+      if (!state.date) {
+        newErrors.date = "Select a date range";
+        isValid = false;
+      }
       if (!state.length) {
         newErrors.length = "Length is required";
+        isValid = false;
+      }
+      if (!state.group) {
+        newErrors.group = "Select a group size";
         isValid = false;
       }
       if (!state.budget) {
         newErrors.budget = "Budget is required";
         isValid = false;
       }
-      if (!state.program) {
-        newErrors.program = "Program is required";
+      if (state.activity.length === 0) {
+        newErrors.activity = "Select at least one type of activity";
         isValid = false;
       }
 

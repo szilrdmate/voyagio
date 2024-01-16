@@ -10,9 +10,11 @@ export const useResetForm = (
     dispatch({ type: "RESET_FORM" });
     setErrors({
       destination: "",
+      date: "",
       length: "",
+      group: "",
       budget: "",
-      program: "",
+      activity: "",
     });
   };
 

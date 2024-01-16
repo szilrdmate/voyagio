@@ -44,24 +44,27 @@ const ItineraryDisplay: React.FC<ItineraryDisplayProps> = ({ response }) => {
           className='h-72 flex justify-between py-4 px-4 flex-col bg-cover'>
           <Link
             to='/'
-            className='font-semibold text-lg underline tracking-wide'>
+            className='text-white font-semibold text-lg underline tracking-wide'>
             <FontAwesomeIcon className='text-base mr-2' icon={faChevronLeft} />
             Back to Home
           </Link>
           <button
-            className='button absolute top-5 right-5'
+            className='text-white button absolute top-5 right-5'
             onClick={handleNewTrip}>
             Start New Trip
           </button>
           <div>
-            <h1 className='font-bold text-3xl tracking-wide leading-loose'>
+            <h1 className='font-bold text-3xl text-white tracking-wide leading-loose'>
               {response.destination.numberOfDays} {isMultipledays()} trip to{" "}
               {response.destination.destinationCity},{" "}
               {response.destination.destinationCountry}
             </h1>
             <div className='flex items-center'>
-              <FontAwesomeIcon className='mr-4' icon={faCalendarDays} />
-              <h2 className='font-semibold text-lg'>
+              <FontAwesomeIcon
+                className='text-white mr-4'
+                icon={faCalendarDays}
+              />
+              <h2 className='text-white font-semibold text-lg'>
                 {response.destination.startDate} -{" "}
                 {response.destination.endDate}
               </h2>
