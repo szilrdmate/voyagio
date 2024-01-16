@@ -21,7 +21,7 @@ export const useSubmitItinerary = (state: FormState, validate: (state: FormState
         length: state.length,
         group: state.group,
         budget: state.budget,
-        activity: state.activity,
+        activity: state.activity.join(', '),
         });
       if (response) {
         setResponse(response); // Update the context

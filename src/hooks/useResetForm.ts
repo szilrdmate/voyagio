@@ -14,7 +14,7 @@ export const useResetForm = (
       length: "",
       group: "",
       budget: "",
-      activity: ""
+      activity: "",
     });
   };
 

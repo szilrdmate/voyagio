@@ -37,7 +37,7 @@ export const useItineraryFormValidation = () => {
         newErrors.budget = "Budget is required";
         isValid = false;
       }
-      if (!state.activity) {
+      if (state.activity.length === 0) {
         newErrors.activity = "Select at least one type of activity";
         isValid = false;
       }

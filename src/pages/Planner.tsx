@@ -10,7 +10,6 @@ const Planner: React.FC = () => {
 
   if (response) {
     console.log("Response:", response);
-    console.log(typeof response);
   }
 
   return (
