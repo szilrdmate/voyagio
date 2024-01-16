@@ -8,9 +8,11 @@ import { ItineraryAction, FormState } from "../types/ItineraryTypes.ts";
 
 const initialState: FormState = {
   destination: "",
+  date: "",
   length: "",
+  group: "",
   budget: "",
-  program: "",
+  activity: "",
 };
 
 // Define the reducer function
@@ -22,6 +24,15 @@ const itineraryReducer = (state: FormState, action: ItineraryAction) => {
       return initialState;
     case "SET_ITINERARY":
       return { ...state, itinerary: action.itinerary };
+    case "TOGGLE_ARRAY_FIELD_ITEM": {
+      const existingValues = new Set(state[action.field] as string[]);
+      if (existingValues.has(action.value)) {
+        existingValues.delete(action.value);
+      } else {
+        existingValues.add(action.value);
+      }
+      return { ...state, [action.field]: Array.from(existingValues) };
+    }
     default:
       return state;
   }
@@ -34,39 +45,39 @@ const ItineraryPlanner = () => {
   const { errors, validate, setErrors } = useItineraryFormValidation();
 
   const handleSubmit = useSubmitItinerary(state, validate);
-  const { handleInputChange, handleSelectChange } = useInputChange(
-    dispatch,
-    setErrors
-  );
-  const handleReset = useResetForm(dispatch, setErrors);
 
-  const checkValue = (value: string): string | null => {
-    if (value === state.length && state.length) {
-      return state.length + " days";
-    } else if (value === state.budget && state.budget) {
-      return state.budget + " $";
-    }
-    return null;
-  };
+  const {
+    handleInputChange,
+    handleButtonInputChange,
+    handleMultipleChoiceChange,
+  } = useInputChange(dispatch, setErrors);
+
+  const handleReset = useResetForm(dispatch, setErrors);
 
   return (
     <>
       <form
         onSubmit={handleSubmit}
-        className='space-y-4 bg-white p-8 rounded-2xl shadow-2xl grid place-items-center bg-opacity-20 backdrop-blur-xl border-[1px] border-white border-opacity-20 px-8'>
+        className='space-y-4 bg-white p-8 rounded-2xl shadow-2xl grid place-items-center border border-gray-500 border-opacity-20 px-8'>
         <h2 className='text-3xl font-bold'>Plan Your Next Trip</h2>
+
+        {/*Destination Size*/}
         <div className='flex flex-col w-full'>
-          <label htmlFor='destination' className='font-bold'>
+          <h4 className='font-bold mb-4'>
+            Where would you like to go? {state.destination}
+          </h4>
+          <label htmlFor='destination' className='hidden'>
             Where do you want to go?
           </label>
           <input
             id='destination'
             type='text'
             autoComplete='off'
+            name='destination'
             value={state.destination}
             onChange={handleInputChange("destination")}
             placeholder='Enter a location'
-            className='rounded-xl px-4 py-2 h-12 w-full bg-transparent border-[1px] backdrop-blur-lg border-opacity-10 focus-within:outline-none placeholder:text-gray-200 placeholder:font-base border-gray-100 mt-2'
+            className='rounded-xl px-4 py-2 h-12 w-full bg-transparent backdrop-blur-lg  focus-within:outline-none placeholder:text-gray-400 placeholder:font-base border-gray-300 border mt-2'
           />
           {errors.destination && (
             <div className='error text-white absolute right-10 bg-red-600 bg-opacity-80 backdrop-blur-2xl px-4 rounded-md overflow-hidden'>
@@ -74,55 +85,45 @@ const ItineraryPlanner = () => {
             </div>
           )}
         </div>
+
+        {/*Date */}
         <div className='flex flex-col w-full'>
-          <label htmlFor='when' className='font-bold'>
+          <h4 className='font-bold mb-4'>
+            When are you planning to go? {state.date}
+          </h4>
+          <label htmlFor='date' className='hidden'>
             When are you planning to go?
           </label>
           <input
-            id='when'
-            type='text'
-            autoComplete='off'
-            value=''
-            onChange=''
-            placeholder='Enter a Select a Date'
-            className='rounded-xl px-4 py-2 h-12 w-full bg-transparent border-[1px] backdrop-blur-lg border-opacity-10 focus-within:outline-none placeholder:text-gray-200 placeholder:font-base border-gray-100 mt-2'
+            id='date'
+            type='date'
+            name='date'
+            value={state.date}
+            onChange={handleInputChange("date")}
+            placeholder='Enter a location'
+            className='rounded-xl px-4 py-2 h-12 w-full bg-transparent backdrop-blur-lg  focus-within:outline-none placeholder:text-gray-400 placeholder:font-base border-gray-300 border mt-2'
           />
-          {errors.destination && (
+          {errors.date && (
             <div className='error text-white absolute right-10 bg-red-600 bg-opacity-80 backdrop-blur-2xl px-4 rounded-md overflow-hidden'>
-              {errors.destination}
+              {errors.date}
             </div>
           )}
         </div>
+
+        {/*Length*/}
         <div className='flex flex-col w-full'>
-          <label htmlFor='program' className='font-bold'>
-            Program Type:
-          </label>
-          <select
-            id='program'
-            value={state.program}
-            onChange={handleSelectChange("program")}
-            className='rounded-xl px-4 py-2 h-12 w-full bg-transparent border-[1px] backdrop-blur-lg border-opacity-10 focus-within:outline-none placeholder:text-gray-200 placeholder:font-base border-gray-100 mt-2'>
-            <option value=''>Select a Program</option> {/* Default option */}
-            <option value='Adventure'>Adventure</option>
-            <option value='Cultural'>Cultural</option>
-            <option value='Party'>Party</option>
-            <option value='Relax'>Relax</option>
-          </select>
-          {errors.program && (
-            <div className='error text-white absolute right-10 bg-red-600 bg-opacity-80 backdrop-blur-2xl px-4 rounded-md overflow-hidden'>
-              {errors.program}
-            </div>
-          )}
-        </div>
-        <div className='flex flex-col w-full'>
-          <label htmlFor='length' className='font-bold'>
-            Length: {checkValue(state.length)}
+          <h4 className='font-bold mb-4'>
+            How many days are you planning to stay? {state.length}
+          </h4>
+          <label htmlFor='length' className='hidden'>
+            Length:
           </label>
           <input
             id='length'
             type='range'
             min='1'
             max='14'
+            name='length'
             value={state.length}
             onChange={handleInputChange("length")}
             className='rounded-full py-2 h-10 w-full bg-transparent'
@@ -133,19 +134,114 @@ const ItineraryPlanner = () => {
             </div>
           )}
         </div>
-        <div className='flex flex-col w-full'>
-          <label htmlFor='budget' className='font-bold'>
-            Budget: {checkValue(state.budget)}
+
+        {/*Group Size*/}
+        <div className='w-full'>
+          <h4 className='font-bold mb-4'>
+            How many people are travelling? {state.group}
+          </h4>
+          <label className='hidden' htmlFor='group'>
+            Group size:
           </label>
+          <div className='grid grid-cols-3 grid-rows-2 gap-4'>
+            <button
+              type='button'
+              onClick={handleButtonInputChange("group", "solo traveller")}
+              className={`button bg-white h-24 text-gray-800 ${
+                state.group === "solo traveller"
+                  ? "border-gray-500 border"
+                  : "border-gray-300 border"
+              }`}>
+              Solo
+            </button>
+            <button
+              type='button'
+              onClick={handleButtonInputChange("group", "couple")}
+              className={`button bg-white h-24 text-gray-800 ${
+                state.group === "couple"
+                  ? "border-gray-500 border"
+                  : "border-gray-300 border"
+              }`}>
+              Couple
+            </button>
+            <button
+              type='button'
+              onClick={handleButtonInputChange("group", "group of friends")}
+              className={`button bg-white h-24 text-gray-800 ${
+                state.group === "group of friends"
+                  ? "border-gray-500 border"
+                  : "border-gray-300 border"
+              }`}>
+              Friends
+            </button>
+            <button
+              type='button'
+              onClick={handleButtonInputChange("group", "family")}
+              className={`button bg-white h-24 text-gray-800 ${
+                state.group === "family"
+                  ? "border-gray-500 border"
+                  : "border-gray-300 border"
+              }`}>
+              Family
+            </button>
+          </div>
+          <input className='hidden' type='text' name='group' id='group' />
+          {errors.group && (
+            <div className='error text-white absolute right-10 bg-red-600 bg-opacity-80 backdrop-blur-2xl px-4 rounded-md overflow-hidden'>
+              {errors.group}
+            </div>
+          )}
+        </div>
+
+        {/*Budget Section*/}
+        <div className='w-full'>
+          <h4 className='font-bold mb-4'>
+            What is your budget range? {state.budget}
+          </h4>
+          <label htmlFor='budget' className='hidden'>
+            Budget:
+          </label>
+          <div className='grid grid-cols-3 gap-4'>
+            <button
+              type='button'
+              onClick={handleButtonInputChange("budget", "under a 1000$")}
+              className={`button bg-white h-24 text-gray-800 ${
+                state.budget === "under a 1000$"
+                  ? "border-gray-800 border"
+                  : "border-gray-300 border"
+              }`}>
+              Budget
+            </button>
+            <button
+              type='button'
+              onClick={handleButtonInputChange(
+                "budget",
+                "between 1000 and 2500$"
+              )}
+              className={`button bg-white h-24 text-gray-800 ${
+                state.budget === "between 1000 and 2500$"
+                  ? "border-gray-800"
+                  : "border-gray-300 border"
+              }`}>
+              Mid
+            </button>
+            <button
+              type='button'
+              onClick={handleButtonInputChange("budget", "above 2500$")}
+              className={`button bg-white h-24 text-gray-800 ${
+                state.budget === "above 2500$"
+                  ? "border-gray-800"
+                  : "border-gray-300 border"
+              }`}>
+              Luxury
+            </button>
+          </div>
           <input
             id='budget'
-            type='range'
             value={state.budget}
-            min='100'
-            max='2000'
-            step='50'
-            onChange={handleInputChange("budget")}
-            className='rounded-full py-2 h-10 w-full bg-transparent'
+            className='hidden'
+            type='text'
+            name='budget'
           />
           {errors.budget && (
             <div className='error text-white absolute right-10 bg-red-600 bg-opacity-80 backdrop-blur-2xl px-4 rounded-md overflow-hidden'>
@@ -153,39 +249,20 @@ const ItineraryPlanner = () => {
             </div>
           )}
         </div>
-        <div className='w-full' id='group'>
-          <h4 className='font-bold mb-4'>How many people are travelling?</h4>
-          <div className='grid grid-cols-3 grid-rows-2 gap-4'>
-            <button className='button bg-white h-24 text-gray-800'>Solo</button>
-            <button className='button bg-white h-24 text-gray-800'>
-              Couple
-            </button>
-            <button className='button bg-white h-24 text-gray-800'>
-              Friends
-            </button>
-            <button className='button bg-white h-24 text-gray-800'>
-              Family
-            </button>
-          </div>
-        </div>
-        <div className='w-full' id='budget'>
-          <h4 className='font-bold mb-4'>What is your budget range?</h4>
-          <div className='grid grid-cols-3 gap-4'>
-            <button className='button bg-white h-24 text-gray-800'>
-              Budget
-            </button>
-            <button className='button bg-white h-24 text-gray-800'>Mid</button>
-            <button className='button bg-white h-24 text-gray-800'>
-              Luxury
-            </button>
-          </div>
-        </div>
-        <div className='w-full' id='activities'>
+
+        {/*Activities Section*/}
+        <div className='w-full'>
           <h4 className='font-bold mb-4'>
             Tell us about activities that interest you:
           </h4>
+          <label htmlFor='activity' className='hidden'>
+            Activities
+          </label>
           <div className='grid grid-cols-3 grid-rows-3 gap-4'>
-            <button className='button bg-white h-24 text-gray-800'>
+            <button
+              type='button'
+              onClick={handleMultipleChoiceChange("activity", "beaches")}
+              className='button bg-white h-24 text-gray-800'>
               Beaches
             </button>
             <button className='button bg-white h-24 text-gray-800'>
@@ -207,27 +284,37 @@ const ItineraryPlanner = () => {
               Sightseeing
             </button>
             <button className='button bg-white h-24 text-gray-800'>
-              Wellnes
+              Wellness
             </button>
             <button className='button bg-white h-24 text-gray-800'>
               Shopping
             </button>
           </div>
+          <input className='hidden' type='text' name='activity' id='activity' />
+          {errors.activity && (
+            <div className='error text-white absolute right-10 bg-red-600 bg-opacity-80 backdrop-blur-2xl px-4 rounded-md overflow-hidden'>
+              {errors.activity}
+            </div>
+          )}
         </div>
-        <div className='flex flex-row w-full space-x-4'>
-          <button
-            className='w-full bg-teal-500 text-xl button shadow-md'
-            type='submit'
-            value='Submit'>
-            Get Itinerary
-          </button>
-          <button
-            className='w-full bg-gray-500 text-xl button shadow-md'
-            type='button'
-            onClick={handleReset}
-            value='Reset'>
-            Reset Prompt
-          </button>
+
+        {/*Form Actions*/}
+        <div className='flex justify-end fixed bottom-0 py-6 px-8 w-full bg-white border-t border-gray-300'>
+          <div className='flex flex-row space-x-4 max-w-2xl'>
+            <button
+              className='bg-teal-500 text-lg border-2 border-teal-500 font-semibold shadow-md py-2 px-4 rounded-lg text-white'
+              type='submit'
+              value='Submit'>
+              Get Itinerary
+            </button>
+            <button
+              className='border-gray-300 border-2 text-gray-400 font-semibold text-lg py-2 rounded-lg px-4 shadow-md'
+              type='button'
+              onClick={handleReset}
+              value='Reset'>
+              Reset Prompt
+            </button>
+          </div>
         </div>
       </form>
     </>

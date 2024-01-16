@@ -17,9 +17,11 @@ export const useSubmitItinerary = (state: FormState, validate: (state: FormState
         // setLoading(true);
         const response = await generateItinerary({
         destination: state.destination,
+        date: state.date,
         length: state.length,
+        group: state.group,
         budget: state.budget,
-        program: state.program,
+        activity: state.activity,
         });
       if (response) {
         setResponse(response); // Update the context
@@ -29,7 +31,6 @@ export const useSubmitItinerary = (state: FormState, validate: (state: FormState
       }
     } catch (error) {
       console.error('Error during itinerary generation:', error);
-      // Optionally, handle the error in UI, e.g., show an error message
     } finally {
       //setLoading(false)
     }
