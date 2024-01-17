@@ -5,6 +5,23 @@ import { useSubmitItinerary } from "../hooks/useSubmitItinerary.ts";
 import { useInputChange } from "../hooks/useInputChange.ts";
 import { useResetForm } from "../hooks/useResetForm.ts";
 import { ItineraryAction, FormState } from "../types/ItineraryTypes.ts";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faCreditCard } from "@fortawesome/free-regular-svg-icons";
+import {
+  faUmbrellaBeach,
+  faPersonBiking,
+  faPersonHiking,
+  faLandmark,
+  faBook,
+  faCloudMoon,
+  faBagShopping,
+  faSpa,
+  faBurger,
+  faUser,
+  faUserGroup,
+  faPeopleGroup,
+  faHouseChimney,
+} from "@fortawesome/free-solid-svg-icons";
 
 const initialState: FormState = {
   destination: "",
@@ -57,6 +74,14 @@ const ItineraryPlanner = () => {
 
   const handleReset = useResetForm(dispatch, setErrors);
 
+  function getTodayDate() {
+    const today = new Date();
+    const year = today.getFullYear();
+    const month = String(today.getMonth() + 1).padStart(2, "0"); // JavaScript months are 0-based.
+    const day = String(today.getDate()).padStart(2, "0");
+    return `${year}-${month}-${day}`;
+  }
+
   return (
     <>
       <form
@@ -64,7 +89,7 @@ const ItineraryPlanner = () => {
         className='space-y-4 bg-white p-8 rounded-2xl shadow-2xl grid place-items-center border border-gray-500 border-opacity-20 px-8'>
         <h2 className='text-3xl font-bold'>Plan Your Next Trip</h2>
 
-        {/*Destination Size*/}
+        {/*Destination*/}
         <div className='w-full py-8'>
           <h4 className='font-bold mb-8 text-xl'>
             Where would you like to go? {state.destination}
@@ -80,7 +105,7 @@ const ItineraryPlanner = () => {
             value={state.destination}
             onChange={handleInputChange("destination")}
             placeholder='Enter a location'
-            className='max-w-xl rounded-xl px-4 py-2 h-12 w-full bg-transparent backdrop-blur-lg focus-within:outline-none placeholder:text-gray-400 placeholder:font-base border-gray-300 border mt-2'
+            className='rounded-xl px-4 py-2 h-12 w-full bg-transparent backdrop-blur-lg focus-within:outline-none placeholder:text-gray-400 placeholder:font-base border-gray-300 border mt-2'
           />
           {errors.destination && (
             <div className='error text-white absolute right-10 bg-red-600 bg-opacity-80 backdrop-blur-2xl px-4 rounded-md overflow-hidden'>
@@ -101,10 +126,12 @@ const ItineraryPlanner = () => {
             id='date'
             type='date'
             name='date'
+            min={getTodayDate()}
+            max='2099-12-31'
             value={state.date}
             onChange={handleInputChange("date")}
             placeholder='Enter a location'
-            className='max-w-xl rounded-xl px-4 py-2 h-12 w-full bg-transparent backdrop-blur-lg  focus-within:outline-none placeholder:text-gray-400 placeholder:font-base border-gray-300 border mt-2'
+            className='rounded-xl px-4 py-2 h-12 w-full bg-transparent backdrop-blur-lg  focus-within:outline-none placeholder:text-gray-400 placeholder:font-base border-gray-300 border mt-2'
           />
           {errors.date && (
             <div className='error text-white absolute right-20 bg-red-600 bg-opacity-80 backdrop-blur-2xl px-4 rounded-md overflow-hidden'>
@@ -141,7 +168,7 @@ const ItineraryPlanner = () => {
         {/*Group Size*/}
         <div className='w-full py-8 border-t-gray-300 border-t'>
           <h4 className='font-bold mb-8 text-xl'>
-            How many people are travelling? {state.group}
+            How many people are travelling?
           </h4>
           <label className='hidden' htmlFor='group'>
             Group size:
@@ -150,42 +177,54 @@ const ItineraryPlanner = () => {
             <button
               type='button'
               onClick={handleButtonInputChange("group", "solo traveller")}
-              className={`button bg-white h-24 text-gray-800 ${
+              className={`button bg-white h-28 text-gray-800 duration-75 ${
                 state.group === "solo traveller"
-                  ? "border-gray-500 border"
-                  : "border-gray-300 border"
+                  ? "border-gray-800 border-2"
+                  : "border-gray-300 border hover:border-gray-500"
               }`}>
-              Solo
+              <div className='space-y-2 text-left'>
+                <FontAwesomeIcon className='text-2xl' icon={faUser} />
+                <p className='text-gray-800 text-lg'>Solo</p>
+              </div>
             </button>
             <button
               type='button'
               onClick={handleButtonInputChange("group", "couple")}
-              className={`button bg-white h-24 text-gray-800 ${
+              className={`button bg-white h-28 text-gray-800 duration-75 ${
                 state.group === "couple"
-                  ? "border-gray-500 border"
-                  : "border-gray-300 border"
+                  ? "border-gray-800 border-2"
+                  : "border-gray-300 border hover:border-gray-500"
               }`}>
-              Couple
+              <div className='space-y-2 text-left'>
+                <FontAwesomeIcon className='text-2xl' icon={faUserGroup} />
+                <p className='text-gray-800 text-lg'>Couple</p>
+              </div>
             </button>
             <button
               type='button'
               onClick={handleButtonInputChange("group", "group of friends")}
-              className={`button bg-white h-24 text-gray-800 ${
+              className={`button bg-white h-28 text-gray-800 duration-75 ${
                 state.group === "group of friends"
-                  ? "border-gray-500 border"
-                  : "border-gray-300 border"
+                  ? "border-gray-800 border-2"
+                  : "border-gray-300 border hover:border-gray-500"
               }`}>
-              Friends
+              <div className='space-y-2 text-left'>
+                <FontAwesomeIcon className='text-2xl' icon={faPeopleGroup} />
+                <p className='text-gray-800 text-lg'>Friends</p>
+              </div>
             </button>
             <button
               type='button'
               onClick={handleButtonInputChange("group", "family")}
-              className={`button bg-white h-24 text-gray-800 ${
+              className={`button bg-white h-28 text-gray-800 duration-75 ${
                 state.group === "family"
-                  ? "border-gray-500 border"
-                  : "border-gray-300 border"
+                  ? "border-gray-800 border-2"
+                  : "border-gray-300 border hover:border-gray-500"
               }`}>
-              Family
+              <div className='space-y-2 text-left'>
+                <FontAwesomeIcon className='text-2xl' icon={faHouseChimney} />
+                <p className='text-gray-800 text-lg'>Family</p>
+              </div>
             </button>
           </div>
           <input className='hidden' type='text' name='group' id='group' />
@@ -198,9 +237,7 @@ const ItineraryPlanner = () => {
 
         {/*Budget Section*/}
         <div className='w-full py-8 border-t-gray-300 border-t'>
-          <h4 className='font-bold mb-8 text-xl'>
-            What is your budget range? {state.budget}
-          </h4>
+          <h4 className='font-bold mb-8 text-xl'>What is your budget range?</h4>
           <label htmlFor='budget' className='hidden'>
             Budget:
           </label>
@@ -208,12 +245,18 @@ const ItineraryPlanner = () => {
             <button
               type='button'
               onClick={handleButtonInputChange("budget", "under a 1000$")}
-              className={`button bg-white h-24 text-gray-800 ${
+              className={`button h-32 bg-white duration-75 ${
                 state.budget === "under a 1000$"
-                  ? "border-gray-800 border"
-                  : "border-gray-300 border"
+                  ? "border-gray-800 border-2"
+                  : "border-gray-300 border hover:border-gray-500"
               }`}>
-              Budget
+              <div className='space-y-2 text-left'>
+                <FontAwesomeIcon className='text-2xl' icon={faCreditCard} />
+                <p className='text-gray-800 text-lg'>Budget</p>
+                <p className='text-gray-500 font-medium text-sm'>
+                  0 - 1000 USD
+                </p>
+              </div>
             </button>
             <button
               type='button'
@@ -221,22 +264,32 @@ const ItineraryPlanner = () => {
                 "budget",
                 "between 1000 and 2500$"
               )}
-              className={`button bg-white h-24 text-gray-800 ${
+              className={`button bg-white h-32 duration-75 ${
                 state.budget === "between 1000 and 2500$"
-                  ? "border-gray-800"
-                  : "border-gray-300 border"
+                  ? "border-gray-800 border-2"
+                  : "border-gray-300 border hover:border-gray-500"
               }`}>
-              Mid
+              <div className='space-y-2 py-2 text-left'>
+                <FontAwesomeIcon className='text-2xl' icon={faCreditCard} />
+                <p className='text-gray-800 text-lg'>Mid</p>
+                <p className='text-gray-500 font-medium text-sm'>
+                  1000 - 2500 USD
+                </p>
+              </div>
             </button>
             <button
               type='button'
               onClick={handleButtonInputChange("budget", "above 2500$")}
-              className={`button bg-white h-24 text-gray-800 ${
+              className={`button h-32 bg-white duration-75 ${
                 state.budget === "above 2500$"
-                  ? "border-gray-800"
-                  : "border-gray-300 border"
+                  ? "border-gray-800 border-2"
+                  : "border-gray-300 border hover:border-gray-500 duration-75"
               }`}>
-              Luxury
+              <div className='space-y-2 text-left'>
+                <FontAwesomeIcon className='text-2xl' icon={faCreditCard} />
+                <p className='text-gray-800 text-lg'>Luxury</p>
+                <p className='text-gray-500 font-medium text-sm'>2500+ USD</p>
+              </div>
             </button>
           </div>
           <input
@@ -257,8 +310,7 @@ const ItineraryPlanner = () => {
         {/*Activities Section*/}
         <div className='w-full py-8 border-t-gray-300 border-t'>
           <h4 className='font-bold mb-8 text-xl'>
-            Tell us about activities that interest you:{" "}
-            {state.activity.join(", ")}
+            What activities are you interested in?
           </h4>
           <label htmlFor='activity' className='hidden'>
             Activities
@@ -267,98 +319,125 @@ const ItineraryPlanner = () => {
             <button
               type='button'
               onClick={() => handleMultipleChoiceChange("activity", "beaches")}
-              className={`button bg-white h-24 text-gray-800 ${
+              className={`button bg-white h-28 text-gray-800 duration-75 ${
                 state.activity.includes("beaches")
-                  ? "border-gray-800"
-                  : "border-gray-300 border"
+                  ? "border-gray-800 border-2"
+                  : "border-gray-300 border hover:border-gray-500"
               }`}>
-              Beaches
+              <div className='space-y-2 text-left'>
+                <FontAwesomeIcon className='text-2xl' icon={faUmbrellaBeach} />
+                <p className='text-gray-800 text-lg'>Beaches</p>
+              </div>
             </button>
             <button
               type='button'
               onClick={() => handleMultipleChoiceChange("activity", "hiking")}
-              className={`button bg-white h-24 text-gray-800 ${
+              className={`button bg-white h-28 text-gray-800 duration-75 ${
                 state.activity.includes("hiking")
-                  ? "border-gray-800"
-                  : "border-gray-300 border"
+                  ? "border-gray-800 border-2"
+                  : "border-gray-300 border hover:border-gray-500"
               }`}>
-              Hiking
+              <div className='space-y-2 text-left'>
+                <FontAwesomeIcon className='text-2xl' icon={faPersonHiking} />
+                <p className='text-gray-800 text-lg'>Hiking</p>
+              </div>
             </button>
             <button
               type='button'
               onClick={() => handleMultipleChoiceChange("activity", "culture")}
-              className={`button bg-white h-24 text-gray-800 ${
+              className={`button bg-white h-28 text-gray-800 duration-75 ${
                 state.activity.includes("culture")
-                  ? "border-gray-800"
-                  : "border-gray-300 border"
+                  ? "border-gray-800 border-2"
+                  : "border-gray-300 border hover:border-gray-500"
               }`}>
-              Culture
+              <div className='space-y-2 text-left'>
+                <FontAwesomeIcon className='text-2xl' icon={faBook} />
+                <p className='text-gray-800 text-lg'>Culture</p>
+              </div>
             </button>
             <button
               type='button'
               onClick={() => handleMultipleChoiceChange("activity", "sports")}
-              className={`button bg-white h-24 text-gray-800 ${
+              className={`button bg-white h-28 text-gray-800 duration-75 ${
                 state.activity.includes("sports")
-                  ? "border-gray-800"
-                  : "border-gray-300 border"
+                  ? "border-gray-800 border-2"
+                  : "border-gray-300 border hover:border-gray-500"
               }`}>
-              Sports
+              <div className='space-y-2 text-left'>
+                <FontAwesomeIcon className='text-2xl' icon={faPersonBiking} />
+                <p className='text-gray-800 text-lg'>Sports</p>
+              </div>
             </button>
             <button
               type='button'
               onClick={() =>
                 handleMultipleChoiceChange("activity", "nightlife")
               }
-              className={`button bg-white h-24 text-gray-800 ${
+              className={`button bg-white h-28 text-gray-800 duration-75 ${
                 state.activity.includes("nightlife")
-                  ? "border-gray-800"
-                  : "border-gray-300 border"
+                  ? "border-gray-800 border-2"
+                  : "border-gray-300 border hover:border-gray-500"
               }`}>
-              Nightlife
+              <div className='space-y-2 text-left'>
+                <FontAwesomeIcon className='text-2xl' icon={faCloudMoon} />
+                <p className='text-gray-800 text-lg'>Nightlife</p>
+              </div>
             </button>
             <button
               type='button'
               onClick={() =>
                 handleMultipleChoiceChange("activity", "food exploration")
               }
-              className={`button bg-white h-24 text-gray-800 ${
+              className={`button bg-white h-28 text-gray-800 duration-75 ${
                 state.activity.includes("food exploration")
-                  ? "border-gray-800"
-                  : "border-gray-300 border"
+                  ? "border-gray-800 border-2"
+                  : "border-gray-300 border hover:border-gray-500"
               }`}>
-              Food Exploration
+              <div className='space-y-2 text-left'>
+                <FontAwesomeIcon className='text-2xl' icon={faBurger} />
+                <p className='text-gray-800 text-lg'>Food Exploration</p>
+              </div>
             </button>
             <button
               type='button'
               onClick={() =>
                 handleMultipleChoiceChange("activity", "sight seeing")
               }
-              className={`button bg-white h-24 text-gray-800 ${
+              className={`button bg-white h-28 text-gray-800 duration-75 ${
                 state.activity.includes("sight seeing")
-                  ? "border-gray-800"
-                  : "border-gray-300 border"
+                  ? "border-gray-800 border-2"
+                  : "border-gray-300 border hover:border-gray-500"
               }`}>
-              Sight Seeing
+              <div className='space-y-2 text-left'>
+                <FontAwesomeIcon className='text-2xl' icon={faLandmark} />
+                <p className='text-gray-800 text-lg'>Sight Seeing</p>
+              </div>
             </button>
             <button
               type='button'
               onClick={() => handleMultipleChoiceChange("activity", "wellness")}
-              className={`button bg-white h-24 text-gray-800 ${
+              className={`button bg-white h-28 text-gray-800 duration-75 ${
                 state.activity.includes("wellness")
-                  ? "border-gray-800"
-                  : "border-gray-300 border"
+                  ? "border-gray-800 border-2"
+                  : "border-gray-300 border hover:border-gray-500"
               }`}>
-              Wellness
+              <div className='space-y-2 text-left'>
+                <FontAwesomeIcon className='text-2xl' icon={faSpa} />
+                <p className='text-gray-800 text-lg'>Wellness</p>
+              </div>
             </button>
             <button
               type='button'
               onClick={() => handleMultipleChoiceChange("activity", "shopping")}
-              className={`button bg-white h-24 text-gray-800 ${
+              className={`button bg-white h-28 text-gray-800 duration-75 ${
                 state.activity.includes("shopping")
-                  ? "border-gray-800"
-                  : "border-gray-300 border"
+                  ? "border-gray-800 border-2"
+                  : "border-gray-300 border hover:border-gray-500"
               }`}>
-              Shopping
+              <div className='space-y-2 text-left'>
+                <FontAwesomeIcon className='text-2xl' icon={faBagShopping} />
+                <p className='text-gray-800 text-lg'>Shopping</p>
+              </div>
             </button>
           </div>
           <input

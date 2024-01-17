@@ -15,7 +15,7 @@ const Planner: React.FC = () => {
   return (
     <div className='min-h-screen'>
       {!response && (
-        <div className='max-w-5xl mx-auto pt-40 pb-40 px-6'>
+        <div className='max-w-4xl mx-auto pt-40 pb-40 px-6'>
           <ItineraryPlanner />
         </div>
       )}
@@ -23,7 +23,7 @@ const Planner: React.FC = () => {
       {response && (
         <>
           <ItineraryDisplay response={response} />
-          <div className='w-[40vw] bg-white fixed top-0 right-0'>
+          <div className='w-[40vw] bg-white fixed top-0 right-0 z-20'>
             <Map location={response.destination.destinationCity} />
           </div>
         </>

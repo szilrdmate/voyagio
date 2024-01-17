@@ -41,7 +41,7 @@ const DesktopNav = () => {
         <NavLink
           to='/signup'
           className={`bg-teal-500 button px-6 text-lg ${path}`}>
-          Sign Up
+          Sign In
         </NavLink>
       </div>
     </div>
