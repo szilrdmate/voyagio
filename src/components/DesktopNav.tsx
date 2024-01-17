@@ -1,6 +1,12 @@
-import { NavLink, Link } from "react-router-dom";
+import { NavLink, Link, useLocation } from "react-router-dom";
 
 const DesktopNav = () => {
+  const location = useLocation();
+  const path =
+    location.pathname == "/login" || location.pathname == "/signup"
+      ? "opacity-0"
+      : "";
+
   return (
     <div className='text-white backdrop-blur-xl w-full absolute box-border py-4 bg-gradient-to-b from-[#00000060] to-transaprent'>
       <div className=' flex items-center justify-between mx-auto px-4 max-w-6xl '>
@@ -16,9 +22,9 @@ const DesktopNav = () => {
             Home
           </NavLink>
           <NavLink
-            to='/explore'
+            to='/planner'
             className='hover:text-blue-400 hover:bg-gray-300 py-[14px] transition-color duration-150 px-8 rounded-full'>
-            Explore
+            Plan A Trip
           </NavLink>
           <NavLink
             to='/blog'
@@ -32,8 +38,10 @@ const DesktopNav = () => {
             Feedback
           </Link>
         </div>
-        <NavLink to='/planner' className='bg-teal-500 button'>
-          Try It for Free
+        <NavLink
+          to='/signup'
+          className={`bg-teal-500 button px-6 text-lg ${path}`}>
+          Sign Up
         </NavLink>
       </div>
     </div>

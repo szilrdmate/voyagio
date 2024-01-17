@@ -1,25 +1,28 @@
-import { Routes, Route, useLocation } from "react-router-dom";
+import React from "react";
+import { Routes, Route } from "react-router-dom";
 import Home from "./pages/Home";
 import Blog from "./pages/Blog";
-import Explore from "./pages/Explore";
 import Navbar from "./components/Navbar";
 import Planner from "./pages/Planner";
 import NotFound from "./pages/NotFound";
 import { ItineraryProvider } from "./contexts/ItineraryContext";
+import Account from "./pages/Account";
+import SignIn from "./components/auth/SignIn";
+import SignUp from "./components/auth/SignUp";
 
 const App: React.FC = () => {
-  const path = useLocation();
-
   return (
     <div className='App'>
       <ItineraryProvider>
-        {path.pathname !== "/planner" && <Navbar />}
+        <Navbar />
         <Routes>
           <Route index element={<Home />} />
-          <Route path='explore' element={<Explore />} />
-          <Route path='destinations' element={<Blog />} />
-          <Route path='*' element={<NotFound />} />
           <Route path='/planner' element={<Planner />} />
+          <Route path='/blog' element={<Blog />} />
+          <Route path='/login' element={<SignIn />} />
+          <Route path='/signup' element={<SignUp />} />
+          <Route path='/account' element={<Account />} />
+          <Route path='*' element={<NotFound />} />
         </Routes>
       </ItineraryProvider>
     </div>
