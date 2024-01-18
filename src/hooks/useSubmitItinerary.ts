@@ -1,7 +1,7 @@
 // hooks/useSubmitItinerary.ts
 import { generateItinerary } from "../services/gptService";
 import { FormState } from "../types/ItineraryTypes";
-import { useItinerary } from "../contexts/ItineraryContext";
+import { useItinerary } from "../context/ItineraryContext";
 //import { useState } from 'react';
 
 export const useSubmitItinerary = (state: FormState, validate: (state: FormState) => boolean) => {

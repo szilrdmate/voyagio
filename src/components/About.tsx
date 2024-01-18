@@ -7,21 +7,31 @@ const About: React.FC = () => {
         All About AI Travel
       </h2>
       <div className='max-w-6xl mx-auto grid grid-cols-2 grid-rows-8 gap-4'>
-        <div className='border-[1px] border-white bg-gray-200 col-start-1 col-span-2 row-start-1 row-span-3 rounded-lg h-96 bg-[url("https://freepngimg.com/thumb/airplane/126147-flying-airplane-vector-pic-free-download-png-hd.png")] bg-no-repeat bg-cover'></div>
-        <div className='border-[1px] border-white bg-blue-500 col-start-1 col-span-1 row-start-4 row-span-3 rounded-lg'></div>
-        <div className='border-[1px] border-white bg-gray-200 col-start-2 col-span-1 row-start-4 row-span-3 rounded-lg px-6 py-4'>
+        <div className='border border-gray-300 bg-gray-200 col-start-1 col-span-2 row-start-1 row-span-3 rounded-lg h-96 bg-[url("https://freepngimg.com/thumb/airplane/126147-flying-airplane-vector-pic-free-download-png-hd.png")] bg-no-repeat bg-cover'></div>
+        <div className='border border-gray-300 bg-blue-500 col-start-1 col-span-1 row-start-4 row-span-3 rounded-lg px-6 py-4'>
+          <h2 className='text-white font-bold text-3xl mb-2'>
+            Personalized Suggestions
+          </h2>
+          <p className='text-gray-200 text-base text-justify tracking-wide leading-relaxed'>
+            Our AI analyzes your preferences, from cultural interests to
+            adventure levels, ensuring every recommendation is tailored to your
+            taste. Discover hidden gems, popular attractions, and unique
+            experiences, all curated to suit your travel desires.
+          </p>
+        </div>
+        <div className='border border-gray-300 bg-gray-200 col-start-2 col-span-1 row-start-4 row-span-3 rounded-lg px-6 py-4'>
           <h2 className='text-gray-800 font-bold text-3xl mb-2'>
-            Used Technologies
+            Effortless Planning
           </h2>
           <p className='text-gray-500 text-base text-justify tracking-wide leading-relaxed'>
-            Lorem, ipsum dolor sit amet consectetur adipisicing elit. Delectus
-            magni laudantium dolorum impedit quis obcaecati praesentium ipsam
-            quae placeat laborum voluptatem facere, distinctio minus nemo, nisi
-            omnis cupiditate voluptas aliquam.
+            Say goodbye to the overwhelming task of sifting through endless
+            options. Our AI streamlines the planning process, offering a
+            user-friendly interface that delivers your ideal itinerary swiftly.
+            It's travel planning made simple, smart, and fun!
           </p>
           <button className='button bg-blue-500'>Hello</button>
         </div>
-        <div className='border-[1px] border-white bg-gray-200 col-start-1 col-span-2 row-start-7 row-span-2 rounded-lg'></div>
+        <div className='border border-gray-300 bg-gray-200 col-start-1 col-span-2 row-start-7 row-span-2 rounded-lg px-6 py-4'></div>
       </div>
     </div>
   );

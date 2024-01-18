@@ -3,7 +3,7 @@ import ItineraryPlanner from "../components/Itinerary";
 import ItineraryDisplay from "../components/ItineraryDisplay";
 //import Loading from "../components/Loading";
 import Map from "../components/Map";
-import { useItinerary } from "../contexts/ItineraryContext";
+import { useItinerary } from "../context/ItineraryContext";
 
 const Planner: React.FC = () => {
   const { response } = useItinerary();

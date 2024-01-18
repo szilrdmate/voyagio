@@ -1,7 +1,8 @@
-/* eslint-disable react-refresh/only-export-components */
 // src/contexts/ItineraryContext.tsx
 import React, { createContext, useState, useContext, ReactNode } from "react";
 import { ItineraryResponseType } from "../types/ResponseTypes";
+
+// TODO: import types, separate the two consts
 
 interface ItineraryContextType {
   response: ItineraryResponseType | null;
@@ -14,7 +15,7 @@ interface ItineraryProviderProps {
 
 const ItineraryContext = createContext<ItineraryContextType | null>(null);
 
-export const useItinerary = () => {
+const useItinerary = () => {
   const context = useContext(ItineraryContext);
   if (!context) {
     throw new Error("useItinerary must be used within a ItineraryProvider");
@@ -22,9 +23,7 @@ export const useItinerary = () => {
   return context;
 };
 
-export const ItineraryProvider: React.FC<ItineraryProviderProps> = ({
-  children,
-}) => {
+const ItineraryProvider: React.FC<ItineraryProviderProps> = ({ children }) => {
   const [response, setResponse] = useState<ItineraryResponseType | null>(null);
 
   // Example function that updates the context state
@@ -39,3 +38,5 @@ export const ItineraryProvider: React.FC<ItineraryProviderProps> = ({
     </ItineraryContext.Provider>
   );
 };
+
+export { useItinerary, ItineraryProvider };

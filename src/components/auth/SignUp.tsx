@@ -46,6 +46,7 @@ const SignUp: React.FC = () => {
             type='password'
             name='sign-in-password'
             id='sign-in-password'
+            autoComplete='current-password'
             value={password}
             onChange={(e) => setPassword(e.target.value)}
             placeholder='Enter your password'
@@ -61,12 +62,10 @@ const SignUp: React.FC = () => {
             Log In
           </button>
           <p className='text-blue-200 text-center'>
-            <p>
-              Already have an account?{" "}
-              <Link to='/login' className='hover:underline'>
-                Sign In
-              </Link>
-            </p>
+            Already have an account?{" "}
+            <Link to='/signin' className='hover:underline'>
+              Sign In
+            </Link>
           </p>
         </div>
       </form>

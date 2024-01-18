@@ -6,22 +6,12 @@ import { useInputChange } from "../hooks/useInputChange.ts";
 import { useResetForm } from "../hooks/useResetForm.ts";
 import { ItineraryAction, FormState } from "../types/ItineraryTypes.ts";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faCreditCard } from "@fortawesome/free-regular-svg-icons";
-import {
-  faUmbrellaBeach,
-  faPersonBiking,
-  faPersonHiking,
-  faLandmark,
-  faBook,
-  faCloudMoon,
-  faBagShopping,
-  faSpa,
-  faBurger,
-  faUser,
-  faUserGroup,
-  faPeopleGroup,
-  faHouseChimney,
-} from "@fortawesome/free-solid-svg-icons";
+import { faCircleExclamation } from "@fortawesome/free-solid-svg-icons";
+import { activities, budgetOptions, groupOptions } from "../data/buttonData.ts";
+
+interface ErrorObject {
+  [key: string]: string | null; // Error messages are strings, no error is represented by null
+}
 
 const initialState: FormState = {
   destination: "",
@@ -82,6 +72,21 @@ const ItineraryPlanner = () => {
     return `${year}-${month}-${day}`;
   }
 
+  function checkForErrors(errorObject: ErrorObject): boolean {
+    // Iterate through the object's keys
+    for (const key in errorObject) {
+      // Check if the key has a truthy value
+      if (errorObject[key]) {
+        // If a truthy value is found, return true indicating an error exists
+        return true;
+      }
+    }
+    // If no truthy values are found, return false indicating no errors
+    return false;
+  }
+
+  const hasErrors = checkForErrors(errors);
+
   return (
     <>
       <form
@@ -105,10 +110,12 @@ const ItineraryPlanner = () => {
             value={state.destination}
             onChange={handleInputChange("destination")}
             placeholder='Enter a location'
-            className='rounded-xl px-4 py-2 h-12 w-full bg-transparent backdrop-blur-lg focus-within:outline-none placeholder:text-gray-400 placeholder:font-base border-gray-300 border mt-2'
+            className={`${
+              errors.destination ? "border-red-500" : "border-gray-300"
+            } rounded-xl px-4 py-2 h-12 w-full bg-transparent backdrop-blur-lg focus-within:outline-none placeholder:text-gray-400 placeholder:font-base border mt-2`}
           />
           {errors.destination && (
-            <div className='error text-white absolute right-10 bg-red-600 bg-opacity-80 backdrop-blur-2xl px-4 rounded-md overflow-hidden'>
+            <div className='error text-white absolute bg-red-600 bg-opacity-80 backdrop-blur-2xl px-4 rounded-md overflow-hidden'>
               {errors.destination}
             </div>
           )}
@@ -131,7 +138,9 @@ const ItineraryPlanner = () => {
             value={state.date}
             onChange={handleInputChange("date")}
             placeholder='Enter a location'
-            className='rounded-xl px-4 py-2 h-12 w-full bg-transparent backdrop-blur-lg  focus-within:outline-none placeholder:text-gray-400 placeholder:font-base border-gray-300 border mt-2'
+            className={`${
+              errors.destination ? "border-red-500" : "border-gray-300"
+            } rounded-xl px-4 py-2 h-12 w-full bg-transparent backdrop-blur-lg  focus-within:outline-none placeholder:text-gray-400 placeholder:font-base  border mt-2`}
           />
           {errors.date && (
             <div className='error text-white absolute right-20 bg-red-600 bg-opacity-80 backdrop-blur-2xl px-4 rounded-md overflow-hidden'>
@@ -143,7 +152,8 @@ const ItineraryPlanner = () => {
         {/*Length*/}
         <div className='w-full py-8 border-t-gray-300 border-t'>
           <h4 className='font-bold mb-8 text-xl'>
-            How many days are you planning to stay? {state.length}
+            How many days are you planning to stay? {state.length}{" "}
+            {state.length ? (state.length == "1" ? "day" : "days") : ""}
           </h4>
           <label htmlFor='length' className='hidden'>
             Length:
@@ -174,58 +184,22 @@ const ItineraryPlanner = () => {
             Group size:
           </label>
           <div className='grid grid-cols-3 grid-rows-2 gap-4'>
-            <button
-              type='button'
-              onClick={handleButtonInputChange("group", "solo traveller")}
-              className={`button bg-white h-28 text-gray-800 duration-75 ${
-                state.group === "solo traveller"
-                  ? "border-gray-800 border-2"
-                  : "border-gray-300 border hover:border-gray-500"
-              }`}>
-              <div className='space-y-2 text-left'>
-                <FontAwesomeIcon className='text-2xl' icon={faUser} />
-                <p className='text-gray-800 text-lg'>Solo</p>
-              </div>
-            </button>
-            <button
-              type='button'
-              onClick={handleButtonInputChange("group", "couple")}
-              className={`button bg-white h-28 text-gray-800 duration-75 ${
-                state.group === "couple"
-                  ? "border-gray-800 border-2"
-                  : "border-gray-300 border hover:border-gray-500"
-              }`}>
-              <div className='space-y-2 text-left'>
-                <FontAwesomeIcon className='text-2xl' icon={faUserGroup} />
-                <p className='text-gray-800 text-lg'>Couple</p>
-              </div>
-            </button>
-            <button
-              type='button'
-              onClick={handleButtonInputChange("group", "group of friends")}
-              className={`button bg-white h-28 text-gray-800 duration-75 ${
-                state.group === "group of friends"
-                  ? "border-gray-800 border-2"
-                  : "border-gray-300 border hover:border-gray-500"
-              }`}>
-              <div className='space-y-2 text-left'>
-                <FontAwesomeIcon className='text-2xl' icon={faPeopleGroup} />
-                <p className='text-gray-800 text-lg'>Friends</p>
-              </div>
-            </button>
-            <button
-              type='button'
-              onClick={handleButtonInputChange("group", "family")}
-              className={`button bg-white h-28 text-gray-800 duration-75 ${
-                state.group === "family"
-                  ? "border-gray-800 border-2"
-                  : "border-gray-300 border hover:border-gray-500"
-              }`}>
-              <div className='space-y-2 text-left'>
-                <FontAwesomeIcon className='text-2xl' icon={faHouseChimney} />
-                <p className='text-gray-800 text-lg'>Family</p>
-              </div>
-            </button>
+            {groupOptions.map((group) => (
+              <button
+                key={group.value}
+                type='button'
+                onClick={handleButtonInputChange("group", group.value)}
+                className={`button bg-white h-28 text-gray-800 duration-75 ${
+                  state.group === group.value
+                    ? "border-gray-800 border-2"
+                    : "border-gray-300 border hover:border-gray-500"
+                }`}>
+                <div className='space-y-2 text-left'>
+                  <FontAwesomeIcon className='text-2xl' icon={group.icon} />
+                  <p className='text-gray-800 text-lg'>{group.label}</p>
+                </div>
+              </button>
+            ))}
           </div>
           <input className='hidden' type='text' name='group' id='group' />
           {errors.group && (
@@ -242,55 +216,25 @@ const ItineraryPlanner = () => {
             Budget:
           </label>
           <div className='grid grid-cols-3 gap-4'>
-            <button
-              type='button'
-              onClick={handleButtonInputChange("budget", "under a 1000$")}
-              className={`button h-32 bg-white duration-75 ${
-                state.budget === "under a 1000$"
-                  ? "border-gray-800 border-2"
-                  : "border-gray-300 border hover:border-gray-500"
-              }`}>
-              <div className='space-y-2 text-left'>
-                <FontAwesomeIcon className='text-2xl' icon={faCreditCard} />
-                <p className='text-gray-800 text-lg'>Budget</p>
-                <p className='text-gray-500 font-medium text-sm'>
-                  0 - 1000 USD
-                </p>
-              </div>
-            </button>
-            <button
-              type='button'
-              onClick={handleButtonInputChange(
-                "budget",
-                "between 1000 and 2500$"
-              )}
-              className={`button bg-white h-32 duration-75 ${
-                state.budget === "between 1000 and 2500$"
-                  ? "border-gray-800 border-2"
-                  : "border-gray-300 border hover:border-gray-500"
-              }`}>
-              <div className='space-y-2 py-2 text-left'>
-                <FontAwesomeIcon className='text-2xl' icon={faCreditCard} />
-                <p className='text-gray-800 text-lg'>Mid</p>
-                <p className='text-gray-500 font-medium text-sm'>
-                  1000 - 2500 USD
-                </p>
-              </div>
-            </button>
-            <button
-              type='button'
-              onClick={handleButtonInputChange("budget", "above 2500$")}
-              className={`button h-32 bg-white duration-75 ${
-                state.budget === "above 2500$"
-                  ? "border-gray-800 border-2"
-                  : "border-gray-300 border hover:border-gray-500 duration-75"
-              }`}>
-              <div className='space-y-2 text-left'>
-                <FontAwesomeIcon className='text-2xl' icon={faCreditCard} />
-                <p className='text-gray-800 text-lg'>Luxury</p>
-                <p className='text-gray-500 font-medium text-sm'>2500+ USD</p>
-              </div>
-            </button>
+            {budgetOptions.map((budget) => (
+              <button
+                key={budget.value}
+                type='button'
+                onClick={handleButtonInputChange("budget", budget.value)}
+                className={`button h-32 bg-white duration-75 ${
+                  state.budget === budget.value
+                    ? "border-gray-800 border-2"
+                    : "border-gray-300 border hover:border-gray-500"
+                }`}>
+                <div className='space-y-2 text-left'>
+                  <FontAwesomeIcon className='text-2xl' icon={budget.icon} />
+                  <p className='text-gray-800 text-lg'>{budget.label}</p>
+                  <p className='text-gray-500 font-medium text-sm'>
+                    {budget.range}
+                  </p>
+                </div>
+              </button>
+            ))}
           </div>
           <input
             id='budget'
@@ -316,129 +260,24 @@ const ItineraryPlanner = () => {
             Activities
           </label>
           <div className='grid grid-cols-3 grid-rows-3 gap-4'>
-            <button
-              type='button'
-              onClick={() => handleMultipleChoiceChange("activity", "beaches")}
-              className={`button bg-white h-28 text-gray-800 duration-75 ${
-                state.activity.includes("beaches")
-                  ? "border-gray-800 border-2"
-                  : "border-gray-300 border hover:border-gray-500"
-              }`}>
-              <div className='space-y-2 text-left'>
-                <FontAwesomeIcon className='text-2xl' icon={faUmbrellaBeach} />
-                <p className='text-gray-800 text-lg'>Beaches</p>
-              </div>
-            </button>
-            <button
-              type='button'
-              onClick={() => handleMultipleChoiceChange("activity", "hiking")}
-              className={`button bg-white h-28 text-gray-800 duration-75 ${
-                state.activity.includes("hiking")
-                  ? "border-gray-800 border-2"
-                  : "border-gray-300 border hover:border-gray-500"
-              }`}>
-              <div className='space-y-2 text-left'>
-                <FontAwesomeIcon className='text-2xl' icon={faPersonHiking} />
-                <p className='text-gray-800 text-lg'>Hiking</p>
-              </div>
-            </button>
-            <button
-              type='button'
-              onClick={() => handleMultipleChoiceChange("activity", "culture")}
-              className={`button bg-white h-28 text-gray-800 duration-75 ${
-                state.activity.includes("culture")
-                  ? "border-gray-800 border-2"
-                  : "border-gray-300 border hover:border-gray-500"
-              }`}>
-              <div className='space-y-2 text-left'>
-                <FontAwesomeIcon className='text-2xl' icon={faBook} />
-                <p className='text-gray-800 text-lg'>Culture</p>
-              </div>
-            </button>
-            <button
-              type='button'
-              onClick={() => handleMultipleChoiceChange("activity", "sports")}
-              className={`button bg-white h-28 text-gray-800 duration-75 ${
-                state.activity.includes("sports")
-                  ? "border-gray-800 border-2"
-                  : "border-gray-300 border hover:border-gray-500"
-              }`}>
-              <div className='space-y-2 text-left'>
-                <FontAwesomeIcon className='text-2xl' icon={faPersonBiking} />
-                <p className='text-gray-800 text-lg'>Sports</p>
-              </div>
-            </button>
-            <button
-              type='button'
-              onClick={() =>
-                handleMultipleChoiceChange("activity", "nightlife")
-              }
-              className={`button bg-white h-28 text-gray-800 duration-75 ${
-                state.activity.includes("nightlife")
-                  ? "border-gray-800 border-2"
-                  : "border-gray-300 border hover:border-gray-500"
-              }`}>
-              <div className='space-y-2 text-left'>
-                <FontAwesomeIcon className='text-2xl' icon={faCloudMoon} />
-                <p className='text-gray-800 text-lg'>Nightlife</p>
-              </div>
-            </button>
-            <button
-              type='button'
-              onClick={() =>
-                handleMultipleChoiceChange("activity", "food exploration")
-              }
-              className={`button bg-white h-28 text-gray-800 duration-75 ${
-                state.activity.includes("food exploration")
-                  ? "border-gray-800 border-2"
-                  : "border-gray-300 border hover:border-gray-500"
-              }`}>
-              <div className='space-y-2 text-left'>
-                <FontAwesomeIcon className='text-2xl' icon={faBurger} />
-                <p className='text-gray-800 text-lg'>Food Exploration</p>
-              </div>
-            </button>
-            <button
-              type='button'
-              onClick={() =>
-                handleMultipleChoiceChange("activity", "sight seeing")
-              }
-              className={`button bg-white h-28 text-gray-800 duration-75 ${
-                state.activity.includes("sight seeing")
-                  ? "border-gray-800 border-2"
-                  : "border-gray-300 border hover:border-gray-500"
-              }`}>
-              <div className='space-y-2 text-left'>
-                <FontAwesomeIcon className='text-2xl' icon={faLandmark} />
-                <p className='text-gray-800 text-lg'>Sight Seeing</p>
-              </div>
-            </button>
-            <button
-              type='button'
-              onClick={() => handleMultipleChoiceChange("activity", "wellness")}
-              className={`button bg-white h-28 text-gray-800 duration-75 ${
-                state.activity.includes("wellness")
-                  ? "border-gray-800 border-2"
-                  : "border-gray-300 border hover:border-gray-500"
-              }`}>
-              <div className='space-y-2 text-left'>
-                <FontAwesomeIcon className='text-2xl' icon={faSpa} />
-                <p className='text-gray-800 text-lg'>Wellness</p>
-              </div>
-            </button>
-            <button
-              type='button'
-              onClick={() => handleMultipleChoiceChange("activity", "shopping")}
-              className={`button bg-white h-28 text-gray-800 duration-75 ${
-                state.activity.includes("shopping")
-                  ? "border-gray-800 border-2"
-                  : "border-gray-300 border hover:border-gray-500"
-              }`}>
-              <div className='space-y-2 text-left'>
-                <FontAwesomeIcon className='text-2xl' icon={faBagShopping} />
-                <p className='text-gray-800 text-lg'>Shopping</p>
-              </div>
-            </button>
+            {activities.map((activity) => (
+              <button
+                key={activity.value}
+                type='button'
+                onClick={() =>
+                  handleMultipleChoiceChange("activity", activity.value)
+                }
+                className={`button bg-white h-28 text-gray-800 duration-75 ${
+                  state.activity.includes(activity.value)
+                    ? "border-gray-800 border-2"
+                    : "border-gray-300 border hover:border-gray-500"
+                }`}>
+                <div className='space-y-2 text-left'>
+                  <FontAwesomeIcon className='text-2xl' icon={activity.icon} />
+                  <p className='text-gray-800 text-lg'>{activity.name}</p>
+                </div>
+              </button>
+            ))}
           </div>
           <input
             className='hidden'
@@ -456,6 +295,23 @@ const ItineraryPlanner = () => {
         </div>
 
         {/*Form Actions*/}
+
+        <div
+          className={`${
+            hasErrors ? "-translate-y-28" : ""
+          } error text-white fixed w-full left-0 bottom-0 transition-transform duration-300 bg-red-600 bg-opacity-80 backdrop-blur-2xl px-16 py-4 overflow-hidden`}>
+          <p className='font-semibold text-lg'>
+            <FontAwesomeIcon
+              className='text-xl mr-2'
+              icon={faCircleExclamation}
+            />
+            Invalid Input:{" "}
+            <span className='font-normal'>
+              One or more fields are missing an input
+            </span>
+          </p>
+        </div>
+
         <div className='flex justify-end fixed bottom-0 py-8 px-8 w-full bg-white border-t border-gray-300'>
           <div className='flex flex-row space-x-4 max-w-2xl'>
             <button

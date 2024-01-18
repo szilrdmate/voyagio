@@ -12,7 +12,7 @@ const DesktopNav = () => {
       <div className=' flex items-center justify-between mx-auto px-4 max-w-6xl '>
         <div>
           <NavLink to='/'>
-            <img src='/logo.svg' className='w-36' alt='Voyagio logo' />
+            <img src='/logo.svg' className='w-[150px]' alt='Voyagio logo' />
           </NavLink>
         </div>
         <div className='overflow-hidden rounded-full py-3 font-bold text-xl bg-blue-100 border-[1px] border-white border-opacity-20 bg-opacity-20 backdrop-blur-xl'>
@@ -39,8 +39,8 @@ const DesktopNav = () => {
           </Link>
         </div>
         <NavLink
-          to='/signup'
-          className={`bg-teal-500 button px-6 text-lg ${path}`}>
+          to='/signin'
+          className={`bg-teal-500 h-12 border border-teal-600 w-[150px] flex justify-center items-center text-xl font-bold rounded-full ${path}`}>
           Sign In
         </NavLink>
       </div>
