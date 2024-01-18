@@ -9,21 +9,24 @@ import { ItineraryProvider } from "./context/ItineraryContext";
 import Account from "./pages/Account";
 import SignIn from "./components/auth/SignIn";
 import SignUp from "./components/auth/SignUp";
+import { LoadingProvider } from "./context/LoadingContext";
 
 const App: React.FC = () => {
   return (
     <div className='App'>
       <ItineraryProvider>
         <Navbar />
-        <Routes>
-          <Route index element={<Home />} />
-          <Route path='/planner' element={<Planner />} />
-          <Route path='/blog' element={<Blog />} />
-          <Route path='/signin' element={<SignIn />} />
-          <Route path='/signup' element={<SignUp />} />
-          <Route path='/account' element={<Account />} />
-          <Route path='*' element={<NotFound />} />
-        </Routes>
+        <LoadingProvider>
+          <Routes>
+            <Route index element={<Home />} />
+            <Route path='/planner' element={<Planner />} />
+            <Route path='/blog' element={<Blog />} />
+            <Route path='/signin' element={<SignIn />} />
+            <Route path='/signup' element={<SignUp />} />
+            <Route path='/account' element={<Account />} />
+            <Route path='*' element={<NotFound />} />
+          </Routes>
+        </LoadingProvider>
       </ItineraryProvider>
     </div>
   );

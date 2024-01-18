@@ -25,7 +25,7 @@ const Blog: React.FC = () => {
 
   return (
     <>
-      <div className='w-full py-40 bg-gradient-to-b from-blue-700 via-blue-500 to-white'>
+      <div className='no-scrollbar w-full py-40 bg-gradient-to-b from-blue-700 via-blue-500 to-white'>
         <BlogGrid posts={sortedPosts} onCardClick={handleCardClick} />
         {isModalOpen && selectedPost && (
           <Modal post={selectedPost} onClose={handleCloseModal} />

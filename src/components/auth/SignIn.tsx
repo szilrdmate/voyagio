@@ -28,7 +28,7 @@ const SignIn: React.FC = () => {
         </div>
         <div>
           <input
-            className='py-4 px-4 rounded-lg focus:outline-none w-full placeholder:text-gray-300 placeholder:text-lg bg-transparent border border-gray-300'
+            className='py-4 px-4 text-white rounded-lg focus:outline-none w-full placeholder:text-gray-300 placeholder:text-lg bg-transparent border border-gray-300'
             type='email'
             name='sign-in-email'
             id='sign-in-email'
@@ -40,7 +40,7 @@ const SignIn: React.FC = () => {
         </div>
         <div>
           <input
-            className='py-4 px-4 rounded-lg focus:outline-none w-full placeholder:text-gray-300 placeholder:text-lg bg-transparent border border-gray-300 mb-2'
+            className='py-4 px-4 text-white rounded-lg focus:outline-none w-full placeholder:text-gray-300 placeholder:text-lg bg-transparent border border-gray-300 mb-2'
             type='password'
             name='sign-in-password'
             id='sign-in-password'
@@ -49,7 +49,7 @@ const SignIn: React.FC = () => {
             onChange={(e) => setPassword(e.target.value)}
             placeholder='Enter your password'
           />
-          <Link className='text-blue-200 hover:underline' to='/signup'>
+          <Link className='text-blue-200 hover:underline' to='/'>
             Forgot password?
           </Link>
         </div>

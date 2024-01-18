@@ -1,16 +1,14 @@
 // pages/Planner.tsx
 import ItineraryPlanner from "../components/Itinerary";
 import ItineraryDisplay from "../components/ItineraryDisplay";
-//import Loading from "../components/Loading";
 import Map from "../components/Map";
 import { useItinerary } from "../context/ItineraryContext";
+import Loading from "../components/Loading";
+import { useLoading } from "../context/LoadingContext";
 
 const Planner: React.FC = () => {
   const { response } = useItinerary();
-
-  if (response) {
-    console.log("Response:", response);
-  }
+  const { isLoading } = useLoading();
 
   return (
     <div className='min-h-screen'>
@@ -19,7 +17,7 @@ const Planner: React.FC = () => {
           <ItineraryPlanner />
         </div>
       )}
-      {/*isLoading && <Loading />*/}
+      {isLoading ? <Loading /> : ""}
       {response && (
         <>
           <ItineraryDisplay response={response} />

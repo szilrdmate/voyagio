@@ -22,7 +22,7 @@ const activities = [
     { name: "Sports", icon: faPersonBiking, value: "sports" },
     { name: "Nightlife", icon: faCloudMoon, value: "nightlife" },
     { name: "Food Exploration", icon: faBurger, value: "food exploration" },
-    { name: "Sight Seeing", icon: faLandmark, value: "sight seeing" },
+    { name: "Sightseeing", icon: faLandmark, value: "sightseeing" },
     { name: "Wellness", icon: faSpa, value: "wellness" },
     { name: "Shopping", icon: faBagShopping, value: "shopping" },
   ];

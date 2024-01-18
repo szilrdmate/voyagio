@@ -6,7 +6,7 @@ const About: React.FC = () => {
       <h2 className='text-5xl max-w-6xl font-extrabold mb-8 text-gray-800 mx-auto'>
         All About AI Travel
       </h2>
-      <div className='max-w-6xl mx-auto grid grid-cols-2 grid-rows-6 gap-4'>
+      <div className='max-w-6xl mx-auto grid grid-cols-2 grid-rows-5 gap-4'>
         <div className='border border-gray-300 bg-gray-200 col-start-1 col-span-2 row-start-1 row-span-3 rounded-lg h-96 bg-[url("https://freepngimg.com/thumb/airplane/126147-flying-airplane-vector-pic-free-download-png-hd.png")] bg-no-repeat bg-cover'></div>
         <div className='border border-gray-300 bg-blue-500 col-start-1 col-span-1 row-start-4 row-span-3 rounded-lg px-6 py-4'>
           <h2 className='text-white font-bold text-3xl mb-2'>
@@ -19,7 +19,7 @@ const About: React.FC = () => {
             experiences, all curated to suit your travel desires.
           </p>
         </div>
-        <div className='border border-gray-300 bg-gray-200 col-start-2 col-span-1 row-start-4 row-span-3 rounded-lg px-6 py-4'>
+        <div className=' flex flex-col justify-between border border-gray-300 bg-gray-200 col-start-2 col-span-1 row-start-4 row-span-3 rounded-lg px-6 py-4'>
           <h2 className='text-gray-800 font-bold text-3xl mb-2'>
             Effortless Planning
           </h2>
@@ -29,7 +29,9 @@ const About: React.FC = () => {
             user-friendly interface that delivers your ideal itinerary swiftly.
             It's travel planning made simple, smart, and fun!
           </p>
-          <button className='button bg-blue-500'>Hello</button>
+          <button className='button text-white w-full bg-blue-500'>
+            Hello
+          </button>
         </div>
       </div>
     </div>

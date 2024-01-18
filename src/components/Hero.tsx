@@ -3,7 +3,7 @@ import TypingEffect from "./TypeEffect";
 
 const Hero = () => {
   return (
-    <div className='w-full h-screen flex px-6 pt-40 pb-28 justify-center items-center bg-gradient-to-b from-blue-700 via-blue-500 to-white  border-gray-300'>
+    <div className='w-full flex px-6 pt-40 pb-28 justify-center items-center bg-gradient-to-b from-blue-700 via-blue-500 to-white  border-gray-300'>
       <div className='max-w-3xl mx-auto'>
         <h1 className='text-white text-7xl font-bold mb-4 leading-tight text-center'>
           Let AI be your{" "}

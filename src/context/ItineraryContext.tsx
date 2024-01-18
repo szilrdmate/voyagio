@@ -2,8 +2,6 @@
 import React, { createContext, useState, useContext, ReactNode } from "react";
 import { ItineraryResponseType } from "../types/ResponseTypes";
 
-// TODO: import types, separate the two consts
-
 interface ItineraryContextType {
   response: ItineraryResponseType | null;
   setResponse: (response: ItineraryResponseType | null) => void;

@@ -51,7 +51,7 @@ const SignUp: React.FC = () => {
             onChange={(e) => setPassword(e.target.value)}
             placeholder='Enter your password'
           />
-          <Link className='text-blue-200 hover:underline' to='/signup'>
+          <Link className='text-blue-200 hover:underline' to='/'>
             Forgot password?
           </Link>
         </div>
