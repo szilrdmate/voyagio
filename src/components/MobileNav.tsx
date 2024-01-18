@@ -1,12 +1,13 @@
 import { NavLink, Link } from "react-router-dom";
 import { useState } from "react";
-import { Bars3BottomRightIcon, XMarkIcon } from "@heroicons/react/24/outline";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faBars, faX } from "@fortawesome/free-solid-svg-icons";
 
 const MobileNav = () => {
   const [isOpen, setIsOpen] = useState(false);
 
   return (
-    <div className='box-border pt-6 bg-gradient-to-b from-[#00000070] to-transparent'>
+    <div className='py-6 bg-gradient-to-b from-[#00000060] to-transparent'>
       <div className='flex items-center justify-between mx-auto px-4'>
         <NavLink to='/'>
           <img src='/logo.svg' className='w-36' alt='Voyagio logo' />
@@ -14,15 +15,15 @@ const MobileNav = () => {
         <button
           className='text-xl font-bold'
           onClick={() => setIsOpen(!isOpen)}>
-          <Bars3BottomRightIcon className='h-8 w-8' />
+          <FontAwesomeIcon className='text-white text-3xl' icon={faBars} />
         </button>
       </div>
       {isOpen && (
-        <div className='flex flex-col fixed top-0 left-0 w-full h-screen items-center justify-center bg-black space-y-4 bg-opacity-50 backdrop-blur-xl py-3'>
+        <div className='flex flex-col fixed top-0 left-0 w-full h-screen items-center justify-center bg-black space-y-4 bg-opacity-50 backdrop-blur-xl py-3 text-white'>
           <button
             className='absolute top-6 right-4'
             onClick={() => setIsOpen(!isOpen)}>
-            <XMarkIcon className='h-8 w-8' />
+            <FontAwesomeIcon className='text-white text-3xl' icon={faX} />
           </button>
           <NavLink
             to='/'
@@ -32,17 +33,17 @@ const MobileNav = () => {
           </NavLink>
           <hr className='w-[80%] opacity-30' />
           <NavLink
-            to='/explore'
+            to='/planner'
             className='hover:text-blue-400 transition-color duration-150 font-semibold text-2xl'
             onClick={() => setIsOpen(false)}>
-            Explore
+            Plan A Trip
           </NavLink>
           <hr className='w-[80%] opacity-30' />
           <NavLink
-            to='/destinations'
+            to='/blog'
             className='hover:text-blue-400 transition-color duration-150 font-semibold text-2xl'
             onClick={() => setIsOpen(false)}>
-            Destinations
+            Blog
           </NavLink>
           <hr className='w-[80%] opacity-30' />
           <Link
@@ -52,9 +53,11 @@ const MobileNav = () => {
             onClick={() => setIsOpen(false)}>
             Feedback
           </Link>
-          <button className='button w-[80%] bg-teal-500'>
-            Try It for Free
-          </button>
+          <NavLink
+            to='/signin'
+            className='text-2xl button text-center font-bold w-[80%] bg-teal-500'>
+            Sign In
+          </NavLink>
         </div>
       )}
     </div>

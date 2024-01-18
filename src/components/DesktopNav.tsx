@@ -40,7 +40,7 @@ const DesktopNav = () => {
         </div>
         <NavLink
           to='/signin'
-          className={`bg-teal-500 h-12 border border-teal-600 w-[150px] flex justify-center items-center text-xl font-bold rounded-full ${path}`}>
+          className={`bg-teal-500 h-12 border border-teal-400 w-[150px] flex justify-center items-center text-xl font-bold rounded-full ${path}`}>
           Sign In
         </NavLink>
       </div>
