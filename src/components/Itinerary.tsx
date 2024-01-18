@@ -92,7 +92,7 @@ const ItineraryPlanner = () => {
         {/*Destination*/}
         <div className='w-full py-8'>
           <h4 className='font-bold mb-8 text-xl'>
-            Where would you like to go? {state.destination}
+            Where would you like to go?
           </h4>
           <label htmlFor='destination' className='hidden'>
             Where do you want to go?
