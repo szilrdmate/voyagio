@@ -1,12 +1,13 @@
-// hooks/useSubmitItinerary.ts
+// src/hooks/useSubmitItinerary.ts
 import { generateItinerary } from "../services/gptService";
 import { FormState } from "../types/ItineraryTypes";
-import { useItinerary } from "../contexts/ItineraryContext";
-//import { useState } from 'react';
+import { useItinerary } from "../context/ItineraryContext";
+import { useLoading } from '../context/LoadingContext';
+// import { useState } from 'react';
 
 export const useSubmitItinerary = (state: FormState, validate: (state: FormState) => boolean) => {
   const { setResponse } = useItinerary();
-  //const [isLoading, setLoading] = useState(false);
+  const { setLoading } = useLoading();
 
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
@@ -14,7 +15,7 @@ export const useSubmitItinerary = (state: FormState, validate: (state: FormState
 
     if (isValid) {
       try {
-        // setLoading(true);
+        setLoading(true);
         const response = await generateItinerary({
         destination: state.destination,
         date: state.date,
@@ -25,14 +26,14 @@ export const useSubmitItinerary = (state: FormState, validate: (state: FormState
         });
       if (response) {
         setResponse(response); // Update the context
-      } else {
+      } {/*else {
         // Handle the case where response is null or not as expected
         console.error('No response or unexpected response structure from generateItinerary');
-      }
+      }*/}
     } catch (error) {
       console.error('Error during itinerary generation:', error);
     } finally {
-      //setLoading(false)
+      setLoading(false)
     }
   }
   };

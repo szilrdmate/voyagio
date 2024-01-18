@@ -7,7 +7,7 @@ const API_KEY = import.meta.env.VITE_OPENAI_API_KEY;
 export const generateItinerary = async (data: { destination: string; date: string; length: string; group: string; budget: string; activity: string }) => {
   // Input validation
   if (!data.destination || !data.date || !data.length || !data.group || !data.budget || !data.activity) {
-    console.error('Invalid input data for itinerary generation');
+    // error('Invalid input data for itinerary generation');
     return null;
   }
 

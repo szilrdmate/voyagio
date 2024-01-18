@@ -11,7 +11,7 @@ import DayFragment from "./DayFragment";
 import { Link } from "react-router-dom";
 import CostBreakdown from "./CostBreakdown";
 import { ItineraryResponseType } from "../types/ResponseTypes";
-import { useItinerary } from "../contexts/ItineraryContext";
+import { useItinerary } from "../context/ItineraryContext";
 
 interface ItineraryDisplayProps {
   response: ItineraryResponseType;

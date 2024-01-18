@@ -27,6 +27,7 @@
 @layer utilities {
   /* Hide scrollbar for Chrome, Safari and Opera */
   .no-scrollbar::-webkit-scrollbar {
+      width: 0px;
       display: none;
   }
  /* Hide scrollbar for IE, Edge and Firefox */
