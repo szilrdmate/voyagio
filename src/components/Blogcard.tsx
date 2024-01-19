@@ -18,7 +18,7 @@ const BlogCard: React.FC<BlogCardProps> = ({ post, onClick }) => {
   return (
     <div
       onClick={onClick}
-      className='hover-scale-first-child cursor-pointer h-[470px] rounded-3xl overflow-hidden shadow-lg bg-white  border-gray-300'>
+      className='hover-scale-first-child cursor-pointer h-[420px] sm:h-[440px] md:h-[470px] rounded-3xl overflow-hidden shadow-lg bg-white  border-gray-300'>
       <img
         className='w-full h-64 object-cover'
         src={post.image}

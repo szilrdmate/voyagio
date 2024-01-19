@@ -18,6 +18,7 @@ import { auth } from "../utils/firebaseConfig";
 
 type AuthContextType = {
   user: User | null;
+  loading: boolean;
   createUser: (email: string, password: string) => Promise<UserCredential>;
   signIn: (email: string, password: string) => Promise<UserCredential>;
   logout: () => Promise<void>;
@@ -26,6 +27,7 @@ type AuthContextType = {
 // Provide a default value for the context
 const defaultAuthContext: AuthContextType = {
   user: null,
+  loading: true,
   createUser: async () => {
     throw new Error("Error occured while creating user");
   },
@@ -45,6 +47,7 @@ type AuthContextProviderProps = {
 
 export const AuthContextProvider = ({ children }: AuthContextProviderProps) => {
   const [user, setUser] = useState<User | null>(null);
+  const [loading, setLoading] = useState(true);
   const createUser = (email: string, password: string) => {
     return createUserWithEmailAndPassword(auth, email, password);
   };
@@ -60,6 +63,7 @@ export const AuthContextProvider = ({ children }: AuthContextProviderProps) => {
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
       setUser(currentUser);
+      setLoading(false);
     });
     return () => {
       unsubscribe();
@@ -67,7 +71,7 @@ export const AuthContextProvider = ({ children }: AuthContextProviderProps) => {
   }, []);
 
   return (
-    <UserContext.Provider value={{ createUser, user, logout, signIn }}>
+    <UserContext.Provider value={{ createUser, user, logout, signIn, loading }}>
       {children}
     </UserContext.Provider>
   );

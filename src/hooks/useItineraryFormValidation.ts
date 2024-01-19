@@ -22,7 +22,7 @@ export const useItineraryFormValidation = () => {
         isValid = false;
       }
       if (!state.date) {
-        newErrors.date = "Select a date range";
+        newErrors.date = "Select a depart date";
         isValid = false;
       }
       if (!state.length) {

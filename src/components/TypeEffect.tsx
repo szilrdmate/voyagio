@@ -6,7 +6,7 @@ const searchPhrases = [
   "Top 10 bars in Budapest",
   "Hiking trips in Nepal",
   "Best clubs in Berlin",
-  "Where to get local food in...",
+  "Where to get local food",
   "Car rental in Rome",
 ];
 
@@ -74,7 +74,7 @@ const TypingEffect: React.FC = () => {
           className='text-gray-500 text-2xl'
           icon={faMagnifyingGlass}
         />
-        <p className='text-3xl'>
+        <p className='text-xl sm:text-3xl'>
           {displayedText}
           <span className='ml-1 text-gray-500'>{isVisible ? "|" : ""}</span>
         </p>

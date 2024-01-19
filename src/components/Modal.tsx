@@ -3,6 +3,7 @@ import React from "react";
 import { ModalProps } from "../types/ModalProps";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faX } from "@fortawesome/free-solid-svg-icons";
+import "../styles/blog.css";
 
 const Modal: React.FC<ModalProps> = ({ post, onClose }) => {
   if (!post) return null;
@@ -15,7 +16,7 @@ const Modal: React.FC<ModalProps> = ({ post, onClose }) => {
         onClick={onClose}></div>
 
       {/* Modal content */}
-      <div className='border border-gray-300 z-10 max-w-2xl mx-auto bg-white rounded-2xl text-left overflow-x-hidden shadow-xl h-[80vh] overflow-y-scroll'>
+      <div className='border border-gray-300 z-10 max-w-2xl mx-auto bg-white rounded-2xl text-left overflow-x-hidden shadow-xl h-[80vh] overflow-y-scroll no-scrollbar relative'>
         <button className='absolute ml-4 mt-4 text-white' onClick={onClose}>
           <FontAwesomeIcon icon={faX} />
         </button>
@@ -25,12 +26,15 @@ const Modal: React.FC<ModalProps> = ({ post, onClose }) => {
           alt={post.title}
         />
         <div className='px-4 pt-5 pb-4 sm:p-6 sm:pb-4'>
-          <h3 className='text-2xl font-bold text-gray-900' id='modal-title'>
+          <h3
+            className='text-2xl underline font-bold text-gray-900'
+            id='modal-title'>
             {post.title}
           </h3>
-          <div className='mt-2'>
-            <p className='text-sm text-gray-500'>{post.content}</p>
-          </div>
+          <div
+            className='mt-2 blog-content'
+            dangerouslySetInnerHTML={{ __html: post.content }}
+          />
         </div>
         <div className='px-4 py-3 sm:flex sm:flex-row-reverse'>
           <button

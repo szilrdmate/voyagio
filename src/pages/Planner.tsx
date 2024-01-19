@@ -11,9 +11,9 @@ const Planner: React.FC = () => {
   const { isLoading } = useLoading();
 
   return (
-    <div className='min-h-screen'>
+    <div>
       {!response && (
-        <div className='max-w-4xl mx-auto pt-40 pb-40 px-6'>
+        <div className='max-w-4xl mx-auto py-20 md:py-40 md:px-6 bg-gray-800 md:bg-white'>
           <ItineraryPlanner />
         </div>
       )}
