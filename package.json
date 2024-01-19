@@ -20,13 +20,16 @@
     "@types/react-router-dom": "^5.3.3",
     "axios": "^1.6.5",
     "firebase": "^10.7.1",
+    "gray-matter": "^4.0.3",
     "mapbox-gl": "^3.0.1",
     "openai": "^4.24.1",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-query": "^3.39.3",
     "react-responsive": "^9.0.2",
-    "react-router-dom": "^6.21.1"
+    "react-router-dom": "^6.21.1",
+    "remark": "^15.0.1",
+    "remark-html": "^16.0.1"
   },
   "devDependencies": {
     "@types/react": "^18.2.47",

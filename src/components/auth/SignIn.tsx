@@ -1,28 +1,40 @@
-import React, { useState } from "react";
-import { auth } from "../../utils/firebaseConfig";
-import { signInWithEmailAndPassword } from "firebase/auth";
-import { Link } from "react-router-dom";
+import React, { useState, FormEvent, ChangeEvent } from "react";
+import { Link, useNavigate } from "react-router-dom";
+import { UserAuth } from "../../context/AuthContext";
 
 const SignIn: React.FC = () => {
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
+  const [email, setEmail] = useState<string>("");
+  const [password, setPassword] = useState<string>("");
+  const [error, setError] = useState<string>("");
+  const { signIn } = UserAuth();
+  const navigate = useNavigate();
 
-  const signIn = (e: React.ChangeEvent<HTMLFormElement>) => {
+  const handleEmailChange = (e: ChangeEvent<HTMLInputElement>) => {
+    setEmail(e.target.value);
+  };
+
+  const handlePasswordChange = (e: ChangeEvent<HTMLInputElement>) => {
+    setPassword(e.target.value);
+  };
+
+  const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    signInWithEmailAndPassword(auth, email, password)
-      .then((userCredential) => {
-        console.log(userCredential);
-      })
-      .catch((error) => {
-        console.log(error);
-      });
+    setError("");
+    try {
+      await signIn(email, password);
+      navigate("/account");
+    } catch (e) {
+      if (e instanceof Error) {
+        setError(e.message);
+      }
+    }
   };
 
   return (
     <div className='w-full h-screen flex justify-center items-center bg-[url("https://images.unsplash.com/photo-1507608616759-54f48f0af0ee?q=80&w=1374&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D")]'>
       <form
         className='w-96 bg-[#00000040] backdrop-blur border-gray-300 border py-8 px-8 rounded-lg space-y-6'
-        onSubmit={signIn}>
+        onSubmit={handleSubmit}>
         <div>
           <h2 className='text-white text-4xl font-bold text-center'>Sign In</h2>
         </div>
@@ -33,8 +45,7 @@ const SignIn: React.FC = () => {
             name='sign-in-email'
             id='sign-in-email'
             autoComplete='true'
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
+            onChange={handleEmailChange}
             placeholder='Enter email address'
           />
         </div>
@@ -45,8 +56,7 @@ const SignIn: React.FC = () => {
             name='sign-in-password'
             id='sign-in-password'
             autoComplete='current-password'
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
+            onChange={handlePasswordChange}
             placeholder='Enter your password'
           />
           <Link className='text-blue-200 hover:underline' to='/'>
@@ -66,6 +76,7 @@ const SignIn: React.FC = () => {
             </Link>
           </p>
         </div>
+        {error && <div>An error occured: {error}</div>}
       </form>
     </div>
   );
