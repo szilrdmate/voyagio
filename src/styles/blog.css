@@ -1,0 +1,16 @@
+.blog-content h3 {
+    font-weight: bold;
+    font-size: 1.25rem;
+    line-height: 1.4;
+    margin-bottom: 0.5rem;
+    color: rgb(31 41 55)
+}
+
+.blog-content p {
+    font-weight: normal;
+    font-size: 1rem;
+    line-height: 2;
+    text-align: justify;
+    margin-bottom: 1.25rem;
+    color: rgb(107 114 128);
+}

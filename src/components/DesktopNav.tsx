@@ -5,11 +5,13 @@ import { faCircleUser } from "@fortawesome/free-solid-svg-icons";
 
 const DesktopNav = () => {
   const location = useLocation();
-  const { user } = UserAuth();
+  const { user, loading } = UserAuth();
   const path =
     location.pathname == "/signin" || location.pathname == "/signup"
       ? "opacity-0"
       : "";
+
+  const navLoadClass = loading ? "opacity-0" : "";
 
   return (
     <div className='text-white backdrop-blur-xl w-full absolute box-border py-4 bg-gradient-to-b from-[#00000060] to-transaprent'>
@@ -42,23 +44,23 @@ const DesktopNav = () => {
             Feedback
           </Link>
         </div>
-        {user ? (
+        {!user ? (
+          <NavLink
+            to='/signin'
+            className={`bg-teal-500 h-12 border border-teal-400 w-[150px] flex justify-center items-center text-xl font-bold rounded-full ${navLoadClass} ${path}`}>
+            Sign In
+          </NavLink>
+        ) : (
           <div className='w-[150px] flex justify-center items-center'>
             <NavLink
               to='/account'
               className={`bg-blue-500 h-12 w-fit flex justify-center items-center text-xl font-bold rounded-full`}>
               <FontAwesomeIcon
-                className='text-blue-300 text-5xl'
+                className='border-4 border-blue-500 rounded-full text-blue-300 text-5xl'
                 icon={faCircleUser}
               />
             </NavLink>
           </div>
-        ) : (
-          <NavLink
-            to='/signin'
-            className={`bg-teal-500 h-12 border border-teal-400 w-[150px] flex justify-center items-center text-xl font-bold rounded-full ${path}`}>
-            Sign In
-          </NavLink>
         )}
       </div>
     </div>

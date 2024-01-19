@@ -11,6 +11,8 @@ import SignIn from "./components/auth/SignIn";
 import SignUp from "./components/auth/SignUp";
 import { LoadingProvider } from "./context/LoadingContext";
 import { AuthContextProvider } from "./context/AuthContext";
+import NoUserProtectedRoute from "./components/ProtectedRoute";
+import UserProtectedRoute from "./components/UserProtectedRoute";
 
 const App: React.FC = () => {
   return (
@@ -23,9 +25,18 @@ const App: React.FC = () => {
               <Route index element={<Home />} />
               <Route path='/planner' element={<Planner />} />
               <Route path='/blog' element={<Blog />} />
-              <Route path='/signin' element={<SignIn />} />
-              <Route path='/signup' element={<SignUp />} />
-              <Route path='/account' element={<Account />} />
+              <Route
+                path='/account'
+                element={<NoUserProtectedRoute component={Account} />}
+              />
+              <Route
+                path='/signin'
+                element={<UserProtectedRoute component={SignIn} />}
+              />
+              <Route
+                path='/signup'
+                element={<UserProtectedRoute component={SignUp} />}
+              />
               <Route path='*' element={<NotFound />} />
             </Routes>
           </LoadingProvider>

@@ -6,11 +6,14 @@ import { useInputChange } from "../hooks/useInputChange.ts";
 import { useResetForm } from "../hooks/useResetForm.ts";
 import { ItineraryAction, FormState } from "../types/ItineraryTypes.ts";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faCircleExclamation } from "@fortawesome/free-solid-svg-icons";
+import {
+  faCircleExclamation,
+  faArrowTurnUp,
+} from "@fortawesome/free-solid-svg-icons";
 import { activities, budgetOptions, groupOptions } from "../data/buttonData.ts";
 
 interface ErrorObject {
-  [key: string]: string | null; // Error messages are strings, no error is represented by null
+  [key: string]: string | null;
 }
 
 const initialState: FormState = {
@@ -91,13 +94,22 @@ const ItineraryPlanner = () => {
     <>
       <form
         onSubmit={handleSubmit}
-        className='space-y-4 bg-white p-8 rounded-2xl shadow-2xl grid place-items-center border border-gray-500 border-opacity-20 px-8'>
+        className='space-y-4 bg-white p-8 md:rounded-2xl shadow-2xl grid place-items-center sm:border border-gray-500 border-opacity-20 px-8'>
         <h2 className='text-3xl font-bold'>Plan Your Next Trip</h2>
 
         {/*Destination*/}
         <div className='w-full py-8'>
           <h4 className='font-bold mb-8 text-xl'>
             Where would you like to go?
+            {errors.destination && (
+              <p className='error text-red-600 font-normal pl-2 text-lg'>
+                <FontAwesomeIcon
+                  className='fa-rotate-90 mr-3'
+                  icon={faArrowTurnUp}
+                />
+                {errors.destination}
+              </p>
+            )}
           </h4>
           <label htmlFor='destination' className='hidden'>
             Where do you want to go?
@@ -114,17 +126,21 @@ const ItineraryPlanner = () => {
               errors.destination ? "border-red-500" : "border-gray-300"
             } rounded-xl px-4 py-2 h-12 w-full bg-transparent backdrop-blur-lg focus-within:outline-none placeholder:text-gray-400 placeholder:font-base border mt-2`}
           />
-          {errors.destination && (
-            <div className='error text-white absolute bg-red-600 bg-opacity-80 backdrop-blur-2xl px-4 rounded-md overflow-hidden'>
-              {errors.destination}
-            </div>
-          )}
         </div>
 
         {/*Date */}
         <div className='w-full py-8 border-t-gray-300 border-t'>
           <h4 className='font-bold mb-8 text-xl'>
             When are you planning to go? {state.date}
+            {errors.date && (
+              <p className='error text-red-600 font-normal pl-2 text-lg'>
+                <FontAwesomeIcon
+                  className='fa-rotate-90 mr-3'
+                  icon={faArrowTurnUp}
+                />
+                {errors.date}
+              </p>
+            )}
           </h4>
           <label htmlFor='date' className='hidden'>
             When are you planning to go?
@@ -142,11 +158,6 @@ const ItineraryPlanner = () => {
               errors.destination ? "border-red-500" : "border-gray-300"
             } rounded-xl px-4 py-2 h-12 w-full bg-transparent backdrop-blur-lg  focus-within:outline-none placeholder:text-gray-400 placeholder:font-base  border mt-2`}
           />
-          {errors.date && (
-            <div className='error text-white absolute right-20 bg-red-600 bg-opacity-80 backdrop-blur-2xl px-4 rounded-md overflow-hidden'>
-              {errors.date}
-            </div>
-          )}
         </div>
 
         {/*Length*/}
@@ -154,6 +165,15 @@ const ItineraryPlanner = () => {
           <h4 className='font-bold mb-8 text-xl'>
             How many days are you planning to stay? {state.length}{" "}
             {state.length ? (state.length == "1" ? "day" : "days") : ""}
+            {errors.length && (
+              <p className='error text-red-600 font-normal pl-2 text-lg'>
+                <FontAwesomeIcon
+                  className='fa-rotate-90 mr-3'
+                  icon={faArrowTurnUp}
+                />
+                {errors.length}
+              </p>
+            )}
           </h4>
           <label htmlFor='length' className='hidden'>
             Length:
@@ -168,22 +188,26 @@ const ItineraryPlanner = () => {
             onChange={handleInputChange("length")}
             className='rounded-full py-2 h-10 w-full bg-transparent'
           />
-          {errors.length && (
-            <div className='error text-white absolute right-10 bg-red-600 bg-opacity-80 backdrop-blur-2xl px-4 rounded-md overflow-hidden'>
-              {errors.length}
-            </div>
-          )}
         </div>
 
         {/*Group Size*/}
         <div className='w-full py-8 border-t-gray-300 border-t'>
           <h4 className='font-bold mb-8 text-xl'>
             How many people are travelling?
+            {errors.group && (
+              <p className='error text-red-600 font-normal pl-2 text-lg'>
+                <FontAwesomeIcon
+                  className='fa-rotate-90 mr-3'
+                  icon={faArrowTurnUp}
+                />
+                {errors.group}
+              </p>
+            )}
           </h4>
           <label className='hidden' htmlFor='group'>
             Group size:
           </label>
-          <div className='grid grid-cols-3 grid-rows-2 gap-4'>
+          <div className='grid grid-cols-2 sm:grid-cols-3 grid-rows-2 gap-4'>
             {groupOptions.map((group) => (
               <button
                 key={group.value}
@@ -202,20 +226,26 @@ const ItineraryPlanner = () => {
             ))}
           </div>
           <input className='hidden' type='text' name='group' id='group' />
-          {errors.group && (
-            <div className='error text-white absolute right-10 bg-red-600 bg-opacity-80 backdrop-blur-2xl px-4 rounded-md overflow-hidden'>
-              {errors.group}
-            </div>
-          )}
         </div>
 
         {/*Budget Section*/}
         <div className='w-full py-8 border-t-gray-300 border-t'>
-          <h4 className='font-bold mb-8 text-xl'>What is your budget range?</h4>
+          <h4 className='font-bold mb-8 text-xl'>
+            What is your budget range?{" "}
+            {errors.budget && (
+              <p className='error text-red-600 font-normal pl-2 text-lg'>
+                <FontAwesomeIcon
+                  className='fa-rotate-90 mr-3'
+                  icon={faArrowTurnUp}
+                />
+                {errors.budget}
+              </p>
+            )}
+          </h4>
           <label htmlFor='budget' className='hidden'>
             Budget:
           </label>
-          <div className='grid grid-cols-3 gap-4'>
+          <div className='grid grid-cols-2 sm:grid-cols-3 gap-4'>
             {budgetOptions.map((budget) => (
               <button
                 key={budget.value}
@@ -244,22 +274,27 @@ const ItineraryPlanner = () => {
             type='text'
             name='budget'
           />
-          {errors.budget && (
-            <div className='error text-white absolute right-10 bg-red-600 bg-opacity-80 backdrop-blur-2xl px-4 rounded-md overflow-hidden'>
-              {errors.budget}
-            </div>
-          )}
         </div>
 
         {/*Activities Section*/}
         <div className='w-full py-8 border-t-gray-300 border-t'>
           <h4 className='font-bold mb-8 text-xl'>
             What activities are you interested in?
+            {errors.activity && (
+              <p className='error text-red-600 font-normal pl-2 text-lg'>
+                <FontAwesomeIcon
+                  className='fa-rotate-90 mr-3'
+                  icon={faArrowTurnUp}
+                />
+                {errors.activity}
+              </p>
+            )}
           </h4>
+
           <label htmlFor='activity' className='hidden'>
             Activities
           </label>
-          <div className='grid grid-cols-3 grid-rows-3 gap-4'>
+          <div className='grid grid-cols-2 sm:grid-cols-3 grid-rows-3 gap-4'>
             {activities.map((activity) => (
               <button
                 key={activity.value}
@@ -287,11 +322,6 @@ const ItineraryPlanner = () => {
             name='activity'
             id='activity'
           />
-          {errors.activity && (
-            <div className='error text-white absolute right-10 bg-red-600 bg-opacity-80 backdrop-blur-2xl px-4 rounded-md overflow-hidden'>
-              {errors.activity}
-            </div>
-          )}
         </div>
 
         {/*Form Actions*/}
@@ -312,14 +342,14 @@ const ItineraryPlanner = () => {
           </p>
         </div>
 
-        <div className='flex justify-end fixed bottom-0 py-8 px-8 w-full bg-white border-t border-gray-300'>
-          <div className='flex flex-row space-x-4 max-w-2xl'>
+        <div className='flex justify-center sm:justify-end fixed left-0 bottom-0 py-8 px-8 w-full bg-white border-t border-gray-300'>
+          <div className='flex flex-row space-x-4 sm:max-w-2xl'>
             <button
               className='border-gray-300 border text-gray-400 font-semibold text-lg py-2 rounded-lg px-4 shadow-md'
               type='button'
               onClick={handleReset}
               value='Reset'>
-              Reset Prompt
+              Reset Fields
             </button>
             <button
               className='bg-teal-500 text-lg border border-teal-600 font-semibold shadow-md py-2 px-4 rounded-lg text-white'

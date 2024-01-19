@@ -5,8 +5,8 @@ const Hero = () => {
   return (
     <div className='w-full flex px-6 pt-40 pb-28 justify-center items-center bg-gradient-to-b from-blue-700 via-blue-500 to-white  border-gray-300'>
       <div className='max-w-3xl mx-auto'>
-        <h1 className='text-white text-7xl font-bold mb-4 leading-tight text-center'>
-          Let AI be your{" "}
+        <h1 className='text-white text-5xl sm:text-7xl font-bold mb-4 leading-tight text-center'>
+          Let AI Be Your{" "}
           <span className='text-teal-400'>Personal Travel Assistant...</span>
         </h1>
         <h3 className='w-full text-gray-200 leading-loose text-md tracking-widest uppercase font-medium text-center mb-8'>

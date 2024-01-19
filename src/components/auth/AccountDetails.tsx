@@ -18,13 +18,16 @@ const AccountDetails: React.FC = () => {
   };
 
   return (
-    <div className='max-w-4xl mx-auto py-12 px-4 border borer-gray-300 rounded-xl'>
-      <h1>Account</h1>
-      <p>User email: {user && user?.email}</p>
-      <button onClick={handleLogout} className='button'>
+    <>
+      <h1 className='text-4xl font-bold'>Account</h1>
+      <p>
+        <span className='font-semibold'>User email: </span>
+        {user && user?.email}
+      </p>
+      <button onClick={handleLogout} className='button bg-blue-500 text-white'>
         Log Out
       </button>
-    </div>
+    </>
   );
 };
 

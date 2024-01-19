@@ -52,7 +52,7 @@ const InfiniteCarousel: React.FC = () => {
   }, [currentIndex]);
 
   return (
-    <div className='w-full bg-white px-6'>
+    <div className='w-full bg-white px-4 sm:px-6'>
       <div className='max-w-6xl mx-auto pt-16'>
         <h2 className='text-5xl font-extrabold mb-8 text-gray-800'>
           Featured Locations
