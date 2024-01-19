@@ -1,10 +1,17 @@
-import { NavLink, Link } from "react-router-dom";
+import { NavLink, Link, useLocation } from "react-router-dom";
 import { useState } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faBars, faX } from "@fortawesome/free-solid-svg-icons";
+import { UserAuth } from "../context/AuthContext";
 
 const MobileNav = () => {
   const [isOpen, setIsOpen] = useState(false);
+  const { user } = UserAuth();
+  const location = useLocation();
+  const path =
+    location.pathname == "/signin" || location.pathname == "/signup"
+      ? "hidden"
+      : "";
 
   return (
     <div className='py-6 bg-gradient-to-b from-[#00000060] to-transparent'>
@@ -53,11 +60,24 @@ const MobileNav = () => {
             onClick={() => setIsOpen(false)}>
             Feedback
           </Link>
-          <NavLink
-            to='/signin'
-            className='text-2xl button text-center font-bold w-[80%] bg-teal-500'>
-            Sign In
-          </NavLink>
+          {user ? (
+            <>
+              <hr className='w-[80%] opacity-30' />
+              <NavLink
+                to='/account'
+                className='hover:text-blue-400 transition-color duration-150 font-semibold text-2xl'
+                onClick={() => setIsOpen(false)}>
+                Account
+              </NavLink>
+            </>
+          ) : (
+            <NavLink
+              to='/signin'
+              onClick={() => setIsOpen(false)}
+              className={`text-2xl button text-center font-bold w-[80%] bg-teal-500 ${path}`}>
+              Sign In
+            </NavLink>
+          )}
         </div>
       )}
     </div>

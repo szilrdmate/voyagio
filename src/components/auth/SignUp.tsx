@@ -1,21 +1,34 @@
-import React, { useState } from "react";
-import { auth } from "../../utils/firebaseConfig";
-import { createUserWithEmailAndPassword } from "firebase/auth";
-import { Link } from "react-router-dom";
+import React, { useState, ChangeEvent, FormEvent } from "react";
+import { Link, useNavigate } from "react-router-dom";
+import { UserAuth } from "../../context/AuthContext";
 
 const SignUp: React.FC = () => {
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
+  const [email, setEmail] = useState<string>("");
+  const [password, setPassword] = useState<string>("");
+  const [error, setError] = useState<string | null>("");
+  const navigate = useNavigate();
 
-  const signUp = (e: React.ChangeEvent<HTMLFormElement>) => {
+  const { createUser } = UserAuth();
+
+  const handleEmailChange = (e: ChangeEvent<HTMLInputElement>) => {
+    setEmail(e.target.value);
+  };
+
+  const handlePasswordChange = (e: ChangeEvent<HTMLInputElement>) => {
+    setPassword(e.target.value);
+  };
+
+  const signUp = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    createUserWithEmailAndPassword(auth, email, password)
-      .then((userCredential) => {
-        console.log(userCredential);
-      })
-      .catch((error) => {
-        console.log(error);
-      });
+    setError("");
+    try {
+      await createUser(email, password);
+      navigate("/account");
+    } catch (e) {
+      if (e instanceof Error) {
+        setError(e.message);
+      }
+    }
   };
 
   return (
@@ -35,8 +48,7 @@ const SignUp: React.FC = () => {
             name='sign-in-email'
             id='sign-in-email'
             autoComplete='true'
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
+            onChange={handleEmailChange}
             placeholder='Enter email address'
           />
         </div>
@@ -47,19 +59,15 @@ const SignUp: React.FC = () => {
             name='sign-in-password'
             id='sign-in-password'
             autoComplete='current-password'
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
+            onChange={handlePasswordChange}
             placeholder='Enter your password'
           />
-          <Link className='text-blue-200 hover:underline' to='/'>
-            Forgot password?
-          </Link>
         </div>
         <div>
           <button
             className='w-full button bg-teal-500 text-white text-xl mb-4'
             type='submit'>
-            Log In
+            Sign Up
           </button>
           <p className='text-blue-200 text-center'>
             Already have an account?{" "}
@@ -68,6 +76,7 @@ const SignUp: React.FC = () => {
             </Link>
           </p>
         </div>
+        {error && <div>An error occured: {error}</div>}
       </form>
     </div>
   );

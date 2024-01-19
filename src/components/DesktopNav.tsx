@@ -1,9 +1,13 @@
 import { NavLink, Link, useLocation } from "react-router-dom";
+import { UserAuth } from "../context/AuthContext";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faCircleUser } from "@fortawesome/free-solid-svg-icons";
 
 const DesktopNav = () => {
   const location = useLocation();
+  const { user } = UserAuth();
   const path =
-    location.pathname == "/login" || location.pathname == "/signup"
+    location.pathname == "/signin" || location.pathname == "/signup"
       ? "opacity-0"
       : "";
 
@@ -38,11 +42,24 @@ const DesktopNav = () => {
             Feedback
           </Link>
         </div>
-        <NavLink
-          to='/signin'
-          className={`bg-teal-500 h-12 border border-teal-400 w-[150px] flex justify-center items-center text-xl font-bold rounded-full ${path}`}>
-          Sign In
-        </NavLink>
+        {user ? (
+          <div className='w-[150px] flex justify-center items-center'>
+            <NavLink
+              to='/account'
+              className={`bg-blue-500 h-12 w-fit flex justify-center items-center text-xl font-bold rounded-full`}>
+              <FontAwesomeIcon
+                className='text-blue-300 text-5xl'
+                icon={faCircleUser}
+              />
+            </NavLink>
+          </div>
+        ) : (
+          <NavLink
+            to='/signin'
+            className={`bg-teal-500 h-12 border border-teal-400 w-[150px] flex justify-center items-center text-xl font-bold rounded-full ${path}`}>
+            Sign In
+          </NavLink>
+        )}
       </div>
     </div>
   );
