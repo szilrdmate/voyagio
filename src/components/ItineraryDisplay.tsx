@@ -6,6 +6,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faCalendarDays,
   faChevronLeft,
+  faDownload,
 } from "@fortawesome/free-solid-svg-icons";
 import DayFragment from "./DayFragment";
 import { Link } from "react-router-dom";
@@ -48,11 +49,14 @@ const ItineraryDisplay: React.FC<ItineraryDisplayProps> = ({ response }) => {
             <FontAwesomeIcon className='text-base mr-2' icon={faChevronLeft} />
             Back to Home
           </Link>
-          <button
-            className='text-white button absolute top-5 right-5'
-            onClick={handleNewTrip}>
-            Start New Trip
-          </button>
+          <div className='absolute top-5 right-5 space-x-2'>
+            <button className='text-white button' onClick={handleNewTrip}>
+              New Trip
+            </button>
+            <button className='text-white button '>
+              <FontAwesomeIcon icon={faDownload} />
+            </button>
+          </div>
           <div>
             <h1 className='font-bold text-3xl text-white tracking-wide leading-loose'>
               {response.destination.numberOfDays} {isMultipledays()} trip to{" "}

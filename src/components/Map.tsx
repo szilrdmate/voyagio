@@ -37,7 +37,6 @@ const Map: React.FC<MapProps> = ({ location }) => {
       const initialMap = new mapboxgl.Map({
         container: mapContainerRef.current,
         style: "mapbox://styles/mapbox/streets-v11",
-        center: [0, 0], // Default center
         zoom: 12,
       });
       setMap(initialMap);
@@ -46,7 +45,9 @@ const Map: React.FC<MapProps> = ({ location }) => {
     if (location && map) {
       fetchCoordinates(location).then((coords) => {
         if (coords) {
-          map.flyTo({ center: coords });
+          map.on("load", () => {
+            map.setCenter(coords);
+          });
         }
       });
     }
