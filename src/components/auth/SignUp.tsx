@@ -32,7 +32,7 @@ const SignUp: React.FC = () => {
   };
 
   return (
-    <div className='w-full h-screen flex justify-center items-center bg-[url("https://images.unsplash.com/photo-1507608616759-54f48f0af0ee?q=80&w=1374&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D")]'>
+    <div className='w-full h-screen flex justify-center items-center bg-cover bg-[url("https://images.unsplash.com/photo-1507608616759-54f48f0af0ee?q=80&w=1374&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D")]'>
       <form
         className='w-96 bg-[#00000040] backdrop-blur border-gray-300 border py-8 px-8 rounded-lg space-y-6'
         onSubmit={signUp}>

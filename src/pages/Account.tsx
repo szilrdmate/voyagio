@@ -10,8 +10,8 @@ const links = [
     icon: <FontAwesomeIcon icon={faGauge} />,
   },
   {
-    title: "Market Overview",
-    href: "#market-overview",
+    title: "Market",
+    href: "#market",
     icon: <FontAwesomeIcon icon={faShop} />,
   },
   {
@@ -23,7 +23,7 @@ const links = [
 
 const Account: React.FC = () => {
   return (
-    <div className='min-h-[200vh] py-40 px-6'>
+    <div className='min-h-screen py-40 px-6'>
       <Sidebar links={links} />
     </div>
   );

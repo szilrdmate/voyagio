@@ -17,7 +17,7 @@ const Modal: React.FC<ModalProps> = ({ post, onClose }) => {
 
       {/* Modal content */}
       <div className='border border-gray-300 z-10 max-w-2xl mx-auto bg-white rounded-2xl text-left overflow-x-hidden shadow-xl h-[80vh] overflow-y-scroll no-scrollbar relative'>
-        <button className='absolute ml-4 mt-4 text-white' onClick={onClose}>
+        <button className='absolute top-4 right-4 text-white' onClick={onClose}>
           <FontAwesomeIcon icon={faX} />
         </button>
         <img
