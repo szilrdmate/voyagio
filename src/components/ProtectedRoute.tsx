@@ -26,7 +26,7 @@ const NoUserProtectedRoute: React.FC<ProtectedRouteProps> = ({
   }
 
   if (!user) {
-    return <Navigate to='/signin' replace />;
+    return <Navigate to='/sign' replace />;
   }
 
   return <Component />;

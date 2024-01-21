@@ -41,7 +41,7 @@ const DesktopNav = () => {
         </Link>
         {!user ? (
           <NavLink
-            to='/signin'
+            to='/sign'
             className={`h-[58px] w-[58px] bg-gray-300 ml-4 flex justify-center items-center text-xl duration-300 font-bold rounded-full border-4 border-gray-500 hover:border-blue-500 ${navLoadClass}`}>
             <FontAwesomeIcon className='text-gray-500 ' icon={faUserPlus} />
           </NavLink>

@@ -25,9 +25,9 @@ const About: React.FC = () => {
         All About AI Travel
       </h2>
       <div className='max-w-6xl mx-auto grid grid-cols-3 grid-rows-1 gap-8'>
-        {about.map((item, index) => (
+        {about.map((item, id) => (
           <div
-            key={index}
+            key={id}
             className='px-8 py-10 bg-white border border-gray-300 border-opacity-20 shadow-xl rounded-xl '>
             <h3 className='text-gray-800 mb-2 font-bold text-3xl'>
               {item.title}
