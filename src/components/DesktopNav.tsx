@@ -13,8 +13,8 @@ const DesktopNav = () => {
       <div className='shadow-2xl w-fit mx-auto flex items-center overflow-hidden rounded-full font-bold text-xl bg-blue-100 border-[1px] border-white border-opacity-20 bg-opacity-20 backdrop-blur-xl'>
         <NavLink className='mr-4' to='/'>
           <img
-            src='/icons/icon64.png'
-            className='h-[58px] rounded-full p-2'
+            src='/logo.svg'
+            className='h-[58px] rounded-full'
             alt='Voyagio logo'
           />
         </NavLink>
@@ -48,9 +48,9 @@ const DesktopNav = () => {
         ) : (
           <NavLink
             to='/account'
-            className={` bg-gray-500 duration-300 ml-4 w-fit flex justify-center items-center text-xl font-bold rounded-full border-4 border-gray-500 hover:border-blue-500`}>
+            className={` bg-[#264459] duration-300 group hover:bg-blue-500 ml-4 w-fit flex justify-center items-center text-xl font-bold rounded-full border-4 border-[#264459] hover:border-blue-500`}>
             <FontAwesomeIcon
-              className=' text-gray-300 text-5xl'
+              className=' text-[#fbfcfd] text-5xl'
               icon={faCircleUser}
             />
           </NavLink>
