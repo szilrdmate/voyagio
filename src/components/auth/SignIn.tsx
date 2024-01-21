@@ -13,23 +13,32 @@ const SignIn: React.FC<Props> = ({ setState }) => {
   const [email, setEmail] = useState<string>("");
   const [password, setPassword] = useState<string>("");
 
-  const { signIn, clearError } = UserAuth();
+  const { signIn, clearError, setError } = UserAuth();
   const navigate = useNavigate();
 
   const handleEmailChange = (e: ChangeEvent<HTMLInputElement>) => {
     setEmail(e.target.value);
+
     clearError(); // Clear error when user starts typing
   };
 
   const handlePasswordChange = (e: ChangeEvent<HTMLInputElement>) => {
     setPassword(e.target.value);
+
     clearError(); // Clear error when user starts typing
   };
 
   const handleSignIn = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    await signIn(email, password);
-    navigate("/account");
+    clearError();
+    try {
+      await signIn(email, password);
+      navigate("/account");
+    } catch (e) {
+      if (e instanceof Error) {
+        setError(e.message);
+      }
+    }
   };
 
   const switchToSignUp = () => {

@@ -13,18 +13,18 @@ import {
   signInWithEmailAndPassword,
   signOut,
   onAuthStateChanged,
-  AuthError,
 } from "firebase/auth";
 import { auth } from "../utils/firebaseConfig";
 
 type AuthContextType = {
   user: User | null;
   loading: boolean;
-  error: AuthError | null;
+  error: string | null;
   createUser: (email: string, password: string) => Promise<UserCredential>;
   signIn: (email: string, password: string) => Promise<UserCredential>;
   logout: () => Promise<void>;
   clearError: () => void;
+  setError: React.Dispatch<React.SetStateAction<string | null>>;
 };
 
 // Provide a default value for the context
@@ -41,6 +41,7 @@ const defaultAuthContext: AuthContextType = {
   logout: async () => {
     throw new Error("Error occured while logging out");
   },
+  setError: () => {},
   clearError: () => {},
 };
 
@@ -53,33 +54,18 @@ type AuthContextProviderProps = {
 export const AuthContextProvider = ({ children }: AuthContextProviderProps) => {
   const [user, setUser] = useState<User | null>(null);
   const [loading, setLoading] = useState(true);
-  const [error, setError] = useState<AuthError | null>(null);
+  const [error, setError] = useState<string | null>(null);
 
-  const createUser = async (email: string, password: string) => {
-    try {
-      return await createUserWithEmailAndPassword(auth, email, password);
-    } catch (error) {
-      setError(error as AuthError);
-      throw error;
-    }
+  const createUser = (email: string, password: string) => {
+    return createUserWithEmailAndPassword(auth, email, password);
   };
 
   const signIn = async (email: string, password: string) => {
-    try {
-      return await signInWithEmailAndPassword(auth, email, password);
-    } catch (error) {
-      setError(error as AuthError);
-      throw error;
-    }
+    return signInWithEmailAndPassword(auth, email, password);
   };
 
-  const logout = async () => {
-    try {
-      await signOut(auth);
-    } catch (error) {
-      setError(error as AuthError);
-      throw error;
-    }
+  const logout = () => {
+    return signOut(auth);
   };
 
   const clearError = () => {
@@ -98,7 +84,16 @@ export const AuthContextProvider = ({ children }: AuthContextProviderProps) => {
 
   return (
     <UserContext.Provider
-      value={{ createUser, user, error, logout, signIn, loading, clearError }}>
+      value={{
+        createUser,
+        user,
+        logout,
+        signIn,
+        loading,
+        error,
+        clearError,
+        setError,
+      }}>
       {children}
     </UserContext.Provider>
   );

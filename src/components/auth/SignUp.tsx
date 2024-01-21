@@ -14,28 +14,33 @@ const SignUp: React.FC<Props> = ({ setState }) => {
   const [password, setPassword] = useState<string>("");
 
   const navigate = useNavigate();
-  const { createUser, clearError } = UserAuth();
+  const { createUser, clearError, setError } = UserAuth();
 
   // Email change event listener
   const handleEmailChange = (e: ChangeEvent<HTMLInputElement>) => {
     setEmail(e.target.value);
+    setError(null);
     clearError(); // Clear error when the user starts typing
   };
 
   // Password change event listener
   const handlePasswordChange = (e: ChangeEvent<HTMLInputElement>) => {
     setPassword(e.target.value);
+    setError(null);
     clearError(); // Clear error when the user starts typing
   };
 
   // Function to handle sign-up request
   const handleSignUp = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
+    setError(null);
     try {
       await createUser(email, password);
       navigate("/account");
-    } catch {
-      // Error handling is done in the context
+    } catch (e) {
+      if (e instanceof Error) {
+        setError(e.message);
+      }
     }
   };
 
@@ -79,7 +84,7 @@ const SignUp: React.FC<Props> = ({ setState }) => {
         </div>
         <div>
           <button
-            className='w-full button py-3 bg-teal-500 text-white text-xl mb-4'
+            className='w-full rounded-full button py-3 bg-teal-500 text-white text-xl mb-4'
             type='submit'>
             Sign Up
           </button>
