@@ -1,5 +1,5 @@
 // components/ItineraryDisplay.tsx
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import Overview from "./Overview";
 import General from "./General";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -13,6 +13,8 @@ import { Link } from "react-router-dom";
 import CostBreakdown from "./CostBreakdown";
 import { ItineraryResponseType } from "../types/ResponseTypes";
 import { useItinerary } from "../context/ItineraryContext";
+import { storeItinerary } from "../utils/firestoreFunctions";
+import { UserAuth } from "../context/AuthContext";
 
 interface ItineraryDisplayProps {
   response: ItineraryResponseType;
@@ -20,7 +22,9 @@ interface ItineraryDisplayProps {
 
 const ItineraryDisplay: React.FC<ItineraryDisplayProps> = ({ response }) => {
   const [isOverview, setIsOverview] = useState<boolean>(true);
+  const [isSaved, setIsSaved] = useState<boolean>(false);
   const { setResponse } = useItinerary();
+  const { user } = UserAuth();
 
   const isMultipledays = () => {
     return response.destination.numberOfDays > 1 ? "days" : "day";
@@ -32,8 +36,36 @@ const ItineraryDisplay: React.FC<ItineraryDisplayProps> = ({ response }) => {
   const handleNewTrip = () => {
     if (response) {
       setResponse(null);
+      setIsSaved(false);
     }
   };
+
+  // TODO: move this function to the it context
+
+  const saveItinerary = async (response: ItineraryResponseType) => {
+    console.log("saveItinerary called");
+    if (user && response && !isSaved) {
+      // Check if saving is not in progress
+      try {
+        await storeItinerary(user.uid, response);
+        setIsSaved(true); // Set saving to true before starting the save operation
+      } catch (error) {
+        console.error("Error storing itinerary: ", error);
+        setIsSaved(false); // Reset saving state in case of an error
+      }
+    }
+  };
+
+  // Event handler function to be called on button click
+  const handleSaveClick = () => {
+    saveItinerary(response);
+  };
+
+  useEffect(() => {
+    if (response && user) {
+      handleSaveClick();
+    }
+  }, [response, user]);
 
   return (
     <>

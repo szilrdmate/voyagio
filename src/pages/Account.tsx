@@ -9,6 +9,7 @@ import {
 } from "@fortawesome/free-solid-svg-icons";
 import { UserAuth } from "../context/AuthContext";
 import { useNavigate } from "react-router-dom";
+import History from "../components/History";
 
 type AccountSection = "history" | "settings" | "help" | "details";
 
@@ -65,7 +66,7 @@ const Account: React.FC = () => {
       case "details":
         return <div>Details</div>;
       case "history":
-        return <div>History</div>;
+        return <History />;
       case "settings":
         return <div>Settings</div>;
       case "help":
@@ -103,9 +104,7 @@ const Account: React.FC = () => {
           </button>
         </div>
       </div>
-      <div className='bg-blue-300 col-span-3 p-6 rounded-3xl'>
-        {renderSection()}
-      </div>
+      <div className='col-span-3 p-6 rounded-3xl'>{renderSection()}</div>
     </div>
   );
 };
