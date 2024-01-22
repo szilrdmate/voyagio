@@ -20,7 +20,7 @@
     "@types/mapbox-gl": "^2.7.19",
     "@types/react-router-dom": "^5.3.3",
     "axios": "^1.6.5",
-    "firebase": "^10.7.1",
+    "firebase": "^10.7.2",
     "mapbox-gl": "^3.0.1",
     "openai": "^4.24.1",
     "react": "^18.2.0",

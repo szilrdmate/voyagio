@@ -1,6 +1,11 @@
 // src/contexts/ItineraryContext.tsx
 import React, { createContext, useState, useContext, ReactNode } from "react";
 import { ItineraryResponseType } from "../types/ResponseTypes";
+import { UserAuth } from "./AuthContext";
+import {
+  storeItinerary,
+  retrieveItineraries,
+} from "../utils/firestoreFunctions";
 
 interface ItineraryContextType {
   response: ItineraryResponseType | null;

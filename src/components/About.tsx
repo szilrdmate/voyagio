@@ -45,6 +45,7 @@ const About: React.FC = () => {
             </div>
           </div>
         ))}
+        <div className='bg-blue-300 p-8'>finally</div>
       </div>
     </div>
   );
