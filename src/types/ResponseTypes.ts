@@ -56,3 +56,6 @@ export interface ItineraryResponseType {
     costOfProgram: number;
   }
   
+export interface ItineraryWithId extends ItineraryResponseType {
+  id: string;
+}

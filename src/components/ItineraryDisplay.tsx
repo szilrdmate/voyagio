@@ -9,7 +9,7 @@ import {
   faDownload,
 } from "@fortawesome/free-solid-svg-icons";
 import DayFragment from "./DayFragment";
-import { Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import CostBreakdown from "./CostBreakdown";
 import { ItineraryResponseType } from "../types/ResponseTypes";
 import { useItinerary } from "../context/ItineraryContext";
@@ -22,8 +22,8 @@ interface ItineraryDisplayProps {
 
 const ItineraryDisplay: React.FC<ItineraryDisplayProps> = ({ response }) => {
   const [isOverview, setIsOverview] = useState<boolean>(true);
-  const [isSaved, setIsSaved] = useState<boolean>(false);
-  const { setResponse } = useItinerary();
+  const { setResponse, isSaved, setIsSaved } = useItinerary();
+  const navigate = useNavigate();
   const { user } = UserAuth();
 
   const isMultipledays = () => {
@@ -43,7 +43,6 @@ const ItineraryDisplay: React.FC<ItineraryDisplayProps> = ({ response }) => {
   // TODO: move this function to the it context
 
   const saveItinerary = async (response: ItineraryResponseType) => {
-    console.log("saveItinerary called");
     if (user && response && !isSaved) {
       // Check if saving is not in progress
       try {
@@ -67,6 +66,12 @@ const ItineraryDisplay: React.FC<ItineraryDisplayProps> = ({ response }) => {
     }
   }, [response, user]);
 
+  const goBack = () => {
+    navigate(-1);
+    setResponse(null);
+    setIsSaved(false);
+  };
+
   return (
     <>
       <div className='z-20 fixed top-0 left-0 w-[60vw] bg-white h-screen overflow-scroll no-scrollbar border-r border-gray-300'>
@@ -75,12 +80,17 @@ const ItineraryDisplay: React.FC<ItineraryDisplayProps> = ({ response }) => {
             backgroundImage: `linear-gradient(to top, rgba(0,0,0,1), rgba(0,0,0,0)), url(${bgImage})`,
           }}
           className='h-72 flex justify-between py-4 px-4 flex-col bg-cover'>
-          <Link
-            to='/'
-            className='text-white font-semibold text-lg underline tracking-wide'>
-            <FontAwesomeIcon className='text-base mr-2' icon={faChevronLeft} />
-            Back to Home
-          </Link>
+          <div className='py-3'>
+            <button
+              onClick={goBack}
+              className='text-white font-semibold text-lg underline tracking-wide'>
+              <FontAwesomeIcon
+                className='text-base mr-2'
+                icon={faChevronLeft}
+              />
+              Go Back
+            </button>
+          </div>
           <div className='absolute top-5 right-5 space-x-2'>
             <button className='text-white button' onClick={handleNewTrip}>
               New Trip
