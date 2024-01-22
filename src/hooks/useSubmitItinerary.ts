@@ -3,7 +3,6 @@ import { generateItinerary } from "../services/gptService";
 import { FormState } from "../types/ItineraryTypes";
 import { useItinerary } from "../context/ItineraryContext";
 import { useLoading } from '../context/LoadingContext';
-// import { useState } from 'react';
 
 export const useSubmitItinerary = (state: FormState, validate: (state: FormState) => boolean) => {
   const { setResponse } = useItinerary();
@@ -26,10 +25,7 @@ export const useSubmitItinerary = (state: FormState, validate: (state: FormState
         });
       if (response) {
         setResponse(response); // Update the context
-      } {/*else {
-        // Handle the case where response is null or not as expected
-        console.error('No response or unexpected response structure from generateItinerary');
-      }*/}
+      }
     } catch (error) {
       console.error('Error during itinerary generation:', error);
     } finally {

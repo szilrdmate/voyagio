@@ -98,7 +98,7 @@ const ItineraryPlanner = () => {
         <h2 className='text-3xl font-bold'>Plan Your Next Trip</h2>
 
         {/*Destination*/}
-        <div className='w-full py-8'>
+        <div className='w-full py-8 relative'>
           <h4 className='font-bold mb-8 text-xl'>
             Where would you like to go?
             {errors.destination && (

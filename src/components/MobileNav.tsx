@@ -20,7 +20,7 @@ const MobileNav = () => {
       className={`py-6 bg-gradient-to-b from-[#00000060] to-transparent ${pathBg}`}>
       <div className='flex items-center justify-between mx-auto px-4'>
         <NavLink to='/'>
-          <img src='/logo.svg' className='w-36' alt='Voyagio logo' />
+          <img src='/logo.svg' className='w-10' alt='Voyagio logo' />
         </NavLink>
         <button
           className='text-xl font-bold'

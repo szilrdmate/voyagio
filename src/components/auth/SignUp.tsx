@@ -1,26 +1,39 @@
+// src/components/auth6SignUp.tsx
 import React, { useState, ChangeEvent, FormEvent } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { UserAuth } from "../../context/AuthContext";
 
-const SignUp: React.FC = () => {
+interface Props {
+  setState: SetSignInType;
+}
+
+type SetSignInType = (isSignIn: boolean) => void;
+
+const SignUp: React.FC<Props> = ({ setState }) => {
   const [email, setEmail] = useState<string>("");
   const [password, setPassword] = useState<string>("");
-  const [error, setError] = useState<string | null>("");
+
   const navigate = useNavigate();
+  const { createUser, clearError, setError } = UserAuth();
 
-  const { createUser } = UserAuth();
-
+  // Email change event listener
   const handleEmailChange = (e: ChangeEvent<HTMLInputElement>) => {
     setEmail(e.target.value);
+    setError(null);
+    clearError(); // Clear error when the user starts typing
   };
 
+  // Password change event listener
   const handlePasswordChange = (e: ChangeEvent<HTMLInputElement>) => {
     setPassword(e.target.value);
+    setError(null);
+    clearError(); // Clear error when the user starts typing
   };
 
-  const signUp = async (e: FormEvent<HTMLFormElement>) => {
+  // Function to handle sign-up request
+  const handleSignUp = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    setError("");
+    setError(null);
     try {
       await createUser(email, password);
       navigate("/account");
@@ -31,11 +44,16 @@ const SignUp: React.FC = () => {
     }
   };
 
+  const switchToLogin = () => {
+    clearError();
+    setState(true);
+  };
+
   return (
-    <div className='w-full h-screen flex justify-center items-center bg-[url("https://images.unsplash.com/photo-1507608616759-54f48f0af0ee?q=80&w=1374&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D")]'>
+    <div className='w-full h-full col-start-2 col-span-1'>
       <form
-        className='w-96 bg-[#00000040] backdrop-blur border-gray-300 border py-8 px-8 rounded-lg space-y-6'
-        onSubmit={signUp}>
+        className='relative w-96 py-8 px-8 space-y-6'
+        onSubmit={handleSignUp}>
         <div>
           <h2 className='text-white text-4xl font-bold text-center'>
             Create An Account
@@ -43,10 +61,10 @@ const SignUp: React.FC = () => {
         </div>
         <div>
           <input
-            className='py-4 px-4 rounded-lg focus:outline-none w-full placeholder:text-gray-300 placeholder:text-lg bg-transparent border border-blue-200 text-white'
+            className='py-4 px-4 rounded-full focus:outline-none w-full placeholder:text-gray-300 placeholder:text-lg bg-transparent border border-blue-200 text-white'
             type='email'
-            name='sign-in-email'
-            id='sign-in-email'
+            name='sign-up-email'
+            id='sign-up-email'
             autoComplete='true'
             onChange={handleEmailChange}
             placeholder='Enter email address'
@@ -54,29 +72,29 @@ const SignUp: React.FC = () => {
         </div>
         <div>
           <input
-            className='py-4 px-4 rounded-lg focus:outline-none w-full placeholder:text-gray-300 placeholder:text-lg bg-transparent border border-blue-200 mb-2 text-white'
+            className='py-4 px-4 rounded-full focus:outline-none w-full placeholder:text-gray-300 placeholder:text-lg bg-transparent border border-blue-200 mb-2 text-white'
             type='password'
-            name='sign-in-password'
-            id='sign-in-password'
+            name='sign-up-password'
+            id='sign-up-password'
             autoComplete='current-password'
             onChange={handlePasswordChange}
             placeholder='Enter your password'
           />
+          <p className='text-blue-200 hover:underline'>At least 6 characters</p>
         </div>
         <div>
           <button
-            className='w-full button bg-teal-500 text-white text-xl mb-4'
+            className='w-full rounded-full button py-3 bg-teal-500 text-white text-xl mb-4'
             type='submit'>
             Sign Up
           </button>
           <p className='text-blue-200 text-center'>
             Already have an account?{" "}
-            <Link to='/signin' className='hover:underline'>
+            <span onClick={switchToLogin} className='hover:underline'>
               Sign In
-            </Link>
+            </span>
           </p>
         </div>
-        {error && <div>An error occured: {error}</div>}
       </form>
     </div>
   );

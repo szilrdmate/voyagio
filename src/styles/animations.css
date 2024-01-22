@@ -1,0 +1,14 @@
+@keyframes fade-in-up {
+    0% {
+      opacity: 0;
+      transform: translateY(10px);
+    }
+    100% {
+      opacity: 100;
+      transform: translateY(0);
+    }
+  }
+  
+  .animate-fade-in {
+    animation: fade-in-up 0.5s ease-out forwards;
+  }

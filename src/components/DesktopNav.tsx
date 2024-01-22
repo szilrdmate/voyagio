@@ -1,66 +1,59 @@
-import { NavLink, Link, useLocation } from "react-router-dom";
+import { NavLink, Link } from "react-router-dom";
 import { UserAuth } from "../context/AuthContext";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faCircleUser } from "@fortawesome/free-solid-svg-icons";
+import { faCircleUser, faUserPlus } from "@fortawesome/free-solid-svg-icons";
 
 const DesktopNav = () => {
-  const location = useLocation();
   const { user, loading } = UserAuth();
-  const path =
-    location.pathname == "/signin" || location.pathname == "/signup"
-      ? "opacity-0"
-      : "";
 
   const navLoadClass = loading ? "opacity-0" : "";
 
   return (
-    <div className='text-white backdrop-blur-xl w-full absolute box-border py-4 bg-gradient-to-b from-[#00000060] to-transaprent'>
-      <div className=' flex items-center justify-between mx-auto px-4 max-w-6xl '>
-        <div>
-          <NavLink to='/'>
-            <img src='/logo.svg' className='w-[150px]' alt='Voyagio logo' />
-          </NavLink>
-        </div>
-        <div className='overflow-hidden rounded-full py-3 font-bold text-xl bg-blue-100 border-[1px] border-white border-opacity-20 bg-opacity-20 backdrop-blur-xl'>
-          <NavLink
-            to='/'
-            className='hover:text-blue-400 py-[14px] transition-color duration-150 px-8 rounded-full'>
-            Home
-          </NavLink>
-          <NavLink
-            to='/planner'
-            className='hover:text-blue-400 py-[14px] transition-color duration-150 px-8 rounded-full'>
-            Plan A Trip
-          </NavLink>
-          <NavLink
-            to='/blog'
-            className='hover:text-blue-400 py-[14px] transition-color duration-150 px-8 rounded-full'>
-            Blog
-          </NavLink>
-          <Link
-            target='_blank'
-            to='https://voyagio.canny.io/feature-requests'
-            className='hover:text-blue-400 py-[14px] transition-color duration-150 px-8 rounded-full'>
-            Feedback
-          </Link>
-        </div>
+    <div className='text-white w-full fixed box-border py-4 bg-gradient-to-b from-gray-800 to-transaprent'>
+      <div className='shadow-2xl w-fit mx-auto flex items-center overflow-hidden rounded-full font-bold text-xl bg-blue-100 border-[1px] border-white border-opacity-20 bg-opacity-20 backdrop-blur-xl'>
+        <NavLink className='mr-4' to='/'>
+          <img
+            src='/logo.svg'
+            className='h-[58px] rounded-full'
+            alt='Voyagio logo'
+          />
+        </NavLink>
+        <NavLink
+          to='/'
+          className='hover:text-blue-400 py-[14px] transition-color duration-150 px-8 rounded-full'>
+          Home
+        </NavLink>
+        <NavLink
+          to='/planner'
+          className='hover:text-blue-400 py-[14px] transition-color duration-150 px-8 rounded-full'>
+          Plan A Trip
+        </NavLink>
+        <NavLink
+          to='/blog'
+          className='hover:text-blue-400 py-[14px] transition-color duration-150 px-8 rounded-full'>
+          Blog
+        </NavLink>
+        <Link
+          target='_blank'
+          to='https://voyagio.canny.io/feature-requests'
+          className='hover:text-blue-400 py-[14px] transition-color duration-150 px-8 rounded-full'>
+          Feedback
+        </Link>
         {!user ? (
           <NavLink
-            to='/signin'
-            className={`bg-teal-500 h-12 border border-teal-400 w-[150px] flex justify-center items-center text-xl font-bold rounded-full ${navLoadClass} ${path}`}>
-            Sign In
+            to='/sign'
+            className={`h-[58px] w-[58px] bg-gray-300 ml-4 flex justify-center items-center text-xl duration-300 font-bold rounded-full border-4 border-gray-500 hover:border-blue-500 ${navLoadClass}`}>
+            <FontAwesomeIcon className='text-gray-500 ' icon={faUserPlus} />
           </NavLink>
         ) : (
-          <div className='w-[150px] flex justify-center items-center'>
-            <NavLink
-              to='/account'
-              className={`bg-blue-500 h-12 w-fit flex justify-center items-center text-xl font-bold rounded-full`}>
-              <FontAwesomeIcon
-                className='border-4 border-blue-500 rounded-full text-blue-300 text-5xl'
-                icon={faCircleUser}
-              />
-            </NavLink>
-          </div>
+          <NavLink
+            to='/account'
+            className={` bg-[#264459] duration-300 group hover:bg-blue-500 ml-4 w-fit flex justify-center items-center text-xl font-bold rounded-full border-4 border-[#264459] hover:border-blue-500`}>
+            <FontAwesomeIcon
+              className=' text-[#fbfcfd] text-5xl'
+              icon={faCircleUser}
+            />
+          </NavLink>
         )}
       </div>
     </div>

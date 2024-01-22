@@ -7,8 +7,7 @@ import Planner from "./pages/Planner";
 import NotFound from "./pages/NotFound";
 import { ItineraryProvider } from "./context/ItineraryContext";
 import Account from "./pages/Account";
-import SignIn from "./components/auth/SignIn";
-import SignUp from "./components/auth/SignUp";
+import AuthWrapper from "./components/auth/AuthWrapper";
 import { LoadingProvider } from "./context/LoadingContext";
 import { AuthContextProvider } from "./context/AuthContext";
 import NoUserProtectedRoute from "./components/ProtectedRoute";
@@ -30,12 +29,8 @@ const App: React.FC = () => {
                 element={<NoUserProtectedRoute component={Account} />}
               />
               <Route
-                path='/signin'
-                element={<UserProtectedRoute component={SignIn} />}
-              />
-              <Route
-                path='/signup'
-                element={<UserProtectedRoute component={SignUp} />}
+                path='/sign'
+                element={<UserProtectedRoute component={AuthWrapper} />}
               />
               <Route path='*' element={<NotFound />} />
             </Routes>
