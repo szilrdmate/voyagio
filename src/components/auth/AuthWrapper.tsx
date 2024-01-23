@@ -26,18 +26,20 @@ const AuthWrapper: React.FC = () => {
     : "translate-x-full";
 
   return (
-    <div className='w-full h-screen flex justify-center items-center bg-gradient-to-b from-blue-700 via-blue-500 to-white'>
-      <div className='grid grid-cols-2 bg-black bg-opacity-40 backdrop-blur overflow-hidden rounded-3xl border border-gray-300 relative'>
+    <div className="flex h-screen w-full items-center justify-center bg-gradient-to-b from-blue-700 via-blue-500 to-white">
+      <div className="relative grid grid-cols-2 overflow-hidden rounded-3xl bg-black bg-opacity-40 backdrop-blur">
         <div
-          className={`z-10 bg-white w-1/2 h-full absolute duration-300 transition-transform ease-in-out delay-75 ${translateClass}`}>
+          className={`absolute z-10 h-full w-1/2 bg-white transition-transform delay-75 duration-300 ease-in-out ${translateClass}`}
+        >
           {error && (
-            <div className='animate-fade-in text-red-600 bg-white p-2 rounded-xl absolute left-0 bottom-0'>
+            <div className="animate-fade-in absolute bottom-0 left-0 rounded-xl bg-white p-2 text-red-600">
               {error} <button onClick={clearError}>X</button>
             </div>
           )}
         </div>
         <div
-          className={`${signTranslateClass} delay-75 duration-300 transition-transform ease-in-out`}>
+          className={`${signTranslateClass} transition-transform delay-75 duration-300 ease-in-out`}
+        >
           {isSignIn ? (
             <SignIn setState={updateSignInState} />
           ) : (

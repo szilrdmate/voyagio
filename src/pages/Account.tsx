@@ -10,6 +10,9 @@ import { UserAuth } from "../context/AuthContext";
 import { useNavigate } from "react-router-dom";
 import History from "../components/History";
 import Sidebar from "../components/AccountSidebar";
+import AccountDetails from "../components/AccountDetails";
+import AccountSettings from "../components/AccountSettings";
+import AccountHelp from "../components/AccountHelp";
 
 type AccountSection = "history" | "settings" | "help" | "details";
 
@@ -64,27 +67,33 @@ const Account: React.FC = () => {
   const renderSection = () => {
     switch (accountSection) {
       case "details":
-        return <div>Details</div>;
+        return <AccountDetails />;
       case "history":
         return <History />;
       case "settings":
-        return <div>Settings</div>;
+        return <AccountSettings />;
       case "help":
-        return <div>Help</div>;
+        return <AccountHelp />;
       default:
-        return <div>Select a section</div>;
+        return (
+          <>
+            <h2 className="mb-8 text-5xl font-bold text-gray-800">
+              Select an account section
+            </h2>
+          </>
+        );
     }
   };
 
   return (
-    <div className='min-h-screen pt-40 pb-20 px-6 grid gap-4 grid-cols-4'>
+    <div className="grid min-h-screen grid-cols-4 gap-4 px-6 pb-20 pt-40">
       <Sidebar
         links={links}
         setAccountSection={setAccountSection}
         user={user}
         logout={handleLogout}
       />
-      <div className='col-span-3 p-6 rounded-3xl'>{renderSection()}</div>
+      <div className="col-span-3 rounded-3xl p-6">{renderSection()}</div>
     </div>
   );
 };

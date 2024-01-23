@@ -47,47 +47,49 @@ const SignIn: React.FC<Props> = ({ setState }) => {
   };
 
   return (
-    <div className='w-full h-full col-start-1 col-span-1'>
+    <div className="col-span-1 col-start-1 h-full w-full">
       <form
-        className='relative w-96 py-8 px-8 space-y-6'
-        onSubmit={handleSignIn}>
+        className="relative w-96 space-y-6 px-8 py-8"
+        onSubmit={handleSignIn}
+      >
         <div>
-          <h2 className='text-white text-4xl font-bold text-center'>Sign In</h2>
+          <h2 className="text-left text-3xl font-bold text-white">Sign In</h2>
         </div>
         <div>
           <input
-            className='py-4 px-4 text-white rounded-full focus:outline-none w-full placeholder:text-gray-300 placeholder:text-lg bg-transparent border border-blue-200'
-            type='email'
-            name='sign-in-email'
-            id='sign-in-email'
-            autoComplete='true'
+            className="w-full rounded-full border border-blue-200 bg-transparent px-4 py-4 text-white placeholder:text-lg placeholder:text-gray-300 focus:outline-none"
+            type="email"
+            name="sign-in-email"
+            id="sign-in-email"
+            autoComplete="true"
             onChange={handleEmailChange}
-            placeholder='Enter email address'
+            placeholder="Enter email address"
           />
         </div>
         <div>
           <input
-            className='py-4 px-4 text-white rounded-full focus:outline-none w-full placeholder:text-gray-300 placeholder:text-lg bg-transparent border border-blue-200 mb-2'
-            type='password'
-            name='sign-in-password'
-            id='sign-in-password'
-            autoComplete='current-password'
+            className="mb-2 w-full rounded-full border border-blue-200 bg-transparent px-4 py-4 text-white placeholder:text-lg placeholder:text-gray-300 focus:outline-none"
+            type="password"
+            name="sign-in-password"
+            id="sign-in-password"
+            autoComplete="current-password"
             onChange={handlePasswordChange}
-            placeholder='Enter your password'
+            placeholder="Enter your password"
           />
-          <Link className='text-blue-200 hover:underline' to='/'>
+          <Link className="text-blue-200 hover:underline" to="/">
             Forgot password?
           </Link>
         </div>
         <div>
           <button
-            className='w-full rounded-full button py-3 bg-teal-500 text-white text-xl mb-4'
-            type='submit'>
+            className="button mb-4 w-full rounded-full bg-teal-500 py-3 text-xl text-white"
+            type="submit"
+          >
             Log In
           </button>
-          <p className='text-blue-200 text-center'>
+          <p className="text-center text-blue-200">
             Don't have an account?{" "}
-            <span onClick={switchToSignUp} className='hover:underline'>
+            <span onClick={switchToSignUp} className="hover:underline">
               Sign Up
             </span>
           </p>

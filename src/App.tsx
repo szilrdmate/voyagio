@@ -15,24 +15,24 @@ import UserProtectedRoute from "./components/UserProtectedRoute";
 
 const App: React.FC = () => {
   return (
-    <div className='App'>
+    <div className="App">
       <ItineraryProvider>
         <AuthContextProvider>
           <Navbar />
           <LoadingProvider>
             <Routes>
               <Route index element={<Home />} />
-              <Route path='/planner' element={<Planner />} />
-              <Route path='/blog' element={<Blog />} />
+              <Route path="/planner" element={<Planner />} />
+              <Route path="/blog" element={<Blog />} />
               <Route
-                path='/account'
+                path="/account"
                 element={<NoUserProtectedRoute component={Account} />}
               />
               <Route
-                path='/sign'
+                path="/sign"
                 element={<UserProtectedRoute component={AuthWrapper} />}
               />
-              <Route path='*' element={<NotFound />} />
+              <Route path="*" element={<NotFound />} />
             </Routes>
           </LoadingProvider>
         </AuthContextProvider>

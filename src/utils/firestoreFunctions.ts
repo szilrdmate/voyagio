@@ -35,7 +35,7 @@ export const storeItinerary = async (userId: string, itineraryData: ItineraryRes
     }
 };
 
-export const deleteItinerary = async (userId: string, itineraryId: string) => {
+export const deleteItinerary = async (itineraryId: string) => {
   const itineraryRef = doc(db, 'itineraries', itineraryId); // Adjust 'itineraries' to your collection name
   await deleteDoc(itineraryRef);
 };

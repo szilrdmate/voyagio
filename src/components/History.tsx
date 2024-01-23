@@ -5,6 +5,8 @@ import {
   retrieveItineraries,
   deleteItinerary,
 } from "../utils/firestoreFunctions";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faTrashCan, faEye } from "@fortawesome/free-regular-svg-icons";
 import { useNavigate } from "react-router-dom";
 import { useItinerary } from "../context/ItineraryContext";
 import HistorySkeleton from "./HistorySkeleton";
@@ -47,7 +49,7 @@ const History: React.FC = () => {
   const indexOfFirstItem = indexOfLastItem - itemsPerPage;
   const currentItineraries = itineraries.slice(
     indexOfFirstItem,
-    indexOfLastItem
+    indexOfLastItem,
   );
 
   const totalPages = Math.ceil(itineraries.length / itemsPerPage);
@@ -59,11 +61,12 @@ const History: React.FC = () => {
         <button
           key={i}
           onClick={() => setCurrentPage(i)}
-          className={`px-3 py-1 border rounded ${
+          className={`rounded-lg border px-3 py-1 ${
             currentPage === i ? "bg-blue-500 text-white" : ""
-          }`}>
+          }`}
+        >
           {i}
-        </button>
+        </button>,
       );
     }
     return pages;
@@ -77,10 +80,10 @@ const History: React.FC = () => {
     }
 
     try {
-      await deleteItinerary(user.uid, itineraryId);
+      await deleteItinerary(itineraryId);
       console.log(`Removing item: ${itineraryId}`);
       setItineraries((prevItineraries) =>
-        prevItineraries.filter((itinerary) => itinerary.id !== itineraryId)
+        prevItineraries.filter((itinerary) => itinerary.id !== itineraryId),
       );
     } catch (error) {
       console.error("Failed to delete itinerary:", error);
@@ -115,21 +118,22 @@ const History: React.FC = () => {
 
   return (
     <div>
-      <h2 className='font-bold text-5xl mb-8 text-gray-800'>
+      <h2 className="mb-8 text-5xl font-bold text-gray-800">
         Previous Itineraries
       </h2>
       {loading ? (
         <HistorySkeleton times={3} />
       ) : itineraries.length === 0 ? (
-        <p>No itineraries found</p>
+        <p className="font-medium text-gray-500">No itineraries found</p>
       ) : (
-        <ul className='space-y-4'>
+        <ul className="space-y-4">
           {currentItineraries.map((itinerary, id) => (
             <li
-              className='bg-white rounded-2xl py-4 px-8 border border-gray-300 border-opacity-20 shadow-xl flex justify-between items-center'
-              key={id}>
+              className="flex items-center justify-between rounded-2xl border border-gray-300 border-opacity-20 bg-white px-8 py-4 shadow-xl"
+              key={id}
+            >
               <div>
-                <p className='text-xl font-semibold'>
+                <p className="text-xl font-semibold">
                   {itinerary.destination.numberOfDays}{" "}
                   {dayOrDays(itinerary.destination.numberOfDays)}
                   {itinerary.destination.destinationCity},{" "}
@@ -140,23 +144,25 @@ const History: React.FC = () => {
                   {itinerary.destination.endDate}
                 </p>
               </div>
-              <div className='space-x-2'>
+              <div className="flex space-x-2">
                 <button
                   onClick={() => handleDelete(itinerary.id)}
-                  className='button  border-red-500 text-red-500 rounded-xl'>
-                  Remove itinerary
+                  className="flex h-10 w-10 items-center justify-center rounded-xl border-2 border-red-400 text-red-400"
+                >
+                  <FontAwesomeIcon className="text-xl" icon={faTrashCan} />
                 </button>
                 <button
                   onClick={() => handleRecall(itinerary)}
-                  className='button bg-blue-500 text-white rounded-xl'>
-                  View Itinerary
+                  className="flex h-10 w-10 items-center justify-center rounded-xl border-2 border-blue-500 bg-blue-500 text-white"
+                >
+                  <FontAwesomeIcon className="text-xl" icon={faEye} />
                 </button>
               </div>
             </li>
           ))}
         </ul>
       )}
-      <div className='flex justify-center space-x-2 mt-4'>
+      <div className="mt-4 flex justify-center space-x-2">
         {renderPageNumbers()}
       </div>
     </div>

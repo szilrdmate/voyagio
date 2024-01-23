@@ -20,13 +20,13 @@ export interface ItineraryResponseType {
     estimatedCosts: CostEstimate[];
   }
   
-  interface DayProgram {
+  export interface DayProgram {
     day: number;
     date: string;
     program: ProgramDetail[];
   }
   
-  interface ProgramDetail {
+  export interface ProgramDetail {
     id: number;
     programOrPlaceName: string;
     timeSpentThere: string;
@@ -35,7 +35,7 @@ export interface ItineraryResponseType {
     shortDescriptionOfProgram: string;
   }
   
-  interface CostEstimate {
+  export interface CostEstimate {
     category: string;
     hostelCostPerNight?: number;
     hotelCostPerNight?: number;

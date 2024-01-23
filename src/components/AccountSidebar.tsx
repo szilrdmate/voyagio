@@ -26,29 +26,31 @@ const Sidebar: React.FC<SidebarProps> = ({
 }) => {
   return (
     <div
-      id='sidebar'
-      className='bg-white col-span-1 p-6 rounded-3xl border border-gray shadow-2xl flex flex-col justify-between'>
+      id="sidebar"
+      className="col-span-1 flex flex-col justify-between rounded-3xl border border-gray-200 bg-white p-6 shadow-2xl"
+    >
       <div>
-        <h2 className='font-bold text-4xl mb-8'>Voyagio</h2>
-        <ul className='space-y-4'>
+        <h2 className="mb-8 text-4xl font-bold">Voyagio</h2>
+        <ul className="space-y-4">
           {links.map((link, index) => (
             <button
               onClick={() => setAccountSection(link.state)}
-              className='w-full bg-gray-100 px-4 py-3 rounded-2xl font-medium text-xl flex items-center justify-start'
-              key={index}>
-              <div className='text-2xl'>{link.icon}</div>
-              <p className='ml-4'>{link.title}</p>
+              className="flex w-full items-center justify-start rounded-2xl bg-gray-100 px-4 py-3 text-xl font-medium"
+              key={index}
+            >
+              <div className="text-2xl">{link.icon}</div>
+              <p className="ml-4">{link.title}</p>
             </button>
           ))}
         </ul>
       </div>
-      <div className='w-full flex justify-between'>
-        <img className='w-12 rounded-full' src='/logo.svg' alt='Logo' />
+      <div className="flex w-full justify-between">
+        <img className="w-12 rounded-full" src="/logo.svg" alt="Logo" />
         <div>
-          <p className='font-semibold text-lg'>{user?.email}</p>
+          <p className="text-lg font-semibold">{user?.email}</p>
           <p>{user?.email}</p>
         </div>
-        <button onClick={logout} className='text-red-500 text-2xl'>
+        <button onClick={logout} className="text-2xl text-red-500">
           <FontAwesomeIcon icon={faRightFromBracket} />
         </button>
       </div>
