@@ -31,6 +31,7 @@ export interface ItineraryResponseType {
     programOrPlaceName: string;
     timeSpentThere: string;
     location: string;
+    coordinateOfEvent: [number, number],
     shortDescriptionOfProgram: string;
   }
   

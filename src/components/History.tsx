@@ -7,6 +7,7 @@ import {
 } from "../utils/firestoreFunctions";
 import { useNavigate } from "react-router-dom";
 import { useItinerary } from "../context/ItineraryContext";
+import HistorySkeleton from "./HistorySkeleton";
 
 const History: React.FC = () => {
   const [loading, setLoading] = useState(true);
@@ -118,9 +119,7 @@ const History: React.FC = () => {
         Previous Itineraries
       </h2>
       {loading ? (
-        <div className='h-full w-full grid place-content-start'>
-          Loading itineraries...
-        </div>
+        <HistorySkeleton times={3} />
       ) : itineraries.length === 0 ? (
         <p>No itineraries found</p>
       ) : (
@@ -145,7 +144,7 @@ const History: React.FC = () => {
                 <button
                   onClick={() => handleDelete(itinerary.id)}
                   className='button  border-red-500 text-red-500 rounded-xl'>
-                  Remove Itinerary
+                  Remove itinerary
                 </button>
                 <button
                   onClick={() => handleRecall(itinerary)}

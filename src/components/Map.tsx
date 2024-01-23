@@ -1,6 +1,7 @@
 import React, { useRef, useEffect, useState } from "react";
 import mapboxgl from "mapbox-gl";
 import "mapbox-gl/dist/mapbox-gl.css";
+import { useItinerary } from "../context/ItineraryContext";
 
 mapboxgl.accessToken = import.meta.env.VITE_MAPBOX_ACCESS_TOKEN;
 
@@ -11,6 +12,8 @@ interface MapProps {
 const Map: React.FC<MapProps> = ({ location }) => {
   const mapContainerRef = useRef<HTMLDivElement>(null);
   const [map, setMap] = useState<mapboxgl.Map>();
+
+  const { response } = useItinerary(); // response from api
 
   const fetchCoordinates = async (city: string) => {
     try {
@@ -33,6 +36,7 @@ const Map: React.FC<MapProps> = ({ location }) => {
 
   // Initialize map and update it when location changes
   useEffect(() => {
+    // Initialize the map
     if (!map && mapContainerRef.current) {
       const initialMap = new mapboxgl.Map({
         container: mapContainerRef.current,
@@ -42,13 +46,33 @@ const Map: React.FC<MapProps> = ({ location }) => {
       setMap(initialMap);
     }
 
+    // Update the map center based on the general location
     if (location && map) {
       fetchCoordinates(location).then((coords) => {
         if (coords) {
-          map.on("load", () => {
-            map.setCenter(coords);
-          });
+          map.setCenter(coords);
         }
+      });
+    }
+
+    // Plot itinerary events on the map
+    if (response && map) {
+      map.on("load", () => {
+        response.itinerary.forEach((day) => {
+          day.program.forEach((event) => {
+            const coordinates = event.coordinateOfEvent;
+
+            // Create a marker for each event
+            new mapboxgl.Marker()
+              .setLngLat(coordinates)
+              .setPopup(
+                new mapboxgl.Popup({ offset: 25 }).setText(
+                  event.programOrPlaceName
+                )
+              )
+              .addTo(map);
+          });
+        });
       });
     }
 

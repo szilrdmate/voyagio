@@ -5,11 +5,11 @@ import {
   faGear,
   faClockRotateLeft,
   faCircleInfo,
-  faRightFromBracket,
 } from "@fortawesome/free-solid-svg-icons";
 import { UserAuth } from "../context/AuthContext";
 import { useNavigate } from "react-router-dom";
 import History from "../components/History";
+import Sidebar from "../components/AccountSidebar";
 
 type AccountSection = "history" | "settings" | "help" | "details";
 
@@ -78,32 +78,12 @@ const Account: React.FC = () => {
 
   return (
     <div className='min-h-screen pt-40 pb-20 px-6 grid gap-4 grid-cols-4'>
-      <div className='bg-white col-span-1 p-6 rounded-3xl border border-gray shadow-2xl flex flex-col justify-between'>
-        <div>
-          <h2 className='font-bold text-4xl mb-8'>Account Details</h2>
-          <ul className='space-y-4'>
-            {links.map((link, index) => (
-              <button
-                onClick={() => setAccountSection(link.state)}
-                className='w-full bg-gray-100 px-4 py-3 rounded-2xl font-medium text-xl flex items-center justify-'
-                key={index}>
-                <div className='text-2xl'>{link.icon}</div>
-                <p className='ml-4'>{link.title}</p>
-              </button>
-            ))}
-          </ul>
-        </div>
-        <div className='w-full flex justify-between'>
-          <img className='w-12 rounded-full' src='/logo.svg' />
-          <div>
-            <p className='font-semibold text-lg'>{user?.email}</p>
-            <p>{user?.email}</p>
-          </div>
-          <button className='text-red-500 text-2xl' onClick={handleLogout}>
-            <FontAwesomeIcon icon={faRightFromBracket} />
-          </button>
-        </div>
-      </div>
+      <Sidebar
+        links={links}
+        setAccountSection={setAccountSection}
+        user={user}
+        logout={handleLogout}
+      />
       <div className='col-span-3 p-6 rounded-3xl'>{renderSection()}</div>
     </div>
   );

@@ -25,6 +25,7 @@
           "programOrPlaceName": "Brunch at The Grey Dog",
           "timeSpentThere": "1 hour",
           "location": "244 Mulberry St, New York, NY 10012",
+          "coordinateOfEvent": [45.5353, 0.1234],
           "shortDescriptionOfProgram": "Start your day with a hearty brunch and refreshing drinks at this cozy cafe in Greenwich Village."
         },
         {
@@ -32,6 +33,7 @@
           "programOrPlaceName": "Explore Central Park",
           "timeSpentThere": "2 hours",
           "location": "Central Park, New York",
+          "coordinateOfEvent": [45.5353, 0.1234],
           "shortDescriptionOfProgram": "Stroll through the picturesque Central Park, visit Bethesda Terrace, and enjoy the natural beauty of the park."
         },
         {
@@ -39,6 +41,7 @@
           "programOrPlaceName": "Happy Hour at Bar SixtyFive at Rainbow Room",
           "timeSpentThere": "1.5 hours",
           "location": "30 Rockefeller Plaza, 65th Floor, New York, NY 10112",
+          "coordinateOfEvent": [45.5353, 0.1234],
           "shortDescriptionOfProgram": "Experience an upscale happy hour with panoramic views of the city skyline from the top of the Rockefeller Center."
         },
         {
@@ -46,6 +49,7 @@
           "programOrPlaceName": "Dinner at Beauty & Essex",
           "timeSpentThere": "2 hours",
           "location": "146 Essex St, New York, NY 10002",
+          "coordinateOfEvent": [45.5353, 0.1234],
           "shortDescriptionOfProgram": "Enjoy a trendy dining experience at this famous restaurant known for its eclectic decor and delicious food."
         },
         {
@@ -53,6 +57,7 @@
           "programOrPlaceName": "Night Out in Meatpacking District",
           "timeSpentThere": "3 hours",
           "location": "Meatpacking District, New York",
+          "coordinateOfEvent": [45.5353, 0.1234],
           "shortDescriptionOfProgram": "Experience the vibrant nightlife of New York at the popular bars and clubs in the trendy Meatpacking District."
         }
       ]
