@@ -4,6 +4,8 @@ import { ItineraryResponseType } from "../types/ResponseTypes";
 
 interface ItineraryContextType {
   response: ItineraryResponseType | null;
+  isSaved: boolean;
+  setIsSaved: (value: boolean) => void;
   setResponse: (response: ItineraryResponseType | null) => void;
 }
 
@@ -23,6 +25,7 @@ const useItinerary = () => {
 
 const ItineraryProvider: React.FC<ItineraryProviderProps> = ({ children }) => {
   const [response, setResponse] = useState<ItineraryResponseType | null>(null);
+  const [isSaved, setIsSaved] = useState<boolean>(false);
 
   // Example function that updates the context state
   const updateResponse = (newResponse: ItineraryResponseType | null) => {
@@ -31,7 +34,7 @@ const ItineraryProvider: React.FC<ItineraryProviderProps> = ({ children }) => {
 
   return (
     <ItineraryContext.Provider
-      value={{ response, setResponse: updateResponse }}>
+      value={{ response, setResponse: updateResponse, isSaved, setIsSaved }}>
       {children}
     </ItineraryContext.Provider>
   );

@@ -1,7 +1,7 @@
 // src/utils/firestoreFunctions.ts
 import { db } from './firebaseConfig';
-import { ItineraryResponseType } from '../types/ResponseTypes';
-import { collection, addDoc, query, where, getDocs } from 'firebase/firestore';
+import { ItineraryResponseType, ItineraryWithId } from '../types/ResponseTypes';
+import { collection, addDoc, query, where, getDocs, doc, deleteDoc } from 'firebase/firestore';
 
 export const storeItinerary = async (userId: string, itineraryData: ItineraryResponseType): Promise<void> => {
     console.log("storeItinerary called", { userId, itineraryData });
@@ -17,22 +17,25 @@ export const storeItinerary = async (userId: string, itineraryData: ItineraryRes
     }
   }
 
-  export const retrieveItineraries = async (userId: string): Promise<ItineraryResponseType[]> => {
+  export const retrieveItineraries = async (userId: string): Promise<ItineraryWithId[]> => {
     try {
       const q = query(collection(db, 'itineraries'), where('userId', '==', userId));
       const querySnapshot = await getDocs(q);
-      const itineraries: ItineraryResponseType[] = [];
-      querySnapshot.forEach((doc) => {
-        // Create a new object type that includes the 'id' property
-        const dataWithId: ItineraryResponseType & { id: string } = {
-          id: doc.id,
-          ...doc.data() as ItineraryResponseType,
-        };
-        itineraries.push(dataWithId);
-      });
-      return itineraries;
+      const itineraries: ItineraryWithId[] = [];
+    querySnapshot.forEach((doc) => {
+        itineraries.push({
+            id: doc.id,
+            ...doc.data() as ItineraryResponseType
+        });
+    });
+    return itineraries;
     } catch (error) {
       console.error('Error retrieving itineraries: ', error);
       return [];
     }
-  };
+};
+
+export const deleteItinerary = async (itineraryId: string) => {
+  const itineraryRef = doc(db, 'itineraries', itineraryId); // Adjust 'itineraries' to your collection name
+  await deleteDoc(itineraryRef);
+};

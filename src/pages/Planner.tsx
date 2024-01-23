@@ -1,4 +1,4 @@
-// pages/Planner.tsx
+// src/pages/Planner.tsx
 import ItineraryPlanner from "../components/Itinerary";
 import ItineraryDisplay from "../components/ItineraryDisplay";
 import Map from "../components/Map";
@@ -13,7 +13,7 @@ const Planner: React.FC = () => {
   return (
     <div>
       {!response && (
-        <div className='max-w-4xl mx-auto py-20 md:py-40 md:px-6 bg-gray-800 md:bg-white'>
+        <div className="mx-auto max-w-4xl bg-gray-800 py-20 md:bg-white md:px-6 md:py-40">
           <ItineraryPlanner />
         </div>
       )}
@@ -21,7 +21,7 @@ const Planner: React.FC = () => {
       {response && (
         <>
           <ItineraryDisplay response={response} />
-          <div className='w-[40vw] bg-white fixed top-0 right-0 z-20'>
+          <div className="fixed right-0 top-0 z-20 w-[40vw] bg-white">
             <Map location={response.destination.destinationCity} />
           </div>
         </>
