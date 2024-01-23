@@ -53,30 +53,32 @@ const SignIn: React.FC<Props> = ({ setState }) => {
         onSubmit={handleSignIn}
       >
         <div>
-          <h2 className="text-left text-3xl font-bold text-white">Sign In</h2>
+          <h2 className="text-left text-3xl font-bold text-gray-800">
+            Sign In
+          </h2>
         </div>
         <div>
           <input
-            className="w-full rounded-full border border-blue-200 bg-transparent px-4 py-4 text-white placeholder:text-lg placeholder:text-gray-300 focus:outline-none"
+            className="placeholder:text-md w-full rounded-full border border-gray-300 bg-gray-50 p-4 text-gray-500 placeholder:text-gray-400 focus:outline-none"
             type="email"
             name="sign-in-email"
             id="sign-in-email"
             autoComplete="true"
             onChange={handleEmailChange}
-            placeholder="Enter email address"
+            placeholder="Email"
           />
         </div>
         <div>
           <input
-            className="mb-2 w-full rounded-full border border-blue-200 bg-transparent px-4 py-4 text-white placeholder:text-lg placeholder:text-gray-300 focus:outline-none"
+            className="placeholder:text-md mb-2 w-full rounded-full border border-gray-300 bg-gray-50 p-4 text-gray-500 placeholder:text-gray-400 focus:outline-none"
             type="password"
             name="sign-in-password"
             id="sign-in-password"
             autoComplete="current-password"
             onChange={handlePasswordChange}
-            placeholder="Enter your password"
+            placeholder="Password"
           />
-          <Link className="text-blue-200 hover:underline" to="/">
+          <Link className="text-gray-400 hover:underline" to="/">
             Forgot password?
           </Link>
         </div>
@@ -87,7 +89,7 @@ const SignIn: React.FC<Props> = ({ setState }) => {
           >
             Log In
           </button>
-          <p className="text-center text-blue-200">
+          <p className="text-center text-gray-400">
             Don't have an account?{" "}
             <span onClick={switchToSignUp} className="hover:underline">
               Sign Up

@@ -50,47 +50,49 @@ const SignUp: React.FC<Props> = ({ setState }) => {
   };
 
   return (
-    <div className='w-full h-full col-start-2 col-span-1'>
+    <div className="col-span-1 col-start-2 h-full w-full">
       <form
-        className='relative w-96 py-8 px-8 space-y-6'
-        onSubmit={handleSignUp}>
+        className="relative w-96 space-y-6 px-8 py-8"
+        onSubmit={handleSignUp}
+      >
         <div>
-          <h2 className='text-white text-4xl font-bold text-center'>
-            Create An Account
+          <h2 className="text-whigray-800 text-left text-3xl font-bold">
+            Sign Up
           </h2>
         </div>
         <div>
           <input
-            className='py-4 px-4 rounded-full focus:outline-none w-full placeholder:text-gray-300 placeholder:text-lg bg-transparent border border-blue-200 text-white'
-            type='email'
-            name='sign-up-email'
-            id='sign-up-email'
-            autoComplete='true'
+            className="placeholder:text-md w-full rounded-full border border-gray-300 bg-gray-50 p-4 text-gray-500 placeholder:text-gray-400 focus:outline-none"
+            type="email"
+            name="sign-up-email"
+            id="sign-up-email"
+            autoComplete="true"
             onChange={handleEmailChange}
-            placeholder='Enter email address'
+            placeholder="Email"
           />
         </div>
         <div>
           <input
-            className='py-4 px-4 rounded-full focus:outline-none w-full placeholder:text-gray-300 placeholder:text-lg bg-transparent border border-blue-200 mb-2 text-white'
-            type='password'
-            name='sign-up-password'
-            id='sign-up-password'
-            autoComplete='current-password'
+            className="placeholder:text-md mb-2 w-full rounded-full border border-gray-300 bg-gray-50 p-4 text-gray-500 placeholder:text-gray-400 focus:outline-none"
+            type="password"
+            name="sign-up-password"
+            id="sign-up-password"
+            autoComplete="current-password"
             onChange={handlePasswordChange}
-            placeholder='Enter your password'
+            placeholder="Password"
           />
-          <p className='text-blue-200 hover:underline'>At least 6 characters</p>
+          <p className="text-gray-400">At least 6 characters</p>
         </div>
         <div>
           <button
-            className='w-full rounded-full button py-3 bg-teal-500 text-white text-xl mb-4'
-            type='submit'>
-            Sign Up
+            className="button mb-4 w-full rounded-full bg-teal-500 py-3 text-xl text-white"
+            type="submit"
+          >
+            Create an Account
           </button>
-          <p className='text-blue-200 text-center'>
+          <p className="text-center text-gray-400">
             Already have an account?{" "}
-            <span onClick={switchToLogin} className='hover:underline'>
+            <span onClick={switchToLogin} className="hover:underline">
               Sign In
             </span>
           </p>
