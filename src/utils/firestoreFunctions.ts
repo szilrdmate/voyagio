@@ -1,10 +1,7 @@
 // src/utils/firestoreFunctions.ts
 import { db } from './firebaseConfig';
-import { storage } from './firebaseConfig';
 import { ItineraryResponseType, ItineraryWithId } from '../types/ResponseTypes';
-import { ref, uploadBytes, getDownloadURL } from 'firebase/storage';
-import { collection, addDoc, query, where, getDocs, doc, deleteDoc, setDoc } from 'firebase/firestore';
-
+import { collection, addDoc, query, where, getDocs, doc, deleteDoc } from 'firebase/firestore';
 export const storeItinerary = async (userId: string, itineraryData: ItineraryResponseType): Promise<void> => {
     console.log("storeItinerary called", { userId, itineraryData });
     try {
@@ -40,26 +37,4 @@ export const storeItinerary = async (userId: string, itineraryData: ItineraryRes
 export const deleteItinerary = async (itineraryId: string) => {
   const itineraryRef = doc(db, 'itineraries', itineraryId); // Adjust 'itineraries' to your collection name
   await deleteDoc(itineraryRef);
-};
-
-export const updateUserProfile = async (userId: string, profileData: { name?: string, photoURL?: string }): Promise<void> => {
-  const userRef = doc(db, 'users', userId); // Adjust 'users' to your collection name for user profiles
-  try {
-      await setDoc(userRef, profileData, { merge: true });
-      console.log('User profile updated successfully');
-  } catch (error) {
-      console.error('Error updating user profile: ', error);
-  }
-};
-
-export const uploadProfilePicture = async (userId: string, file: File): Promise<string> => {
-  const storageRef = ref(storage, `profile_pictures/${userId}`);
-  try {
-      await uploadBytes(storageRef, file);
-      const photoURL = await getDownloadURL(storageRef);
-      return photoURL;
-  } catch (error) {
-      console.error('Error uploading profile picture: ', error);
-      throw new Error('Failed to upload profile picture');
-  }
 };

@@ -16,9 +16,8 @@ export const generateItinerary = async (data: { destination: string; date: strin
   {"destination": {"numberOfDays": Number,"destinationCity": String,"destinationCountry": String,"currency": String,"oneDollarInLocalCurrency": Number,"languagesSpoken": Array,"timeThereInUtcFormat": String // eg. UTC + 2,"capitalOfTheCountry": String, "localWeather": String // eg. monsoon or continental or etc, "temperatureRangeThroughTheYear": String,"shortDescription": String // 2-3 sentances, "shortHistory": String // 2-3 sentances,"startDate": String,"endDate": String},"itinerary":[{"day": number, "date": String // eg. dayoftheweek day month, "program": [{"id": Number // continue with the next number on the next day,"programOrPlaceName": String, "timeSpentThere": String, "location": String, coordinateOfEvent: [longtitude: number // 5 decimals, latitude: number // 4 decimals] // array like [long, lat], "shortDescriptionOfProgram": String // 2-3 sentances}, // ... Repeat for each program]}, // ... Repeat for each day], "estimatedCosts": [{"category": Accommodation, "hostelCostPerNight": Number, "hotelCostPerNight": Number,"luxuryHotelCostPerNight": Number,"airbnbCostPerNight": Number}, {"category": "Transportation","busCost": Number,"taxiCost": Number,"trainCost": Number,"rentalCost": Number},{"category": Food,"streetFoodCost": Number,"budgetRestaurantCost": Number,"fancyRestaurantCost": Number,"traditionalFoodCost": Number}, {"category": Activities, "mainActivityForEachDay": [{"mainActivityName": String,"costOfProgram": Number}, // ... Repeat for each day's main event and cost of program should be in usd]}]}`;
 
   try {
-    // Note the change in the endpoint URL to 'v1/chat/completions'
     const response = await axios.post('https://api.openai.com/v1/chat/completions', {
-      model: "gpt-3.5-turbo-1106", // Specify the model you want to use
+      model: "gpt-4", // Specify the model you want to use
       messages: [{role: "system", content: "You are a travel planning assistant."}, {role: "user", content: prompt}],
       response_format: { type: "json_object" },
       max_tokens: 4090,
