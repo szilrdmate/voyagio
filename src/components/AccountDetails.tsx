@@ -23,7 +23,7 @@ const AccountDetails: React.FC = () => {
         )}
         <div className="flex flex-col pt-2">
           <p className="mb-2 text-2xl font-semibold text-gray-800">
-            {user?.displayName || "Unverified user"}{" "}
+            Welcome back {user?.displayName || null}
             <span className="text-base font-normal">
               {user?.emailVerified ? (
                 <FontAwesomeIcon

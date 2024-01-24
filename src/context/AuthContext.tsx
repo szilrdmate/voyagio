@@ -93,7 +93,8 @@ export const AuthContextProvider = ({ children }: AuthContextProviderProps) => {
         error,
         clearError,
         setError,
-      }}>
+      }}
+    >
       {children}
     </UserContext.Provider>
   );

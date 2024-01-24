@@ -351,7 +351,7 @@ const ItineraryPlanner = () => {
         <div className="fixed bottom-0 left-0 flex w-full justify-center border-t border-gray-300 bg-white px-8 py-8 sm:justify-end">
           <div className="flex flex-row space-x-4 sm:max-w-2xl">
             <button
-              className="flex items-center justify-center rounded-lg border border-gray-300 px-4 py-2 text-lg font-semibold text-gray-400 shadow-md"
+              className="flex h-12 w-12 items-center justify-center rounded-lg border border-gray-300 px-4 py-2 text-lg font-semibold text-gray-400 shadow-md"
               type="button"
               onClick={handleReset}
               value="Reset"
