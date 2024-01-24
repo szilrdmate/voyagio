@@ -7,7 +7,7 @@ import { faChevronUp } from "@fortawesome/free-solid-svg-icons";
 const BlogCard: React.FC<BlogCardProps> = ({ post, onClick }) => {
   const trimStringToCharLimit = (
     inputString: string,
-    limit: number
+    limit: number,
   ): string => {
     if (inputString.length > limit) {
       return inputString.substring(0, limit) + "..."; // Return the string trimmed to 'limit' characters and append an ellipsis
@@ -18,32 +18,37 @@ const BlogCard: React.FC<BlogCardProps> = ({ post, onClick }) => {
   return (
     <div
       onClick={onClick}
-      className='hover-scale-first-child cursor-pointer h-[420px] sm:h-[440px] md:h-[470px] rounded-3xl overflow-hidden shadow-lg bg-white  border-gray-300'>
+      className="hover-scale-first-child relative h-[380px] cursor-pointer overflow-hidden rounded-3xl border-gray-300 bg-white shadow-lg sm:h-[400px]  md:h-[400px]"
+    >
       <img
-        className='w-full h-64 object-cover'
+        className="h-64 w-full object-cover"
         src={post.image}
         alt={post.title}
       />
-      <div className='px-6 py-4'>
-        <div className='flex space-x-2 mb-2'>
+      <div className="absolute left-0 top-0 flex h-64 w-full items-end bg-gradient-to-t from-[#000000] to-[#00000010] px-6 py-4">
+        <div className="mb-2 text-xl font-bold text-white">{post.title}</div>
+      </div>
+      <div className="px-6 py-4">
+        <div className="mb-2 flex space-x-2">
           {post.tags.map((item, index) => (
             <div
               key={index}
-              className='text-sm w-fit font-medium text-white bg-gray-800 rounded-full px-4 py-1'>
+              className="w-fit rounded-full bg-gray-800 px-4 py-1 text-sm font-medium text-white"
+            >
               {item}
             </div>
           ))}
         </div>
-        <div className='font-bold text-xl mb-2'>{post.title}</div>
 
-        <p className='mb-2 text-gray-500 text-base text-justify '>
+        <p className="mb-2 text-justify text-base text-gray-500 ">
           {trimStringToCharLimit(post.preview, 100)}
         </p>
       </div>
       <button
-        className='-translate-y-20 hover:-translate-y-24 transition-transform duration-300 font-bold text-gray-600 hover:text-gray-800 py-8 relative bottom-0 rounded-xl bg-gradient-to-t from-white via-[#ffffff98] to-transparent w-full'
-        onClick={onClick}>
-        <span className=' mx-auto duration-150 px-2 py-1 rounded-full w-fit flex flex-col'>
+        className="relative bottom-0 w-full -translate-y-20 rounded-xl bg-gradient-to-t from-white via-[#ffffff98] to-transparent py-8 font-bold text-gray-600 transition-transform duration-300 hover:-translate-y-24 hover:text-gray-800"
+        onClick={onClick}
+      >
+        <span className=" mx-auto flex w-fit flex-col rounded-full px-2 py-1 duration-150">
           <FontAwesomeIcon icon={faChevronUp} />
           Read More
         </span>

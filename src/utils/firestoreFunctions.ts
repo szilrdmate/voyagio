@@ -2,7 +2,6 @@
 import { db } from './firebaseConfig';
 import { ItineraryResponseType, ItineraryWithId } from '../types/ResponseTypes';
 import { collection, addDoc, query, where, getDocs, doc, deleteDoc } from 'firebase/firestore';
-
 export const storeItinerary = async (userId: string, itineraryData: ItineraryResponseType): Promise<void> => {
     console.log("storeItinerary called", { userId, itineraryData });
     try {
