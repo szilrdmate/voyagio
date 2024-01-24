@@ -98,3 +98,11 @@ input[type=range]::-moz-range-thumb {
   background: rgb(59 130 246); /* Green background */
   cursor: pointer; /* Cursor on hover */
 }
+
+input::-webkit-file-upload-button {
+  border: none;
+  padding: 0.25rem 0.5rem;
+  border-radius: 30px;
+  background-color: transparent;
+  text-decoration: underline;
+}

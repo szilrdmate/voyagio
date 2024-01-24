@@ -1,6 +1,7 @@
 // src/context/AuthContext.tsx
 import { createContext, useContext, useEffect, useState, ReactNode } from "react";
-import { UserCredential, User, createUserWithEmailAndPassword, signInWithEmailAndPassword, signOut, onAuthStateChanged, updateProfile } from "firebase/auth";
+import { UserCredential, User, createUserWithEmailAndPassword, signInWithEmailAndPassword, signOut, onAuthStateChanged } from "firebase/auth";
+import { updateUserProfile, uploadProfilePicture } from "../utils/firestoreFunctions";
 import { auth } from "../utils/firebaseConfig";
 
 type AuthContextType = {
@@ -12,7 +13,8 @@ type AuthContextType = {
 	logout: () => Promise<void>;
 	clearError: () => void;
 	setError: React.Dispatch<React.SetStateAction<string | null>>;
-	updateUser: (userUpdates: { displayName?: string; photoURL?: string }) => Promise<void>;
+	handleProfileUpdate: (userId: string, name: string, file: File) => Promise<void>;
+	removeProfilePicture: (userId: string) => Promise<void>;
 };
 
 // Provide a default value for the context
@@ -31,8 +33,13 @@ const defaultAuthContext: AuthContextType = {
 	},
 	setError: () => {},
 	clearError: () => {},
-	updateUser: async () => {
-		throw new Error("updateUser function not implemented");
+	handleProfileUpdate: async () => {
+		throw new Error("handleProfileUpdate function is not implemented");
+	},
+	removeProfilePicture: async () => {
+		// This is a placeholder implementation.
+		// You might throw an error or leave it as a no-op (no operation)
+		throw new Error("removeProfilePicture function is not implemented");
 	},
 };
 
@@ -63,10 +70,41 @@ export const AuthContextProvider = ({ children }: AuthContextProviderProps) => {
 		setError(null);
 	};
 
-	const updateUser = async (userUpdates: { displayName?: string; photoURL?: string }) => {
-		if (user) {
-			await updateProfile(user, userUpdates);
-			setUser(await auth.currentUser); // Refresh user data
+	const handleProfileUpdate = async (userId: string, name: string, file: File) => {
+		try {
+			const photoURL = await uploadProfilePicture(userId, file);
+			await updateUserProfile(userId, { name, photoURL });
+
+			// Update the local user state
+			if (user) {
+				setUser({
+					...user,
+					displayName: name, // Assuming name maps to displayName
+					photoURL: photoURL,
+				});
+			}
+		} catch (error) {
+			console.error("Error updating profile: ", error);
+			// Handle error (e.g., update state to show error message to user)
+		}
+	};
+
+	const removeProfilePicture = async (userId: string) => {
+		try {
+			// Assuming you have a default or empty string for removal
+			const defaultPhotoURL = "";
+			await updateUserProfile(userId, { photoURL: defaultPhotoURL });
+
+			// Update the local user state
+			if (user) {
+				setUser({
+					...user,
+					photoURL: defaultPhotoURL,
+				});
+			}
+		} catch (error) {
+			console.error("Error removing profile picture: ", error);
+			// Handle error (e.g., update state to show error message to user)
 		}
 	};
 
@@ -91,7 +129,8 @@ export const AuthContextProvider = ({ children }: AuthContextProviderProps) => {
 				error,
 				clearError,
 				setError,
-				updateUser,
+				handleProfileUpdate,
+				removeProfilePicture,
 			}}
 		>
 			{children}
