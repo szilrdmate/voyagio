@@ -94,8 +94,8 @@ VITE_APP_ID=
 VITE_MEASUREMENT_ID=
 ```
 
-4.  Start the server
+4.  Start development server
 
 ```bash
-npm start
+npm run dev
 ```

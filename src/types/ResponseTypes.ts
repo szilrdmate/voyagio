@@ -60,3 +60,7 @@ export interface ItineraryResponseType {
 export interface ItineraryWithId extends ItineraryResponseType {
   id: string;
 }
+
+export interface ItineraryDisplayProps {
+	response: ItineraryResponseType;
+}
