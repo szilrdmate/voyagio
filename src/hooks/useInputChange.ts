@@ -1,4 +1,4 @@
-// hooks/useInputChange.ts
+// src/hooks/useInputChange.ts
 import { Dispatch, SetStateAction } from "react";
 import { FormState, ItineraryAction } from "../types/ItineraryTypes";
 
@@ -18,6 +18,7 @@ export const useInputChange = (
     dispatch({ type: "TOGGLE_ARRAY_FIELD_ITEM", field, value });
     setErrors((prevErrors) => ({ ...prevErrors, [field]: "" }));
   };
+  
 
   return { handleInputChange, handleButtonInputChange, handleMultipleChoiceChange };
 };

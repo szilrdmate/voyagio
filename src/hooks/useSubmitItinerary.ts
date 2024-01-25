@@ -3,14 +3,15 @@ import { generateItinerary } from "../services/gptService";
 import { FormState } from "../types/ItineraryTypes";
 import { useItinerary } from "../context/ItineraryContext";
 import { useLoading } from '../context/LoadingContext';
+import { CitySuggestion } from "../types/CitySuggestion";
 
-export const useSubmitItinerary = (state: FormState, validate: (state: FormState) => boolean) => {
+export const useSubmitItinerary = (state: FormState, validate: (state: FormState, citySuggestions: CitySuggestion[]) => boolean, citySuggestions: CitySuggestion[]) => {
   const { setResponse } = useItinerary();
   const { setLoading } = useLoading();
 
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
-    const isValid = validate(state);
+    const isValid = validate(state, citySuggestions);
 
     if (isValid) {
       try {

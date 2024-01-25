@@ -1,5 +1,7 @@
+// src/hooks/useItineraryFormValidation.ts
 import { useState, useCallback } from "react";
 import { FormState } from "../types/ItineraryTypes.ts";
+import { CitySuggestion } from '../types/CitySuggestion';
 
 export const useItineraryFormValidation = () => {
   const [errors, setErrors] = useState<{ [key: string]: string }>({
@@ -11,7 +13,7 @@ export const useItineraryFormValidation = () => {
     activity: "",
   });
 
-  const validate = useCallback((state: FormState) => {
+  const validate = useCallback((state: FormState, citySuggestions: CitySuggestion[]) => {
     let isValid = true;
 
     setErrors(prevErrors => {
@@ -40,6 +42,11 @@ export const useItineraryFormValidation = () => {
       if (state.activity.length === 0) {
         newErrors.activity = "Select at least one type of activity";
         isValid = false;
+      }
+      const cityNames = citySuggestions.map(city => city.name);
+        if (!cityNames.includes(state.destination)) {
+          newErrors.destination = "Please select a valid city";
+          isValid = false;
       }
 
       return newErrors;
