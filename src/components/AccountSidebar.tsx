@@ -3,7 +3,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faRightFromBracket } from "@fortawesome/free-solid-svg-icons";
 import { User } from "firebase/auth";
 
-type AccountSection = "history" | "settings" | "help" | "details" | "soon" | "bug";
+type AccountSection = "history" | "help" | "details" | "bug" | "subscription";
 
 type Link = {
 	title: string;

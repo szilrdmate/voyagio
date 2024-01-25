@@ -1,14 +1,15 @@
 import React, { useState } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faGear, faClockRotateLeft, faCircleInfo, faBug, faCircleQuestion } from "@fortawesome/free-solid-svg-icons";
+import { faClockRotateLeft, faCircleInfo, faBug, faMoneyBillWave } from "@fortawesome/free-solid-svg-icons";
 import { UserAuth } from "../context/AuthContext";
 import { useNavigate } from "react-router-dom";
 import History from "../components/History";
 import Sidebar from "../components/AccountSidebar";
-import AccountSettings from "../components/AccountSettings";
 import AccountHelp from "../components/AccountHelp";
+import AccountSubscription from "../components/AccountSubscription";
+import AccountBug from "../components/AccountBug";
 
-type AccountSection = "history" | "settings" | "help" | "details" | "soon" | "bug";
+type AccountSection = "history" | "help" | "details" | "bug" | "subscription";
 
 type Link = {
 	title: string;
@@ -23,9 +24,9 @@ const links: Link[] = [
 		icon: <FontAwesomeIcon icon={faClockRotateLeft} />,
 	},
 	{
-		title: "Settings",
-		state: "settings",
-		icon: <FontAwesomeIcon icon={faGear} />,
+		title: "Upgrade Plan",
+		state: "subscription",
+		icon: <FontAwesomeIcon icon={faMoneyBillWave} />,
 	},
 	{
 		title: "Report a Bug",
@@ -36,11 +37,6 @@ const links: Link[] = [
 		title: "Help",
 		state: "help",
 		icon: <FontAwesomeIcon icon={faCircleInfo} />,
-	},
-	{
-		title: "Coming Soon",
-		state: "soon",
-		icon: <FontAwesomeIcon icon={faCircleQuestion} />,
 	},
 ];
 
@@ -66,14 +62,12 @@ const Account: React.FC = () => {
 		switch (accountSection) {
 			case "history":
 				return <History />;
-			case "settings":
-				return <AccountSettings />;
 			case "help":
 				return <AccountHelp />;
 			case "bug":
-				return <AccountHelp />;
-			case "soon":
-				return <div>Coming Soon</div>;
+				return <AccountBug />;
+			case "subscription":
+				return <AccountSubscription />;
 			default:
 				return (
 					<>
