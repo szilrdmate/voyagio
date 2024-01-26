@@ -1,4 +1,3 @@
-// src/hooks/useCityAutocomplete.ts
 import { useState, useEffect } from 'react';
 import { CitySuggestion, MapboxFeature } from '../types/CitySuggestion';
 

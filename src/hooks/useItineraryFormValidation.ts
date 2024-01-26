@@ -1,4 +1,3 @@
-// src/hooks/useItineraryFormValidation.ts
 import { useState, useCallback } from "react";
 import { FormState } from "../types/ItineraryTypes.ts";
 import { CitySuggestion } from '../types/CitySuggestion';

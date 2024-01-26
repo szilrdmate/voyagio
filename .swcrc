@@ -1,0 +1,19 @@
+{
+    "jsc": {
+      "parser": {
+        "syntax": "typescript",
+        "tsx": true, // Enable parsing of TSX
+        "decorators": true,
+        "dynamicImport": true
+      },
+      "transform": {
+        "react": {
+          "runtime": "automatic" // This enables the new JSX transform
+        }
+      }
+    },
+    "module": {
+      "type": "commonjs" // or "es6" depending on your module system
+    }
+  }
+  

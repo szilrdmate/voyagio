@@ -1,4 +1,3 @@
-// src/hooks/useSubmitItinerary.ts
 import { generateItinerary } from "../services/gptService";
 import { FormState } from "../types/ItineraryTypes";
 import { useItinerary } from "../context/ItineraryContext";
