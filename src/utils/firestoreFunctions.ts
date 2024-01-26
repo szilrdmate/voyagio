@@ -2,14 +2,13 @@ import { db } from './firebaseConfig';
 import { ItineraryResponseType, ItineraryWithId } from '../types/ResponseTypes';
 import { collection, addDoc, query, where, getDocs, doc, deleteDoc } from 'firebase/firestore';
 export const storeItinerary = async (userId: string, itineraryData: ItineraryResponseType): Promise<void> => {
-    console.log("storeItinerary called", { userId, itineraryData });
     try {
-        const docRef = await addDoc(collection(db, 'itineraries'), {
+        await addDoc(collection(db, 'itineraries'), {
         userId,
         ...itineraryData,
         createdAt: new Date()
       });
-      console.log('Document successfully written with ID: ', docRef.id);
+      console.log('Document successfully written with ID');
     } catch (error) {
       console.error('Error storing itinerary: ', error);
     }
