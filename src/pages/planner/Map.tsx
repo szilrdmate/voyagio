@@ -1,4 +1,3 @@
-// src/components/Map.tsx
 import React, { useRef, useEffect, useState } from "react";
 import mapboxgl from "mapbox-gl";
 import "mapbox-gl/dist/mapbox-gl.css";
@@ -12,7 +11,7 @@ const Map: React.FC<MapProps> = ({ location }) => {
 	const mapContainerRef = useRef<HTMLDivElement>(null);
 	const [map, setMap] = useState<mapboxgl.Map | null>();
 
-	const { response } = useItinerary(); // response from api
+	const { response } = useItinerary();
 
 	const fetchCoordinates = async (city: string): Promise<[number, number] | null> => {
 		try {

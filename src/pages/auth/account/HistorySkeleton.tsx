@@ -1,5 +1,5 @@
 import React from "react";
-import { FragmentType } from "../../types/HistorySkeletonType";
+import { FragmentType } from "../../../types/HistorySkeletonType";
 
 const HistorySkeleton: React.FC<FragmentType> = ({ times }) => {
 	const items = [];

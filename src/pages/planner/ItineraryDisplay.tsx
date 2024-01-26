@@ -1,9 +1,8 @@
-// components/ItineraryDisplay.tsx
 import React, { useState, useEffect } from "react";
 import Overview from "./Overview";
 import General from "./General";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faCalendarDays, faChevronLeft, faDownload } from "@fortawesome/free-solid-svg-icons";
+import { faCalendarDays, faChevronLeft, faPlus } from "@fortawesome/free-solid-svg-icons";
 import DayFragment from "./DayFragment";
 import { useNavigate } from "react-router-dom";
 import CostBreakdown from "./CostBreakdown";
@@ -11,18 +10,27 @@ import { ItineraryDisplayProps, ItineraryResponseType } from "../../types/Respon
 import { useItinerary } from "../../context/ItineraryContext";
 import { storeItinerary } from "../../utils/firestoreFunctions";
 import { UserAuth } from "../../context/AuthContext";
+import { fetchCityImage } from "../../services/placesAPI";
 
 const ItineraryDisplay: React.FC<ItineraryDisplayProps> = ({ response }) => {
 	const [isOverview, setIsOverview] = useState<boolean>(true);
 	const { setResponse, isSaved, setIsSaved } = useItinerary();
+	const [bgImage, setBgImage] = useState("");
 	const navigate = useNavigate();
 	const { user } = UserAuth();
+
+	useEffect(() => {
+		const loadImage = async () => {
+			const imageUrl = await fetchCityImage(response.destination.destinationCity);
+			setBgImage(imageUrl);
+		};
+
+		loadImage();
+	}, [response]);
 
 	const isMultipledays = () => {
 		return response.destination.numberOfDays > 1 ? "days" : "day";
 	};
-
-	const bgImage = "https://www.budapestinfo.hu/storage/media-library/1527/fOB6ecwUglninbOa83rPsfuwRp9yuECvNW64eWOS.jpg";
 
 	const handleNewTrip = () => {
 		if (response) {
@@ -46,14 +54,9 @@ const ItineraryDisplay: React.FC<ItineraryDisplayProps> = ({ response }) => {
 		}
 	};
 
-	// Event handler function to be called on button click
-	const handleSaveClick = () => {
-		saveItinerary(response);
-	};
-
 	useEffect(() => {
 		if (response && user) {
-			handleSaveClick();
+			saveItinerary(response);
 		}
 	}, [response, user]);
 
@@ -70,7 +73,7 @@ const ItineraryDisplay: React.FC<ItineraryDisplayProps> = ({ response }) => {
 					style={{
 						backgroundImage: `linear-gradient(to top, rgba(0,0,0,1), rgba(0,0,0,0)), url(${bgImage})`,
 					}}
-					className="flex h-72 flex-col justify-between bg-cover px-4 py-4"
+					className="relative flex h-72 flex-col justify-between bg-cover bg-center px-4 py-4"
 				>
 					<div className="py-3">
 						<button onClick={goBack} className="text-lg font-semibold tracking-wide text-white underline">
@@ -78,14 +81,10 @@ const ItineraryDisplay: React.FC<ItineraryDisplayProps> = ({ response }) => {
 							Go Back
 						</button>
 					</div>
-					<div className="absolute right-5 top-5 space-x-2">
-						<button className="button text-white" onClick={handleNewTrip}>
-							New Trip
-						</button>
-						<button className="button text-white ">
-							<FontAwesomeIcon icon={faDownload} />
-						</button>
-					</div>
+					<button className="button absolute right-5 top-5 text-white" onClick={handleNewTrip}>
+						<FontAwesomeIcon icon={faPlus} className="mr-2" />
+						New Trip
+					</button>
 					<div>
 						<h1 className="text-3xl font-bold leading-loose tracking-wide text-white">
 							{response.destination.numberOfDays} {isMultipledays()} trip to {response.destination.destinationCity}, {response.destination.destinationCountry}

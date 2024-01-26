@@ -1,3 +1,5 @@
+import { IconDefinition } from "@fortawesome/fontawesome-svg-core";
+
 export type GeneralProps = {
 	setState: React.Dispatch<React.SetStateAction<boolean>>;
 	stats: StatsProps;
@@ -15,3 +17,8 @@ type StatsProps = {
 	localWeather: string;
 	temperatureRangeThroughTheYear: string;
 };
+
+export interface StatItemProps {
+	icon: IconDefinition;
+	content: React.ReactNode;
+}

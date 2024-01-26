@@ -1,12 +1,12 @@
 import React from "react";
 import { Routes, Route } from "react-router-dom";
-import Home from "./pages/home/Home";
-import Blog from "./pages/blog/Blog";
+import Home from "./pages/home/index";
+import Planner from "./pages/planner/index";
+import Blog from "./pages/blog/index";
+import Account from "./pages/auth/index";
+import NotFound from "./pages/404/index";
 import Navbar from "./components/ui/Navbar";
-import Planner from "./pages/planner/Planner";
-import NotFound from "./pages/404/NotFound";
 import { ItineraryProvider } from "./context/ItineraryContext";
-import Account from "./pages/auth/Account";
 import AuthWrapper from "./pages/auth/auth/AuthWrapper";
 import { LoadingProvider } from "./context/LoadingContext";
 import { AuthContextProvider } from "./context/AuthContext";

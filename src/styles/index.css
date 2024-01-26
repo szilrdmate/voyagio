@@ -65,38 +65,38 @@
 
  /* General styles for the range input */
  input[type=range] {
-  -webkit-appearance: none;  /* Override default CSS styles */
+  -webkit-appearance: none;
   appearance: none;
-  width: 100%; /* Full-width */
-  height: 5px; /* Specified height */
-  background: #ddd; /* Grey background */
-  outline: none; /* Remove outline */
-  opacity: 0.7; /* Set transparency (for mouse-over effects on hover) */
-  -webkit-transition: .2s; /* 0.2 seconds transition on hover */
+  width: 100%; 
+  height: 5px; 
+  background: #ddd;
+  outline: none; 
+  opacity: 0.7; 
+  -webkit-transition: .2s;
   transition: opacity .2s;
 }
 
 /* Mouse-over effects */
 input[type=range]:hover {
-  opacity: 1; /* Fully opaque on hover */
+  opacity: 1;
 }
 
 /* The slider handle (thumb) */
 input[type=range]::-webkit-slider-thumb {
-  -webkit-appearance: none; /* Override default look */
+  -webkit-appearance: none;
   appearance: none;
-  width: 25px; /* Width of the handle */
-  height: 25px; /* Height of the handle */
+  width: 25px; 
+  height: 25px; 
   border-radius: 50%;
-  background: rgb(59 130 246); /* Green background */
-  cursor: pointer; /* Cursor on hover */
+  background: rgb(59 130 246);
+  cursor: pointer;
 }
 
 input[type=range]::-moz-range-thumb {
-  width: 25px; /* Width of the handle */
-  height: 25px; /* Height of the handle */
-  background: rgb(59 130 246); /* Green background */
-  cursor: pointer; /* Cursor on hover */
+  width: 25px; 
+  height: 25px;
+  background: rgb(59 130 246);
+  cursor: pointer;
 }
 
 input::-webkit-file-upload-button {

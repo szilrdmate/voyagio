@@ -1,13 +1,10 @@
-// src/services/gptService.ts
 import axios from 'axios';
 
-// Assuming the API key is securely stored in an environment variable
 const API_KEY = import.meta.env.VITE_OPENAI_API_KEY;
 
 export const generateItinerary = async (data: { destination: string; date: string; length: string; group: string; budget: string; activity: string }) => {
   // Input validation
   if (!data.destination || !data.date || !data.length || !data.group || !data.budget || !data.activity) {
-    // error('Invalid input data for itinerary generation');
     return null;
   }
 
@@ -17,7 +14,7 @@ export const generateItinerary = async (data: { destination: string; date: strin
 
   try {
     const response = await axios.post('https://api.openai.com/v1/chat/completions', {
-      model: "gpt-3.5-turbo-1106", // Specify the model you want to use
+      model: "gpt-3.5-turbo-1106", // Model in use
       messages: [{role: "system", content: "You are a travel planning assistant."}, {role: "user", content: prompt}],
       response_format: { type: "json_object" },
       max_tokens: 4090,
@@ -30,6 +27,7 @@ export const generateItinerary = async (data: { destination: string; date: strin
     // Extracting and parsing the content from the response
     const contentString = response.data.choices[0].message.content;
 
+    // If response is a string parse it into json, if it's json return normally
     if (typeof contentString === 'string') {
       const parsedContent = JSON.parse(contentString);
       return parsedContent;

@@ -1,4 +1,3 @@
-// components/Itinerary.tsx
 import { useReducer, useState } from "react";
 import { useItineraryFormValidation } from "../../hooks/useItineraryFormValidation.ts";
 import { useSubmitItinerary } from "../../hooks/useSubmitItinerary.ts";
@@ -30,7 +29,7 @@ const itineraryReducer = (state: FormState, action: ItineraryAction) => {
 		case "SET_ITINERARY":
 			return { ...state, itinerary: action.itinerary };
 		case "TOGGLE_ARRAY_FIELD_ITEM": {
-			const arrayField = state[action.field] as string[]; // Typecasting for clarity
+			const arrayField = state[action.field] as string[];
 			const valueIndex = arrayField.indexOf(action.value);
 
 			// Using immutable update patterns

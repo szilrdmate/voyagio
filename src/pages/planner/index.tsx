@@ -1,4 +1,3 @@
-// src/pages/Planner.tsx
 import ItineraryPlanner from "./Itinerary";
 import ItineraryDisplay from "./ItineraryDisplay";
 import Map from "./Map";

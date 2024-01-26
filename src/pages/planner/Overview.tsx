@@ -1,39 +1,21 @@
-// components/Overview.tsx
 import React from "react";
-
-type OverviewProps = {
-  setState: React.Dispatch<React.SetStateAction<boolean>>;
-  info: DestinationInfo;
-};
-
-type DestinationInfo = {
-  shortDescription: string;
-  shortHistory: string;
-};
+import { OverviewProps } from "../../types/OverviewType";
 
 const Overview: React.FC<OverviewProps> = ({ info, setState }) => {
-  return (
-    <div className='px-8 py-10'>
-      <div className='space-x-2 mb-8'>
-        <button className='rounded-full bg-gray-800 text-white border-2 border-gray-800 px-6 py-1 font-semibold text-lg'>
-          Overview
-        </button>
-        <button
-          onClick={() => setState(false)}
-          className='rounded-full bg-transparent text-gray-800 border-2 border-gray-800 px-6 py-1 font-semibold text-lg hover:bg-gray-800 hover:text-white duration-150'>
-          General Information
-        </button>
-      </div>
-      <h2 className='text-gray-800 font-bold text-xl mb-2'>Description</h2>
-      <p className='text-gray-600 font-medium text-md text-justify mb-4'>
-        {info.shortDescription}
-      </p>
-      <h2 className='text-gray-800 font-bold text-xl mb-2'>History</h2>
-      <p className='text-gray-600 font-medium text-md text-justify'>
-        {info.shortHistory}
-      </p>
-    </div>
-  );
+	return (
+		<div className="px-8 py-10">
+			<div className="mb-8 space-x-2">
+				<button className="rounded-full border-2 border-gray-800 bg-gray-800 px-6 py-1 text-lg font-semibold text-white">Overview</button>
+				<button onClick={() => setState(false)} className="rounded-full border-2 border-gray-800 bg-transparent px-6 py-1 text-lg font-semibold text-gray-800 duration-150 hover:bg-gray-800 hover:text-white">
+					General Information
+				</button>
+			</div>
+			<h2 className="mb-2 text-xl font-bold text-gray-800">Description</h2>
+			<p className="text-md mb-4 text-justify font-medium text-gray-600">{info.shortDescription}</p>
+			<h2 className="mb-2 text-xl font-bold text-gray-800">History</h2>
+			<p className="text-md text-justify font-medium text-gray-600">{info.shortHistory}</p>
+		</div>
+	);
 };
 
 export default Overview;

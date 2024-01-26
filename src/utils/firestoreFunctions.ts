@@ -1,4 +1,3 @@
-// src/utils/firestoreFunctions.ts
 import { db } from './firebaseConfig';
 import { ItineraryResponseType, ItineraryWithId } from '../types/ResponseTypes';
 import { collection, addDoc, query, where, getDocs, doc, deleteDoc } from 'firebase/firestore';
@@ -35,6 +34,6 @@ export const storeItinerary = async (userId: string, itineraryData: ItineraryRes
 };
 
 export const deleteItinerary = async (itineraryId: string) => {
-  const itineraryRef = doc(db, 'itineraries', itineraryId); // Adjust 'itineraries' to your collection name
+  const itineraryRef = doc(db, 'itineraries', itineraryId);
   await deleteDoc(itineraryRef);
 };

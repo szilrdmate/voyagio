@@ -6,7 +6,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faTrashCan, faEye } from "@fortawesome/free-regular-svg-icons";
 import { useNavigate } from "react-router-dom";
 import { useItinerary } from "../../../context/ItineraryContext";
-import HistorySkeleton from "../HistorySkeleton";
+import HistorySkeleton from "./HistorySkeleton";
 
 const History: React.FC = () => {
 	const [loading, setLoading] = useState(true);
