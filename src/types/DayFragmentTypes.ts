@@ -3,6 +3,7 @@ type Program = {
     programOrPlaceName: string;
     timeSpentThere: string;
     location: string;
+    coordinateOfEvent: [number, number],
     shortDescriptionOfProgram: string;
   };
   

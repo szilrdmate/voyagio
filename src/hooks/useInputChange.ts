@@ -1,4 +1,3 @@
-// src/hooks/useInputChange.ts
 import { Dispatch, SetStateAction } from "react";
 import { FormState, ItineraryAction } from "../types/ItineraryTypes";
 
