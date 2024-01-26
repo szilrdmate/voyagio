@@ -33,7 +33,7 @@ const Map: React.FC<MapProps> = ({ location }) => {
 		const el = document.createElement("div");
 		el.className = "custom-marker bg-gray-800 rounded-full p-2 shadow-md w-6 h-6 font-semibold text-white text-center text-md flex justify-center items-center"; // Add a class for styling
 
-		// Add any HTML content inside the marker
+		// Add HTML content inside the marker
 		el.innerHTML = `<span>${event.id}</span>`;
 
 		return el;
@@ -46,7 +46,7 @@ const Map: React.FC<MapProps> = ({ location }) => {
 			const initialMap = new mapboxgl.Map({
 				container: mapContainerRef.current,
 				style: "mapbox://styles/mapbox/streets-v11",
-				zoom: 10,
+				zoom: 12,
 			});
 			setMap(initialMap);
 		}

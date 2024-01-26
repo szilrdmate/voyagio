@@ -1,9 +1,9 @@
-interface MainActivity {
+export interface MainActivity {
 	mainActivityName: string;
 	costOfProgram: number;
 }
 
-interface EstimatedCostCategory {
+export interface EstimatedCostCategory {
 	category: string;
 	hostelCostPerNight?: number;
 	hotelCostPerNight?: number;

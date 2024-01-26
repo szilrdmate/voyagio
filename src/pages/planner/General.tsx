@@ -27,9 +27,7 @@ const General: React.FC<GeneralProps> = ({ stats, setState }) => {
 				<StatItem icon={faCity} content={stats.capitalOfTheCountry} />
 				<StatItem icon={faTemperatureHalf} content={stats.localWeather} />
 				<StatItem icon={faEarthAmericas} content={stats.timeThereInUtcFormat} />
-				{stats.languagesSpoken.map((language, index) => (
-					<StatItem key={index} icon={faLanguage} content={language} />
-				))}
+				<StatItem icon={faLanguage} content={stats.languagesSpoken.map((language) => language + " ")} />
 			</div>
 		</div>
 	);
