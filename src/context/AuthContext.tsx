@@ -1,18 +1,8 @@
 // src/context/AuthContext.tsx
-import { createContext, useContext, useEffect, useState, ReactNode } from "react";
-import { UserCredential, User, createUserWithEmailAndPassword, signInWithEmailAndPassword, signOut, onAuthStateChanged } from "firebase/auth";
+import { createContext, useContext, useEffect, useState } from "react";
+import { User, createUserWithEmailAndPassword, signInWithEmailAndPassword, signOut, onAuthStateChanged } from "firebase/auth";
 import { auth } from "../utils/firebaseConfig";
-
-type AuthContextType = {
-	user: User | null;
-	loading: boolean;
-	error: string | null;
-	createUser: (email: string, password: string) => Promise<UserCredential>;
-	signIn: (email: string, password: string) => Promise<UserCredential>;
-	logout: () => Promise<void>;
-	clearError: () => void;
-	setError: React.Dispatch<React.SetStateAction<string | null>>;
-};
+import { AuthContextType, AuthContextProviderProps } from "../types/AuthContextTypes";
 
 // Provide a default value for the context
 const defaultAuthContext: AuthContextType = {
@@ -33,10 +23,6 @@ const defaultAuthContext: AuthContextType = {
 };
 
 const UserContext = createContext<AuthContextType>(defaultAuthContext);
-
-type AuthContextProviderProps = {
-	children: ReactNode;
-};
 
 export const AuthContextProvider = ({ children }: AuthContextProviderProps) => {
 	const [user, setUser] = useState<User | null>(null);

@@ -92,10 +92,11 @@ VITE_STORAGE_BUCKET=
 VITE_MESSAGING_SENDER_ID=
 VITE_APP_ID=
 VITE_MEASUREMENT_ID=
+VITE_UNSPLASH_ACCESS_KEY=
 ```
 
-4.  Start the server
+4.  Start development server
 
 ```bash
-npm start
+npm run dev
 ```
