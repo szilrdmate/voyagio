@@ -1,6 +1,9 @@
 import React from "react";
 import "../../styles/animations.css";
 import { useNavigate } from "react-router-dom";
+import ai from "../../assets/ai.webp";
+import map from "../../assets/map.webp";
+import passport from "../../assets/passport.webp";
 
 const About: React.FC = () => {
 	const navigate = useNavigate();
@@ -13,7 +16,7 @@ const About: React.FC = () => {
 			id: 1,
 			title: "1. Configure Your Inputs/Needs",
 			par: "Input your travel details such as destination, dates, budget, and interests. The more specific you are, the better the AI can tailor your itinerary to match your preferences.",
-			src: "/src/assets/map.webp",
+			src: map,
 			cta: "Start Your Journey",
 			bg: "bg-gradient-to-r from-sky-500 to-indigo-500",
 		},
@@ -21,7 +24,7 @@ const About: React.FC = () => {
 			id: 2,
 			title: "2. Wait for the Results",
 			par: "After submitting your details, our AI works to create your personalized itinerary. This involves analyzing a wide range of travel data to ensure the best match for your trip. You'll be notified once your custom plan is ready.",
-			src: "/src/assets/ai.webp",
+			src: ai,
 			cta: "Travel The World",
 			bg: "bg-gradient-to-bl from-sky-500 to-indigo-500",
 		},
@@ -29,7 +32,7 @@ const About: React.FC = () => {
 			id: 3,
 			title: "3. Explore Your Trip",
 			par: "Review and customize the suggested itinerary. Make any changes to fit your needs, explore additional options, and save the final plan. Get ready to enjoy a journey that's uniquely tailored to you.",
-			src: "/src/assets/passport.webp",
+			src: passport,
 			cta: "Try It Out Today",
 			bg: "bg-gradient-to-br from-sky-500 to-indigo-500",
 		},
