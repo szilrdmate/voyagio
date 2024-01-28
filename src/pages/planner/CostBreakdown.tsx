@@ -85,7 +85,7 @@ const CostBreakdown: React.FC<EstimatedCostsProps> = ({ estimatedCosts }) => {
 				<button onClick={toggleCollapse}>
 					<FontAwesomeIcon className="text-2xl text-gray-800" icon={faChevronDown} rotation={isCollapsed ? 270 : undefined} />
 				</button>
-				<h2 className="text-3xl font-black text-gray-800">Cost Breakdown (USD)</h2>
+				<h2 className="text-2xl font-black text-gray-800 md:text-3xl">Cost Breakdown (USD)</h2>
 			</div>
 			{!isCollapsed &&
 				estimatedCosts.map((costCategory, index) => {
