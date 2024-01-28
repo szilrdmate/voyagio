@@ -8,7 +8,7 @@ const Hero = () => {
 				<h1 className="mb-4 text-center text-5xl font-bold leading-tight text-white sm:text-7xl">
 					Let AI Be Your <span className="text-cyan-300">Personal Travel Assistant...</span>
 				</h1>
-				<h3 className="text-md mb-8 w-full text-center font-medium uppercase leading-loose tracking-widest text-gray-200">Travel hassle-free, and without worries</h3>
+				<h2 className="text-md mb-8 w-full text-center font-medium uppercase leading-loose tracking-widest text-gray-200">Travel hassle-free, and without worries</h2>
 				<TypingEffect />
 				<Link to="/planner">
 					<div className="button mx-auto mt-8 flex h-16 max-w-lg items-center justify-center rounded-2xl border border-sky-500 bg-gradient-to-b from-sky-400 to-sky-500 text-2xl text-white shadow-xl transition-transform duration-300 ease-in-out hover:scale-[1.02]">Get Planning - It's Free</div>

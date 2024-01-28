@@ -18,6 +18,7 @@ const About: React.FC = () => {
 			par: "Input your travel details such as destination, dates, budget, and interests. The more specific you are, the better the AI can tailor your itinerary to match your preferences.",
 			src: map,
 			cta: "Start Your Journey",
+			alt: "Map illustration",
 			bg: "bg-gradient-to-r from-sky-500 to-indigo-500",
 		},
 		{
@@ -26,6 +27,7 @@ const About: React.FC = () => {
 			par: "After submitting your details, our AI works to create your personalized itinerary. This involves analyzing a wide range of travel data to ensure the best match for your trip. You'll be notified once your custom plan is ready.",
 			src: ai,
 			cta: "Travel The World",
+			alt: "AI chip illustration",
 			bg: "bg-gradient-to-bl from-sky-500 to-indigo-500",
 		},
 		{
@@ -34,6 +36,7 @@ const About: React.FC = () => {
 			par: "Review and customize the suggested itinerary. Make any changes to fit your needs, explore additional options, and save the final plan. Get ready to enjoy a journey that's uniquely tailored to you.",
 			src: passport,
 			cta: "Try It Out Today",
+			alt: "Passport illustration",
 			bg: "bg-gradient-to-br from-sky-500 to-indigo-500",
 		},
 	];
@@ -45,7 +48,7 @@ const About: React.FC = () => {
 				{about.map((item, id) => (
 					<div key={id} className="mb-8 flex flex-col justify-between gap-8 lg:flex-row">
 						<div className="flex w-full items-center justify-center">
-							<img className="aspect-square max-h-80" src={item.src} />
+							<img className="aspect-square max-h-80" src={item.src} alt={item.alt} />
 						</div>
 						<div className="mx-auto max-w-xl rounded-3xl  bg-white px-8 py-10 shadow-lg backdrop-blur-xl">
 							<h3 className="mb-4 text-3xl font-bold text-gray-800">{item.title}</h3>

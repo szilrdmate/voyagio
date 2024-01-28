@@ -27,11 +27,11 @@ const DesktopNav = () => {
 					Feedback
 				</Link>
 				{!user ? (
-					<NavLink to="/sign" className={`ml-4 flex h-[58px] w-[58px] items-center justify-center rounded-full border-4 border-gray-500 bg-gray-300 text-xl font-bold duration-300 hover:border-blue-500 ${navLoadClass}`}>
+					<NavLink to="/sign" aria-label="Sign in or sign up!" className={`ml-4 flex h-[58px] w-[58px] items-center justify-center rounded-full border-4 border-gray-500 bg-gray-300 text-xl font-bold duration-300 hover:border-blue-500 ${navLoadClass}`}>
 						<FontAwesomeIcon className="text-gray-500 " icon={faUserPlus} />
 					</NavLink>
 				) : (
-					<NavLink to="/account" className={` group ml-4 flex w-fit items-center justify-center rounded-full border-4 border-[#264459] bg-[#264459] text-xl font-bold duration-300 hover:border-blue-500 hover:bg-blue-500`}>
+					<NavLink to="/account" aria-label="Account page" className={` group ml-4 flex w-fit items-center justify-center rounded-full border-4 border-[#264459] bg-[#264459] text-xl font-bold duration-300 hover:border-blue-500 hover:bg-blue-500`}>
 						<FontAwesomeIcon className=" text-5xl text-[#fbfcfd]" icon={faCircleUser} />
 					</NavLink>
 				)}
