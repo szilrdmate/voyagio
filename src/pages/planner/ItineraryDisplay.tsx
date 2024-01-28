@@ -68,7 +68,7 @@ const ItineraryDisplay: React.FC<ItineraryDisplayProps> = ({ response }) => {
 
 	return (
 		<>
-			<div className="no-scrollbar fixed left-0 top-0 z-20 h-screen w-[60vw] overflow-scroll border-r border-gray-300 bg-white">
+			<div className="no-scrollbar fixed left-0 top-0 z-20 h-screen w-screen overflow-scroll border-r border-gray-300 bg-white md:w-[60vw]">
 				<div
 					style={{
 						backgroundImage: `linear-gradient(to top, rgba(0,0,0,1), rgba(0,0,0,0)), url(${bgImage})`,

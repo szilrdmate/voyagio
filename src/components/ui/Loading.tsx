@@ -19,8 +19,8 @@ const Loading: React.FC = () => {
 
 	return (
 		<div className="fixed left-0 top-0 z-50 flex h-screen w-screen items-center justify-center bg-black bg-opacity-40 backdrop-blur-lg">
-			<h2 className="text-5xl font-bold text-white">Planning Your Trip</h2>
-			<p className="w-5 text-5xl font-bold text-white">{dots}</p>
+			<h2 className="text-3xl font-bold text-white sm:text-5xl">Planning Your Trip</h2>
+			<p className="w-5 text-3xl font-bold text-white sm:text-5xl">{dots}</p>
 		</div>
 	);
 };

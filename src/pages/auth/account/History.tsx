@@ -112,8 +112,8 @@ const History: React.FC = () => {
 			) : (
 				<ul className="space-y-4">
 					{currentItineraries.map((itinerary, id) => (
-						<li className="flex items-center justify-between rounded-2xl border border-gray-300 border-opacity-20 bg-white px-8 py-4 shadow-xl" key={id}>
-							<div>
+						<li className="flex items-center justify-between space-x-4 rounded-2xl border border-gray-300 border-opacity-20 bg-white px-8 py-4 shadow-xl sm:space-x-2" key={id}>
+							<div className="space-y-2 sm:space-y-0">
 								<p className="text-xl font-semibold">
 									{itinerary.destination.numberOfDays} {dayOrDays(itinerary.destination.numberOfDays)}
 									{itinerary.destination.destinationCity}, {itinerary.destination.destinationCountry}
@@ -122,7 +122,7 @@ const History: React.FC = () => {
 									{itinerary.destination.startDate} - {itinerary.destination.endDate}
 								</p>
 							</div>
-							<div className="flex space-x-2">
+							<div className="flex flex-col space-y-2 sm:flex-row sm:space-x-2 sm:space-y-0">
 								<button onClick={() => handleDelete(itinerary.id)} className="flex h-10 w-10 items-center justify-center rounded-xl border-2 border-red-400 text-red-400">
 									<FontAwesomeIcon className="text-xl" icon={faTrashCan} />
 								</button>

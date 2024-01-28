@@ -42,6 +42,7 @@ const MobileNav = () => {
 					<Link target="_blank" to="https://voyagio.canny.io/feature-requests" className="transition-color text-2xl font-semibold duration-150 hover:text-blue-400" onClick={() => setIsOpen(false)}>
 						Feedback
 					</Link>
+					<hr className="w-[80%] opacity-30 " />
 					{user ? (
 						<>
 							<hr className="w-[80%] opacity-30" />
@@ -50,7 +51,7 @@ const MobileNav = () => {
 							</NavLink>
 						</>
 					) : (
-						<NavLink to="/sign" onClick={() => setIsOpen(false)} className={`button w-[80%] bg-teal-500 text-center text-2xl font-bold ${path}`}>
+						<NavLink to="/sign" onClick={() => setIsOpen(false)} className={`button w-[80%] bg-gradient-to-bl from-sky-500 to-indigo-500 text-center text-2xl font-bold ${path}`}>
 							Sign In
 						</NavLink>
 					)}

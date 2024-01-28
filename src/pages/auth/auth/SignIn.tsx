@@ -43,7 +43,7 @@ const SignIn: React.FC<Props> = ({ setState }) => {
 
 	return (
 		<div className="col-span-1 col-start-1 h-full w-full">
-			<form className="relative w-96 space-y-6 px-8 py-8" onSubmit={handleSignIn}>
+			<form className="relative w-full space-y-6 px-8 py-8 sm:w-96" onSubmit={handleSignIn}>
 				<div>
 					<h2 className="text-left text-3xl font-bold text-gray-800">Sign In</h2>
 				</div>

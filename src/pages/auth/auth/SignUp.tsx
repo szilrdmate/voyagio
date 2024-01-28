@@ -46,9 +46,9 @@ const SignUp: React.FC<Props> = ({ setState }) => {
 
 	return (
 		<div className="col-span-1 col-start-2 h-full w-full">
-			<form className="relative w-96 space-y-6 px-8 py-8" onSubmit={handleSignUp}>
+			<form className="relative w-full space-y-6 px-8 py-8 sm:w-96" onSubmit={handleSignUp}>
 				<div>
-					<h2 className="text-whigray-800 text-left text-3xl font-bold">Sign Up</h2>
+					<h2 className="text-left text-3xl font-bold text-gray-800">Sign Up</h2>
 				</div>
 				<div>
 					<input className="placeholder:text-md w-full rounded-full border border-gray-300 bg-gray-50 p-4 text-gray-500 placeholder:text-gray-400 focus:outline-none" type="email" name="sign-up-email" id="sign-up-email" autoComplete="true" onChange={handleEmailChange} placeholder="Email" />

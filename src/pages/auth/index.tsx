@@ -17,12 +17,12 @@ const links: Link[] = [
 		icon: <FontAwesomeIcon icon={faClockRotateLeft} />,
 	},
 	{
-		title: "Upgrade Plan",
+		title: "Plans",
 		state: "subscription",
 		icon: <FontAwesomeIcon icon={faMoneyBillWave} />,
 	},
 	{
-		title: "Report a Bug",
+		title: "Bugs",
 		state: "bug",
 		icon: <FontAwesomeIcon icon={faBug} />,
 	},
@@ -71,9 +71,9 @@ const Account: React.FC = () => {
 	};
 
 	return (
-		<div className="grid min-h-screen grid-cols-4 gap-4 px-6 pb-20 pt-40">
+		<div className="min-h-screen gap-4 px-6 pb-20 pt-40 sm:grid sm:grid-cols-4">
 			<Sidebar links={links} setAccountSection={setAccountSection} user={user} logout={handleLogout} />
-			<div className="col-span-3 rounded-3xl p-6">{renderSection()}</div>
+			<div className="rounded-3xl pt-8 sm:col-span-3 sm:p-6">{renderSection()}</div>
 		</div>
 	);
 };
