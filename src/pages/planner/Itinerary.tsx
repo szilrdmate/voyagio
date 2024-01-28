@@ -137,9 +137,6 @@ const ItineraryPlanner = () => {
 							</p>
 						)}
 					</h4>
-					<label htmlFor="destination" className="hidden">
-						Where do you want to go?
-					</label>
 					<input
 						id="destination"
 						type="text"
@@ -174,9 +171,6 @@ const ItineraryPlanner = () => {
 							</p>
 						)}
 					</h4>
-					<label htmlFor="date" className="hidden">
-						When are you planning to go?
-					</label>
 					<input
 						id="date"
 						type="date"
@@ -201,9 +195,6 @@ const ItineraryPlanner = () => {
 							</p>
 						)}
 					</h4>
-					<label htmlFor="length" className="hidden">
-						Length:
-					</label>
 					<input id="length" type="range" min="1" max="14" name="length" value={state.length} onChange={handleInputChange("length")} className="h-10 w-full rounded-full bg-transparent py-2" />
 				</div>
 
@@ -218,9 +209,6 @@ const ItineraryPlanner = () => {
 							</p>
 						)}
 					</h4>
-					<label className="hidden" htmlFor="group">
-						Group size:
-					</label>
 					<div className="grid grid-cols-2 grid-rows-2 gap-4 sm:grid-cols-3">
 						{groupOptions.map((group) => (
 							<button key={group.value} type="button" onClick={handleButtonInputChange("group", group.value)} className={`button h-28 bg-white text-gray-800 duration-75 ${state.group === group.value ? "border-2 border-gray-800" : "border border-gray-300 hover:border-gray-500"}`}>
@@ -245,9 +233,6 @@ const ItineraryPlanner = () => {
 							</p>
 						)}
 					</h4>
-					<label htmlFor="budget" className="hidden">
-						Budget:
-					</label>
 					<div className="grid grid-cols-2 gap-4 sm:grid-cols-3">
 						{budgetOptions.map((budget) => (
 							<button key={budget.value} type="button" onClick={handleButtonInputChange("budget", budget.value)} className={`button h-32 bg-white duration-75 ${state.budget === budget.value ? "border-2 border-gray-800" : "border border-gray-300 hover:border-gray-500"}`}>
@@ -273,10 +258,6 @@ const ItineraryPlanner = () => {
 							</p>
 						)}
 					</h4>
-
-					<label htmlFor="activity" className="hidden">
-						Activities
-					</label>
 					<div className="grid grid-cols-2 grid-rows-3 gap-4 sm:grid-cols-3">
 						{activities.map((activity) => (
 							<button key={activity.value} type="button" onClick={() => handleMultipleChoiceChange("activity", activity.value)} className={`button h-28 bg-white text-gray-800 duration-75 ${state.activity.includes(activity.value) ? "border-2 border-gray-800" : "border border-gray-300 hover:border-gray-500"}`}>

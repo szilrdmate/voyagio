@@ -104,7 +104,7 @@ const History: React.FC = () => {
 
 	return (
 		<div>
-			<h2 className="mb-8 text-5xl font-bold text-gray-800">Previous Itineraries</h2>
+			<h2 className="mb-8 text-3xl font-bold text-gray-800 sm:text-5xl">Previous Itineraries</h2>
 			{loading ? (
 				<HistorySkeleton times={3} />
 			) : itineraries.length === 0 ? (

@@ -17,6 +17,11 @@
   -moz-osx-font-smoothing: grayscale;
 }
 
+html, body {
+  max-width: 100%;
+  overflow-x: hidden;
+}
+
 /* In your global CSS file */
 @layer components {
   .button {
