@@ -1,4 +1,3 @@
-// src/components/BlogGrid.tsx
 import React from "react";
 import BlogCard from "./Blogcard";
 import { BlogGridProps } from "../../types/BlogGridProps";

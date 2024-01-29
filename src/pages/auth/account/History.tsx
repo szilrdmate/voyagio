@@ -108,7 +108,11 @@ const History: React.FC = () => {
 			{loading ? (
 				<HistorySkeleton times={3} />
 			) : itineraries.length === 0 ? (
-				<p className="font-medium text-gray-500">No itineraries found</p>
+				<li className="flex items-center justify-between rounded-2xl border border-gray-300 border-opacity-20 bg-white px-8 py-4 shadow-xl">
+					<div className="space-y-2">
+						<p className=" rounded-lg px-4 py-2 text-xl font-medium text-gray-500">No itineraries found</p>
+					</div>
+				</li>
 			) : (
 				<ul className="space-y-4">
 					{currentItineraries.map((itinerary, id) => (

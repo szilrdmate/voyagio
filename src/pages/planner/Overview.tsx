@@ -5,8 +5,8 @@ const Overview: React.FC<OverviewProps> = ({ info, setState }) => {
 	return (
 		<div className="px-8 py-10">
 			<div className="mb-8 space-y-2 md:space-x-2">
-				<button className="w-full rounded-full border-2 border-gray-800 bg-gray-800 px-6 py-1 text-lg font-semibold text-white">Overview</button>
-				<button onClick={() => setState(false)} className="w-full rounded-full border-2 border-gray-800 bg-transparent px-6 py-1 text-lg font-semibold text-gray-800 duration-150 hover:bg-gray-800 hover:text-white">
+				<button className="w-full rounded-full border-2 border-gray-800 bg-gray-800 px-6 py-1 text-lg font-semibold text-white md:w-[unset]">Overview</button>
+				<button onClick={() => setState(false)} className="w-full rounded-full border-2 border-gray-800 bg-transparent px-6 py-1 text-lg font-semibold text-gray-800 duration-150 hover:bg-gray-800 hover:text-white md:w-[unset]">
 					General Information
 				</button>
 			</div>

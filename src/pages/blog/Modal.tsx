@@ -1,4 +1,3 @@
-// src/components/Modal.tsx
 import React from "react";
 import { ModalProps } from "../../types/ModalProps";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";

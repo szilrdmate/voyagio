@@ -1,4 +1,3 @@
-// src/components/BlogPage.tsx
 import React, { useState } from "react";
 import BlogGrid from "./BlogGrid";
 import Modal from "./Modal";

@@ -1,4 +1,3 @@
-// src/types/BlogCardProps.ts
 import { BlogPost } from './BlogPost';
 
 export interface BlogCardProps {
