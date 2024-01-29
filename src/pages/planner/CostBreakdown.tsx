@@ -1,21 +1,7 @@
-import { IconDefinition } from "@fortawesome/fontawesome-svg-core";
 import React, { useState } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faChevronDown, faBed, faTaxi, faTicket, faUtensils } from "@fortawesome/free-solid-svg-icons";
-import { EstimatedCostsProps, EstimatedCostCategory } from "../../types/CostBreakdownTypes";
-
-type Detail = { name: string; cost: number };
-
-interface CostDetail {
-	name: string;
-	cost: number | string;
-}
-
-interface CostItemProps {
-	icon: IconDefinition;
-	category: string;
-	details: CostDetail[];
-}
+import { EstimatedCostsProps, EstimatedCostCategory, Detail, CostItemProps } from "../../types/CostBreakdownTypes";
 
 const CostItem: React.FC<CostItemProps> = ({ icon, category, details }) => (
 	<div>

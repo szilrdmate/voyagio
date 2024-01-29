@@ -52,7 +52,7 @@ export const useItineraryFormValidation = () => {
     });
 
     return isValid;
-  }, []); // Removed 'errors' from dependencies
+  }, []);
 
   return { errors, validate, setErrors };
 };
