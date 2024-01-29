@@ -1,44 +1,39 @@
+[Logo](/icon.114)
+
 # Voyagio
 
 A highly cofigureable AI powered travel itinerary planner.
 
+## 🔗 Demo
+
 **Check out the live demo at:** https://voyagio.vercel.app
 
-![DemoGIF]()
+**Or check out a video demo at:** https://youtu.be/kMMQH4TOwK0
 
-## Project Overview
+## 📑 Table of Contents
 
-parapgraph1
+- [Project Overview](#📚-project-overview)
+- [User Flow / Screesnhots](#📷-user-flow)
+- [Features](#🎲-features)
+- [Technologies](#⚛️-technologies)
+- [Setup / Install](#💻-setup--install)
+- [Approach](#🚶-approach)
+- [Status](#📶-status)
+- [License](#📝-license)
 
-paragraph 2
+## 📚 Project Overview
 
-## Key Elements
+## 📷 User Flow
 
-### ComponentName:
+## 🎲 Features
 
-paragraph 3
+- Customizeable prompt
+- Firebase Auth
+- Mapbox location query
+- Location Image Search
+- Relevant Suggestions
 
-#### Inputs
-
-- 1
-- 2
-- 3
-
-#### Flow
-
-1. foo
-2. bar
-3. baz
-
-## Features
-
-- [x] Customizeable prompt
-- [x] Firebase Auth
-- [x] Mapbox location query
-- [x] Location Image Search
-- [x] Relevant Suggestions
-
-## Technologies
+## ⚛️ Technologies
 
 ![React](https://img.shields.io/badge/react-%2320232a.svg?style=for-the-badge&logo=react&logoColor=%2361DAFB)
 ![TypeScript](https://img.shields.io/badge/TypeScript-007ACC?style=for-the-badge&logo=typescript&logoColor=white)
@@ -47,15 +42,16 @@ paragraph 3
 ![Firebase](https://img.shields.io/badge/firebase-%23039BE5.svg?style=for-the-badge&logo=firebase)
 ![Vite](https://img.shields.io/badge/vite-%23646CFF.svg?style=for-the-badge&logo=vite&logoColor=white)
 
-## Getting Started
+## 💻 Setup / Install
 
 ### Prequisites
 
 Before getting started, please ensure that you have the following third-party services set up:
 
 - [OpenAI API](https://openai.com): AI model
-- [MapBoxGLJS](https://mapbox.com/mapbox-gljs): Map
-- [Firebase](https://www.firebase.google.com/): Backend
+- [MapBoxGL](https://mapbox.com/mapbox-gljs): Map
+- [Firebase + Firestore](https://www.firebase.google.com/): Authentication & Database
+- [Unsplash API](https://www.unspalsh.com/): Image fetch
 
 ### Installation
 
@@ -100,3 +96,9 @@ VITE_UNSPLASH_ACCESS_KEY=
 ```bash
 npm run dev
 ```
+
+## 🚶 Approach
+
+## 📶 Status
+
+## 📝 License
