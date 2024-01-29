@@ -19,9 +19,6 @@
     "@heroicons/react": "^2.1.1",
     "@mapbox/mapbox-sdk": "^0.15.3",
     "@reduxjs/toolkit": "^2.0.1",
-    "@types/mapbox-gl": "^2.7.19",
-    "@types/react-router-dom": "^5.3.3",
-    "@types/uuid": "^9.0.7",
     "axios": "^1.6.5",
     "firebase": "^10.7.2",
     "mapbox-gl": "^3.0.1",
@@ -30,8 +27,7 @@
     "react-dom": "^18.2.0",
     "react-query": "^3.39.3",
     "react-responsive": "^9.0.2",
-    "react-router-dom": "^6.21.1",
-    "uuid": "^9.0.1"
+    "react-router-dom": "^6.21.1"
   },
   "devDependencies": {
     "@swc/jest": "^0.2.31",
@@ -39,9 +35,11 @@
     "@testing-library/react": "^14.1.2",
     "@types/jest": "^29.5.11",
     "@types/mapbox__mapbox-sdk": "^0.14.0",
+    "@types/mapbox-gl": "^2.7.20",
     "@types/react": "^18.2.47",
     "@types/react-dom": "^18.2.17",
     "@types/react-redux": "^7.1.33",
+    "@types/react-router-dom": "^5.3.3",
     "@typescript-eslint/eslint-plugin": "^6.14.0",
     "@typescript-eslint/parser": "^6.14.0",
     "@vitejs/plugin-react-swc": "^3.5.0",
