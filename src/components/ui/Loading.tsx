@@ -12,7 +12,7 @@ const Loading: React.FC = () => {
 					return "";
 				}
 			});
-		}, 400); // Adjust the interval time as needed
+		}, 400);
 
 		return () => clearInterval(interval); // Cleanup interval on component unmount
 	}, []);

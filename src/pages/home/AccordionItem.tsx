@@ -1,6 +1,7 @@
 import { useState, FunctionComponent } from "react";
-import { ChevronDownIcon, ChevronUpIcon } from "@heroicons/react/24/outline";
 import { AccordionItemProps } from "../../types/AccordionProps";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faChevronUp, faChevronDown } from "@fortawesome/free-solid-svg-icons";
 
 const AccordionItem: FunctionComponent<AccordionItemProps> = ({ question, answer }) => {
 	const [isOpen, setIsOpen] = useState(false);
@@ -9,7 +10,7 @@ const AccordionItem: FunctionComponent<AccordionItemProps> = ({ question, answer
 		<div>
 			<button onClick={() => setIsOpen(!isOpen)} className="flex w-full items-center justify-between py-5 text-left text-gray-800">
 				<span className="text-xl font-bold">{question}</span>
-				{isOpen ? <ChevronUpIcon className="h-5 w-5 text-gray-600" /> : <ChevronDownIcon className="h-5 w-5 text-gray-600" />}
+				{isOpen ? <FontAwesomeIcon icon={faChevronUp} className="text-xl text-gray-600" /> : <FontAwesomeIcon icon={faChevronDown} className="text-xl text-gray-600" />}
 			</button>
 			<div className={`overflow-hidden transition-all duration-300 ${isOpen ? "max-h-48" : "max-h-0"}`}>
 				<p className="text-md mb-4 text-justify font-medium text-gray-500 ">{answer}</p>

@@ -1,3 +1,5 @@
+import { IconDefinition } from "@fortawesome/fontawesome-svg-core";
+
 export interface MainActivity {
 	mainActivityName: string;
 	costOfProgram: number;
@@ -22,4 +24,17 @@ export interface EstimatedCostCategory {
 
 export interface EstimatedCostsProps {
 	estimatedCosts: EstimatedCostCategory[];
+}
+
+export type Detail = { name: string; cost: number };
+
+interface CostDetail {
+	name: string;
+	cost: number | string;
+}
+
+export interface CostItemProps {
+	icon: IconDefinition;
+	category: string;
+	details: CostDetail[];
 }

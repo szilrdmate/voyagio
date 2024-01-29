@@ -39,8 +39,6 @@ const ItineraryDisplay: React.FC<ItineraryDisplayProps> = ({ response }) => {
 		}
 	};
 
-	// TODO: move this function to the it context
-
 	const saveItinerary = async (response: ItineraryResponseType) => {
 		if (user && response && !isSaved) {
 			// Check if saving is not in progress
