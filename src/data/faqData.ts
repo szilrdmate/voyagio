@@ -27,6 +27,6 @@ export const faqs = [
     {
       question: "How can I get help with Voyagio?",
       answer:
-        "Should you need help or have inquiries regarding the use of Voyagio, do not hesitate to reach out via email at mate.szilard.mark@gmail.com",
+        "Should you need help or have inquiries regarding the use of Voyagio, do not hesitate to reach out via email at szilard@highdaymedia.com",
     },
   ];
