@@ -6,7 +6,7 @@ A highly cofigureable AI powered travel itinerary planner.
 
 ## 🔗 Demo
 
-**Check out the live demo at:** https://voyagio.vercel.app
+**Check out the live demo at:** https://voyagio.app
 
 **Or check out a video demo at:** https://youtu.be/kMMQH4TOwK0
 
