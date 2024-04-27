@@ -12,7 +12,7 @@ const DesktopNav = () => {
 		<div className="fixed box-border w-full border-b border-b-slate-800 bg-slate-950 py-4 text-gray-100">
 			<div className="m-auto flex max-w-7xl items-center justify-between text-xl font-bold">
 				<NavLink className="mr-4" to="/">
-					<img src="/logo.svg" className="h-[58px] rounded-full" alt="Voyagio logo" />
+					<img src="/logo_1.svg" className="h-[58px] rounded-full" alt="Voyagio logo" />
 				</NavLink>
 				<div>
 					<NavLink to="/" className="transition-color rounded-full px-8 py-[14px] duration-150 hover:text-cyan-400">
