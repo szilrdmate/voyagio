@@ -1,4 +1,4 @@
-![Logo](public/logo.png)
+![Logo](public/logo_1.png)
 
 # Voyagio
 
