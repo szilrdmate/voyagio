@@ -9,6 +9,9 @@ import { faCircleExclamation, faArrowTurnUp, faArrowRotateLeft } from "@fortawes
 import { activities, budgetOptions, groupOptions } from "../../data/buttonData.ts";
 import { useCityAutocomplete } from "../../hooks/useCityAutocomplete.ts";
 import { ErrorObject } from "../../types/ErrorObject.ts";
+import { CalendarDatePicker } from "../../components/ui/calendar-date-picker.tsx";
+
+// TODO: Switch to react-hook-form and zod & shadcn form
 
 const initialState: FormState = {
 	destination: "",
@@ -182,6 +185,16 @@ const ItineraryPlanner = () => {
 						placeholder="Enter a location"
 						className={`${errors.destination ? "border-red-500" : "border-gray-300"} placeholder:font-base mt-2 h-12 w-full rounded-xl border bg-gray-50  px-4 py-2 backdrop-blur-lg  placeholder:text-gray-400 focus-within:outline-none`}
 					/>
+					{/*
+					<CalendarDatePicker
+                          date={field.value}
+                          onDateSelect={({ from, to }) => {
+                            form.setValue("datePicker", { from, to });
+                          }}
+                          variant="outline"
+                          numberOfMonths={1}
+                          className="min-w-[250px]"
+                        />*/}
 				</div>
 
 				{/*Length*/}
